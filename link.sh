@@ -1,0 +1,1 @@
+# Script to symlink dotfiles
