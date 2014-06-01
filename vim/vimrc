@@ -1,0 +1,85 @@
+" Source the Vundle config
+if filereadable(expand("~/.vim/vundlerc"))
+    source ~/.vim/vundlerc
+endif
+
+" Courtesy of @leftnode
+syntax enable
+set background=dark
+colorscheme solarized
+
+set ls=2     " always show status line
+set nobackup " no backup files
+
+" size of a hard tabstop
+set tabstop=4
+
+" size of an "indent"
+set shiftwidth=4
+
+" a combination of spaces and tabs are used to simulate tab stops at a width
+" other than the (hard)tabstop
+set softtabstop=4
+
+" make "tab" insert indents instead of tabs at the beginning of a line
+set smarttab
+
+" always uses spaces instead of tab characters
+set expandtab
+
+set nocompatible
+syntax enable
+set encoding=utf-8
+set showcmd
+
+set backspace=indent,eol,start
+set hlsearch                    " highlight matches
+set incsearch                   " incremental searching
+set ignorecase                  " searches are case insensitive...
+set smartcase                   " ... unless they contain at least one capital letter
+
+set visualbell
+
+map <F5> :w<CR>:!phpunit  --colors --strict --verbose %<CR>
+map <F2> :wa<CR>
+imap jj <Esc>
+
+" @damonkelley
+
+" NERDTree config {
+    map <C-k><C-k> :NERDTreeToggle<CR>
+
+    let NERDTreeShowBookmarks=1
+    let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.DS_Store']
+    let NERDTreeChDirMode=0
+    let NERDTreeQuitOnOpen=1
+    let NERDTreeMouseMode=2
+    let NERDTreeShowHidden=1
+    let NERDTreeKeepTreeInNewTab=1
+    let g:nerdtree_tabs_open_on_gui_startup=0
+" }
+
+filetype plugin on
+
+
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
+" let g:Powerline_symbols="fancy"
+" let g:Powerline_theme='skwp'
+" let g:Powerline_colorscheme='skwp'
+" set laststatus=2
+
+" Sparkup config::
+" Insert Mode Cursor Settings
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7""
+
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif

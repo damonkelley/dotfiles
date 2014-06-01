@@ -1,0 +1,11 @@
+[user]
+	email = dkelley@brightmarch.com
+	name = Damon Kelley
+[filter "media"]
+	clean = git-media-clean %f
+    smudge = git-media-smudge %f
+[alias]
+    s = status
+    ci = commit
+    co = checkout
+    br = branch
