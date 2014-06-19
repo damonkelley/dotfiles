@@ -5,8 +5,8 @@ endif
 
 " Courtesy of @leftnode
 syntax enable
+colorscheme gruvbox
 set background=dark
-colorscheme solarized
 
 set ls=2     " always show status line
 set nobackup " no backup files
@@ -59,12 +59,9 @@ imap jj <Esc>
     let g:nerdtree_tabs_open_on_gui_startup=0
 " }
 
-filetype plugin on
+let g:airline_powerline_fonts=1
 
-
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+set number
 
 " let g:Powerline_symbols="fancy"
 " let g:Powerline_theme='skwp'

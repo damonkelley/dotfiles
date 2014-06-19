@@ -2,31 +2,29 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 
 " Included with Vundle
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tpope/vim-rails.git'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'git://git.wincent.com/command-t.git'
+Plugin 'gmarik/vundle'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'L9'
 
-" My Bundles
-Bundle 'myusuf3/numbers.vim'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'AutoClose'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'php.vim'
-Bundle 'zenorocha/dracula-theme'
-Bundle 'kien/ctrlp.vim'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'evidens/vim-twig' 
-Bundle 'Lokaltog/powerline'
+" My Plugins
+Plugin 'myusuf3/numbers.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'kien/ctrlp.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'evidens/vim-twig' 
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'StanAngeloff/php.vim'
+Plugin 'bling/vim-airline'
+Plugin 'morhetz/gruvbox'
 
+call vundle#end()
 filetype plugin indent on     " required
