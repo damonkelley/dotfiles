@@ -14,7 +14,6 @@ set background=dark
 
 set t_Co=256
 set t_ut=
-set background=dark
 
 set ls=2     " always show status line
 set nobackup " no backup files
