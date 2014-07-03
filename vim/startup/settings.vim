@@ -7,7 +7,6 @@ set visualbell
 
 syntax enable
 set cc=80
-set foldcolumn=1
 set ls=2            " always show status line
 
 
