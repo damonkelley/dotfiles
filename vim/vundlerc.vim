@@ -18,15 +18,19 @@ Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'StanAngeloff/php.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'evidens/vim-twig' 
 Plugin 'Shougo/unite.vim'
-Plugin 'morhetz/gruvbox'
 Plugin 'bling/vim-airline'
 " Plugin 'edkolev/tmuxline.vim'
+
+" Syntax
+Plugin 'evidens/vim-twig' 
+Plugin 'StanAngeloff/php.vim'
+
+" Colors
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'morhetz/gruvbox'
 
 call vundle#end()
 filetype plugin indent on     " required
