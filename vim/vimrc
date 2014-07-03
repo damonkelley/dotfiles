@@ -5,8 +5,15 @@ endif
 
 " Courtesy of @leftnode
 syntax enable
+colorscheme gruvbox
+let g:gruvbox_italic=0
 set background=dark
-colorscheme solarized
+
+" colorscheme solarized
+" let g:solarized_termtrans=1
+
+set t_Co=256
+set t_ut=
 
 set ls=2     " always show status line
 set nobackup " no backup files
@@ -46,6 +53,8 @@ imap jj <Esc>
 
 " @damonkelley
 
+" highlight Comment cterm=italic
+
 " NERDTree config {
     map <C-k><C-k> :NERDTreeToggle<CR>
 
@@ -61,15 +70,13 @@ imap jj <Esc>
 
 filetype plugin on
 
+" Powerline config
+" python from powerline.vim import setup as powerline_setup
+" python powerline_setup()
+" python del powerline_setup
 
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
-
-" let g:Powerline_symbols="fancy"
-" let g:Powerline_theme='skwp'
-" let g:Powerline_colorscheme='skwp'
-" set laststatus=2
+" Airline Config
+let g:airline_powerline_fonts=1
 
 " Sparkup config::
 " Insert Mode Cursor Settings
