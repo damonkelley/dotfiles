@@ -1,9 +1,9 @@
-set showcmd
 set nocompatible
 set encoding=utf-8
 set nobackup    " no backup files
 set backspace=indent,eol,start
 set visualbell
+set showcmd
 
 syntax enable
 set cc=80
