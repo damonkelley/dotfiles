@@ -1,8 +1,4 @@
 
-! 256 Colors ============ {{{
-URxvt.color24:  #076678
-URxvt.color66:  #427b58
-URxvt.color88:  #9d0006
 URxvt.color96:  #8f3f71
 URxvt.color100: #79740e
 URxvt.color108: #8ec07c
@@ -54,13 +50,15 @@ URxvt*color15:  #ebdbb2
 URxvt*loginShell:                       true
 URxvt*scrollBar:                        false
 URxvt*meta8:                            false
-URxvt*background:                       [97]#282828
+URxvt*background:                       [88]#282828
 URxvt*foreground:                       #ebdbb2
 URxvt*highlightColor:                   #383f55
 URxvt*highlightTextColor:               #e7e1db
-URxvt*font:                             xft:DejaVu Sans Mono for Powerline:Book:size=9:antialias=true,xft:Ubuntu Mono derivative Powerline:size=9:antialias=true
+URxvt*font:                             xft:DejaVu Sans Mono for Powerline:size=9:antialias=true,xft:Ubuntu Mono derivative Powerline:size=9:antialias=true
 URxvt*depth:                            32
-URxvt*letterSpace:                      -1
+URxvt*letterSpace:                      -2
+! URxvt.perl-ext-common:                  clipboard 
+! URxvt.keysym.Mod4-v:                       perl:clipboard:paste
 !}}}
 
 ! Unused Options ======== {{{
@@ -85,9 +83,9 @@ URxvt*letterSpace:                      -1
 ! URxvt*scrollTtyKeypress:              boolean
 ! URxvt*scrollWithBuffer:               boolean
 ! URxvt*inheritPixmap:                  boolean
-! URxvt*transparent:                    true
+! URxvt*.transparent:                    true
+! URxvt*.shading:                        101
 ! URxvt*tintColor:                      #282828
-! URxvt*shading:                        number
 ! URxvt*blurRadius:                       15 
 ! URxvt*fading:                         number
 ! URxvt*fadeColor:                      color
@@ -144,7 +142,6 @@ URxvt*letterSpace:                      -1
 ! URxvt*secondaryScroll:                boolean
 ! URxvt*perl-lib:                       string
 ! URxvt*perl-eval:                      perl-eval
-! URxvt*perl-ext-common:                string
 ! URxvt*perl-ext:                       string
 ! URxvt*iso14755:                       boolean
 ! URxvt*iso14755_52:                    boolean
