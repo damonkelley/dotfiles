@@ -20,15 +20,19 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Shougo/unite.vim'
+Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
 " Plugin 'edkolev/tmuxline.vim'
+Plugin 'vim-scripts/vimwiki'
 
 " Syntax
 Plugin 'evidens/vim-twig' 
+Plugin 'python.vim'
 Plugin 'StanAngeloff/php.vim'
+Plugin 'django.vim'
 
 " Colors
+Plugin 'nanotech/jellybeans.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'morhetz/gruvbox'
 
