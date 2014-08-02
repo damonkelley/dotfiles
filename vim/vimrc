@@ -3,6 +3,8 @@ if filereadable(expand("~/.vim/vundlerc.vim"))
     source ~/.vim/vundlerc.vim
 endif
 
+let g:uname = system("uname -s")
+
 " Vim settings
 source ~/.vim/startup/settings.vim
 source ~/.vim/startup/plugin_settings.vim

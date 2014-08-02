@@ -24,6 +24,8 @@ set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 
+set number
+
 " Folding
 set foldmethod=syntax
 set foldlevelstart=20

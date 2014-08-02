@@ -13,7 +13,4 @@ noremap <leader>jt <Esc>:%!json_xs -f json -t json-pretty<CR>
 
 map <C-k><C-k> :NERDTreeToggle<CR>
 
-map <M-b> b
-
-" let mapleader="\\"
 map <Leader>vp :VimuxPromptCommand<CR>
