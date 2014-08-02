@@ -22,6 +22,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
+Plugin 'benmills/vimux'
 " Plugin 'edkolev/tmuxline.vim'
 Plugin 'vim-scripts/vimwiki'
 
