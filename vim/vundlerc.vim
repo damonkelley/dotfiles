@@ -24,6 +24,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
 Plugin 'benmills/vimux'
 " Plugin 'edkolev/tmuxline.vim'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/vimwiki'
 
 " Syntax
@@ -36,6 +37,7 @@ Plugin 'django.vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'morhetz/gruvbox'
+Plugin 'w0ng/vim-hybrid'
 
 call vundle#end()
 filetype plugin indent on     " required
