@@ -46,6 +46,35 @@ URxvt*color14:  #8ec07c
 URxvt*color15:  #ebdbb2
 !}}}
 
+! Hybrid Colors ====== {{{
+Hybrid*background: [88]#1D1F21
+Hybrid*foreground: #C5C8C6
+! black
+Hybrid*color0: #282A2E
+Hybrid*color8: #373B41
+! red
+Hybrid*color1: #A54242
+Hybrid*color9: #CC6666
+! green
+Hybrid*color2: #8C9440
+Hybrid*color10: #B5BD68
+! yellow
+Hybrid*color3: #DE935F
+Hybrid*color11: #F0C674
+! blue
+Hybrid*color4: #5F819D
+Hybrid*color12: #81A2BE
+! magenta
+Hybrid*color5: #85678F
+Hybrid*color13: #B294BB
+! cyan
+Hybrid*color6: #5E8D87
+Hybrid*color14: #8ABEB7
+! white
+Hybrid*color7: #707880
+Hybrid*color15: #C5C8C6
+! }}}
+
 ! General Config ======== {{{
 URxvt*loginShell:                       true
 URxvt*scrollBar:                        false
