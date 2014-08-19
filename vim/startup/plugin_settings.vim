@@ -15,6 +15,10 @@ let g:airline#extensions#tabline#enabled = 1
     let g:nerdtree_tabs_open_on_gui_startup=0
 " }
 
+" Indent Guide
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+
 
 " PHP Fold Settings
 let g:php_folding = 2

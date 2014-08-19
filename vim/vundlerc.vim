@@ -26,12 +26,14 @@ Plugin 'benmills/vimux'
 " Plugin 'edkolev/tmuxline.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/vimwiki'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " Syntax
 Plugin 'evidens/vim-twig' 
 Plugin 'python.vim'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'django.vim'
+Plugin 'groenewege/vim-less'
 
 " Colors
 Plugin 'nanotech/jellybeans.vim'
