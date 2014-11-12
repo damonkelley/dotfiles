@@ -30,6 +30,9 @@ set number
 set foldmethod=syntax
 set foldlevelstart=20
 
+au FileType javascript set ts=2 softtabstop=2 sw=2
+au FileType htmldjango set ts=4 softtabstop=4 sw=4
+
 " Cursor settings
 if exists('$TMUX')
     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
