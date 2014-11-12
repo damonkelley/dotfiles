@@ -1,4 +1,4 @@
-
+! ----{{{
 URxvt.color96:  #8f3f71
 URxvt.color100: #79740e
 URxvt.color108: #8ec07c
@@ -44,45 +44,17 @@ URxvt*color12:  #83a598
 URxvt*color13:  #d3869b
 URxvt*color14:  #8ec07c
 URxvt*color15:  #ebdbb2
-!}}}
 
-! Hybrid Colors ====== {{{
-Hybrid*background: [88]#1D1F21
-Hybrid*foreground: #C5C8C6
-! black
-Hybrid*color0: #282A2E
-Hybrid*color8: #373B41
-! red
-Hybrid*color1: #A54242
-Hybrid*color9: #CC6666
-! green
-Hybrid*color2: #8C9440
-Hybrid*color10: #B5BD68
-! yellow
-Hybrid*color3: #DE935F
-Hybrid*color11: #F0C674
-! blue
-Hybrid*color4: #5F819D
-Hybrid*color12: #81A2BE
-! magenta
-Hybrid*color5: #85678F
-Hybrid*color13: #B294BB
-! cyan
-Hybrid*color6: #5E8D87
-Hybrid*color14: #8ABEB7
-! white
-Hybrid*color7: #707880
-Hybrid*color15: #C5C8C6
-! }}}
+URxvt*background:                       [88]#282828
+URxvt*foreground:                       #ebdbb2
+URxvt*highlightColor:                   #383f55
+URxvt*highlightTextColor:               #e7e1db
+! !}}}
 
 ! General Config ======== {{{
 URxvt*loginShell:                       true
 URxvt*scrollBar:                        false
 URxvt*meta8:                            false
-URxvt*background:                       [88]#282828
-URxvt*foreground:                       #ebdbb2
-URxvt*highlightColor:                   #383f55
-URxvt*highlightTextColor:               #e7e1db
 URxvt*font:                             xft:DejaVu Sans Mono for Powerline:size=9:antialias=true,xft:Ubuntu Mono derivative Powerline:size=9:antialias=true
 URxvt*depth:                            32
 URxvt*letterSpace:                      -2
@@ -90,111 +62,3 @@ URxvt*letterSpace:                      -2
 ! URxvt.keysym.Mod4-v:                       perl:clipboard:paste
 !}}}
 
-! Unused Options ======== {{{
-
-! URxvt*colorBD:                        color
-! URxvt*colorIT:                        color
-! URxvt*colorUL:                        color
-! URxvt*colorRV:                        color
-! URxvt*termName:                       string
-! URxvt*geometry:                       geometry
-! URxvt*chdir:                          string
-! URxvt*reverseVideo:                   boolean
-! URxvt*jumpScroll:                     boolean
-! URxvt*skipScroll:                     boolean
-! URxvt*pastableTabs:                   boolean
-! URxvt*scrollstyle:                    mode
-! URxvt*scrollBar_right:                boolean
-! URxvt*scrollBar_floating:             boolean
-! URxvt*scrollBar_align:                mode
-! URxvt*thickness:                      number
-! URxvt*scrollTtyOutput:                boolean
-! URxvt*scrollTtyKeypress:              boolean
-! URxvt*scrollWithBuffer:               boolean
-! URxvt*inheritPixmap:                  boolean
-! URxvt*.transparent:                    true
-! URxvt*.shading:                        101
-! URxvt*tintColor:                      #282828
-! URxvt*blurRadius:                       15 
-! URxvt*fading:                         number
-! URxvt*fadeColor:                      color
-! URxvt*utmpInhibit:                    boolean
-! URxvt*urgentOnBell:                   boolean
-! URxvt*visualBell:                     true
-! URxvt*mapAlert:                       boolean
-! URxvt*mouseWheelScrollPage:           boolean
-! URxvt*tripleclickwords:               boolean
-! URxvt*insecure:                       boolean
-! URxvt*cursorUnderline:                boolean
-! URxvt*cursorBlink:                    boolean
-! URxvt*pointerBlank:                   boolean
-! URxvt*underlineColor:                 color
-! URxvt*scrollColor:                    color
-! URxvt*troughColor:                    color
-! URxvt*cursorColor:                    color
-! URxvt*cursorColor2:                   color
-! URxvt*pointerColor:                   color
-! URxvt*pointerColor2:                  color
-! URxvt*borderColor:                    color
-! URxvt*path:                           search path
-! URxvt*backgroundPixmap:               file[;geom]
-! URxvt*iconFile:                       /usr/share/icons/hicolor/scalable/apps/category\-show\-all.svg
-! URxvt*boldFont:                       fontname
-! URxvt*italicFont:                     xft:DejaVu\Sans\Mono\ Oblique\ for Powerline:size=10:antialias=true
-! URxvt*boldItalicFont:                 fontname
-! URxvt*intensityStyles:                boolean
-! URxvt*inputMethod:                    name
-! URxvt*preeditType:                    style
-! URxvt*imLocale:                       string
-! URxvt*imFont:                         fontname
-! URxvt*title:                          string
-! URxvt*iconName:                       string
-! URxvt*saveLines:                      number
-! URxvt*buffered:                       boolean
-! URxvt*visual:                         number
-! URxvt*transient-for:                  windowid
-! URxvt*override-redirect:              boolean
-! URxvt*hold:                           boolean
-! URxvt*externalBorder:                 number
-! URxvt*internalBorder:                 number
-! URxvt*borderLess:                     boolean
-! URxvt*lineSpace:                      number
-! URxvt*skipBuiltinGlyphs:              boolean
-! URxvt*pointerBlankDelay:              number
-! URxvt*backspacekey:                   string
-! URxvt*deletekey:                      string
-! URxvt*print-pipe:                     string
-! URxvt*modifier:                       modifier
-! URxvt*cutchars:                       string
-! URxvt*answerbackString:               string
-! URxvt*secondaryScreen:                boolean
-! URxvt*secondaryScroll:                boolean
-! URxvt*perl-lib:                       string
-! URxvt*perl-eval:                      perl-eval
-! URxvt*perl-ext:                       string
-! URxvt*iso14755:                       boolean
-! URxvt*iso14755_52:                    boolean
-! URxvt*xrm:                            string
-! URxvt*keysym.sym:                     keysym
-! URxvt*background.border:              boolean
-! URxvt*background.expr:                string
-! URxvt*background.interval:            seconds
-! URxvt*bell-command:                   string
-! URxvt*matcher.button:                 string
-! URxvt*matcher.launcher:               string
-! URxvt*matcher.launcher.*:             string
-! URxvt*matcher.pattern.*:              string
-! URxvt*matcher.rend.*:                 string
-! URxvt*remote-clipboard.fetch:         string
-! URxvt*remote-clipboard.store:         string
-! URxvt*searchable-scrollback:          string
-! URxvt*selection-autotransform.*:      string
-! URxvt*selection-pastebin.cmd:         string
-! URxvt*selection-pastebin.url:         string
-! URxvt*selection.pattern-0:            string
-! URxvt*tab-bg:                         colour
-! URxvt*tab-fg:                         colour
-! URxvt*tabbar-bg:                      colour
-! URxvt*tabbar-fg:                      colour
-! URxvt*url-launcher:                   /usr/bin/zsh 
-! }}}
