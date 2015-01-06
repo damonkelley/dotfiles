@@ -1,4 +1,5 @@
 export PATH=~/bin:$PATH
+export TERM=xterm-256color
  
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
@@ -35,11 +36,11 @@ bakwht='\e[47m'   # White
 txtrst='\e[0m'    # Text Reset
  
 print_before_the_prompt () {
-    printf "\n $txtred%s: $bldylw%s $txtpur%s\n$txtrst" "$USER" "$PWD" 
+    printf "\n $txtred%s $bldwht | $bldpur%s $bldwht[ $bldgrn%s$bldwht ]\n$txtrst" "$USER" "$HOSTNAME" "$PWD" 
 }
  
 PROMPT_COMMAND=print_before_the_prompt
-PS1='-> '
+PS1='$ '
 
 # aliases
 alias ls='ls -laF --color=auto'
