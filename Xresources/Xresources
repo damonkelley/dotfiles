@@ -1,5 +1,7 @@
-! ----{{{
-URxvt.color96:  #8f3f71
+URxvt.color24: #076678
+URxvt.color66: #427b58
+URxvt.color88: #9d0006
+URxvt.color96: #8f3f71
 URxvt.color100: #79740e
 URxvt.color108: #8ec07c
 URxvt.color109: #83a598
@@ -28,25 +30,36 @@ URxvt.color248: #bdae93
 URxvt.color250: #d5c4a1
 
 ! Ansi Colors
-URxvt*color0:   #282828
-URxvt*color1:   #cc241d
-URxvt*color2:   #98971a
-URxvt*color3:   #d79921
-URxvt*color4:   #458588
-URxvt*color5:   #b16286
-URxvt*color6:   #689d6a
-URxvt*color7:   #bdae93
-URxvt*color8:   #7c6f64
-URxvt*color9:   #fb4934
-URxvt*color10:  #b8bb26
-URxvt*color11:  #fabd2f
-URxvt*color12:  #83a598
-URxvt*color13:  #d3869b
-URxvt*color14:  #8ec07c
-URxvt*color15:  #ebdbb2
 
-URxvt*background:                       [88]#282828
-URxvt*foreground:                       #ebdbb2
+! hard contrast: *background: #1d2021
+URxvt*background: [88]#282828
+! soft contrast: *background: #32302f
+URxvt*foreground: #ebdbb2
+! Black + DarkGrey
+URxvt*color0: #282828
+URxvt*color8: #928374
+! DarkRed + Red
+URxvt*color1: #cc241d
+URxvt*color9: #fb4934
+! DarkGreen + Green
+URxvt*color2: #98971a
+URxvt*color10: #b8bb26
+! DarkYellow + Yellow
+URxvt*color3: #d79921
+URxvt*color11: #fabd2f
+! DarkBlue + Blue
+URxvt*color4: #458588
+URxvt*color12: #83a598
+! DarkMagenta + Magenta
+URxvt*color5: #b16286
+URxvt*color13: #d3869b
+! DarkCyan + Cyan
+URxvt*color6: #689d6a
+URxvt*color14: #8ec07c
+! LightGrey + White
+URxvt*color7: #a89984
+URxvt*color15: #ebdbb2
+
 URxvt*highlightColor:                   #383f55
 URxvt*highlightTextColor:               #e7e1db
 ! !}}}
@@ -55,7 +68,7 @@ URxvt*highlightTextColor:               #e7e1db
 URxvt*loginShell:                       true
 URxvt*scrollBar:                        false
 URxvt*meta8:                            false
-URxvt*font:                             xft:DejaVu Sans Mono for Powerline:size=9:antialias=true,xft:Ubuntu Mono derivative Powerline:size=9:antialias=true
+URxvt*font:                             xft:Droid Sans Mono for Powerline:size=10:antialias=true,xft:DejaVu Sans Mono for Powerline:size=9:antialias=true
 URxvt*depth:                            32
 URxvt*letterSpace:                      -2
 ! URxvt.perl-ext-common:                  clipboard 
