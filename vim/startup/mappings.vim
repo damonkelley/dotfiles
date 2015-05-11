@@ -17,7 +17,6 @@ set <M-p>=p
 " JSON Tidy
 noremap <leader>jt <Esc>:%!json_xs -f json -t json-pretty<CR>
 
-map <Leader>k :NERDTreeToggle<CR>
-
 map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vl :VimuxRunLastCommand<CR>
 
