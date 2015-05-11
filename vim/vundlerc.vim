@@ -5,45 +5,43 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" Included with Vundle
 Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'L9'
-
-" My Plugins
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'Lokaltog/vim-easymotion'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'scrooloose/syntastic'
-Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-commentary'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'bling/vim-airline'
 Plugin 'benmills/vimux'
-Plugin 'edkolev/tmuxline.vim'
+" Plugin 'edkolev/tmuxline.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'nicwest/QQ.vim'
 Plugin 'shougo/unite.vim'
+Plugin 'shougo/vimproc.vim'
 Plugin 'mileszs/ack.vim'
 
+" Language Plugins
+Plugin 'fatih/vim-go'
+Plugin 'wting/rust.vim'
+
 " Syntax
+Plugin 'python.vim'
+Plugin 'chase/vim-ansible-yaml'
 Plugin 'evidens/vim-twig' 
 Plugin 'StanAngeloff/php.vim'
-Plugin 'django.vim'
+Plugin 'damonkelley/django.vim'
 Plugin 'groenewege/vim-less'
 Plugin 'pangloss/vim-javascript'
 
 " Colors
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'morhetz/gruvbox'
-Plugin 'w0ng/vim-hybrid'
 
 call vundle#end()
 filetype plugin indent on     " required
