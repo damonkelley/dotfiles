@@ -35,7 +35,6 @@ elseif executable('ack')
 endif
 
 autocmd FileType unite call s:unite_settings()
-autocmd FileType unite highlight CursorLine ctermbg=darkblue ctermfg=yellow
 
 function! s:unite_settings()
   imap <silent><buffer><expr> <C-x> unite#do_action('split')

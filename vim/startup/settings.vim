@@ -26,14 +26,14 @@ set smartcase                   " ... unless they contain at least one capital l
 
 set number
 
+set listchars=eol:↲,tab:▶▹,nbsp:␣,extends:…,trail:•
+
 " Folding
 set foldmethod=syntax
 set foldlevelstart=20
 
 au FileType javascript set ts=2 softtabstop=2 sw=2
 au FileType htmldjango set ts=4 softtabstop=4 sw=4
-au FileType ruby set ts=2 softtabstop=2 sw=2
-au FileType eruby set ts=2 softtabstop=2 sw=2
 
 " Cursor settings
 if exists('$TMUX')

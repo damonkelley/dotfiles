@@ -11,3 +11,11 @@
     ci = commit
     co = checkout
     br = branch
+[credential]
+	helper = osxkeychain
+[core]
+	excludesfile = /Users/damonkelley/.gitignore_global
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff

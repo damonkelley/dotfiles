@@ -26,13 +26,15 @@ Plugin 'nicwest/QQ.vim'
 Plugin 'shougo/unite.vim'
 Plugin 'shougo/vimproc.vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'majutsushi/tagbar'
 
 " Language Plugins
 Plugin 'fatih/vim-go'
 Plugin 'wting/rust.vim'
+Plugin 'tpope/vim-fireplace'
+Plugin 'klen/python-mode'
 
 " Syntax
-Plugin 'python.vim'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'evidens/vim-twig' 
 Plugin 'StanAngeloff/php.vim'
