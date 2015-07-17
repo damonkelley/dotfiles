@@ -43,3 +43,8 @@ else
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+
+if has('nvim')
+    let g:python3_host_prog='/usr/local/bin/python3'
+    let g:python_host_prog='/usr/bin/python'
+endif
