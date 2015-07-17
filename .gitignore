@@ -2,4 +2,5 @@ vim/colors/*
 vim/syntax/*
 !vim/bundle/Vundle.vim
 vim/bundle/*
+vim/plugged/*
 vim/.netrwhist
