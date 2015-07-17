@@ -1,6 +1,6 @@
 " Source the Vundle config
-if filereadable(expand("~/.vim/vundlerc.vim"))
-    source ~/.vim/vundlerc.vim
+if filereadable(expand("~/.vim/plugs.vim"))
+    source ~/.vim/plugs.vim
 endif
 
 let g:uname = system("uname -s")
