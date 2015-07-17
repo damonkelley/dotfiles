@@ -24,22 +24,21 @@ Plug 'mileszs/ack.vim'
 Plug 'majutsushi/tagbar'
 
 " Language Plugins
-Plug 'fatih/vim-go'
-Plug 'wting/rust.vim'
-Plug 'tpope/vim-fireplace'
-Plug 'davidhalter/jedi-vim'
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'hdima/python-syntax'
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'wting/rust.vim', { 'for': 'rust' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'klen/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 " Syntax
 Plug 'chase/vim-ansible-yaml'
 Plug 'evidens/vim-twig' 
-Plug 'StanAngeloff/php.vim'
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'damonkelley/django.vim'
 Plug 'groenewege/vim-less'
-Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
 " Colors
 Plug 'morhetz/gruvbox'
+Plug 'freeo/vim-kalisi'
 
 call plug#end()
