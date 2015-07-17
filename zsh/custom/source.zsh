@@ -1,5 +1,5 @@
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    source $HOME/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh
+    source $HOME/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh
 else
-    source $HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh
+    source $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh
 fi
