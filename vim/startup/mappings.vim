@@ -2,7 +2,8 @@
 let mapleader = "\<Space>"
 
 " Generic Bindings
-imap jj <Esc>
+imap jk <Esc>
+imap kj <Esc>
 no <up> ddkP
 no <down> ddp
 
@@ -34,11 +35,19 @@ endfunction
 vmap <leader>vs "vy :call VimuxSlime()<CR>
 
 " Select current paragraph and send it to tmux
-nmap <leader>vs vip<LocalLeader>vs<CR>
+nmap <leader>vs vip<leader>vs<CR>
 
 " Unite.vim
 nnoremap <leader>/ :Unite grep:.<CR>
 nnoremap <leader>y :Unite history/yank<CR>
-nnoremap <leader>r :<C-u>Unite -start-insert -auto-resize file_rec/async<CR> 
-nnoremap <leader>f :<C-u>Unite file<CR>
+nnoremap <leader>r :<C-u>Unite -resume -start-insert -auto-resize file_rec/async<CR>
+nnoremap <leader>f :<C-u>Unite -resume -auto-resize file<CR>
 nnoremap <leader>b :Unite buffer bookmark<CR>
+
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "gd"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>pr"

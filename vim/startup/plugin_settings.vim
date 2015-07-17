@@ -15,7 +15,12 @@ let g:php_folding = 2
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 
-let g:syntastic_python_checkers = ["python", "flake8"]
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_python_exec = '/path/to/python3'
+let g:syntastic_python_checkers = ["python", 'pylama']
 let g:syntastic_php_checkers = ["php"]
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -41,3 +46,24 @@ function! s:unite_settings()
   imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
   imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
 endfunction
+
+" vim-go settings
+au FileType go nmap <leader>gr <Plug>(go-run)
+au FileType go nmap <leader>gb <Plug>(go-build)
+au FileType go nmap <leader>gt <Plug>(go-test)
+au FileType go nmap <leader>gc <Plug>(go-coverage)
+au FileType go nmap <leader>gi <Plug>(go-info)
+au FileType go nmap <leader>gd <Plug>(go-describe)
+
+au FileType go nmap <Leader>gds <Plug>(go-def-split)
+au FileType go nmap <Leader>gdv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>gdt <Plug>(go-def-tab)
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+
+let python_highlight_all = 1
