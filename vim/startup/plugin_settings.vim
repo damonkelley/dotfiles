@@ -67,3 +67,8 @@ let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 
 let python_highlight_all = 1
+
+let g:pymode_run = 0
+let g:pymode_virtualenv = 0
+let g:pymode_lint = 0
+let g:pymode_rope = 0
