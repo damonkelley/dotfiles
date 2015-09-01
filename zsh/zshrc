@@ -1,31 +1,44 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+source $HOME/zgen/zgen.zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+if ! zgen saved; then
+    echo "Creating a zgen save"
+    zgen oh-my-zsh
 
-DEFAULT_USER="dkelley"
+    zgen oh-my-zsh plugins/git
+    zgen oh-my-zsh plugins/command-not-found
+    zgen oh-my-zsh plugins/tmux
+    zgen oh-my-zsh plugins/docker
+    zgen oh-my-zsh plugins/vi-mode
 
-# Example aliases
-alias zshconfig="mate ~/.zshrc"
-alias ohmyzsh="mate ~/.oh-my-zsh"
+    zgen load zsh-users/zsh-syntax-highlighting
+    zgen load zsh-users/zsh-completions src
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+    zgen load mafredri/zsh-async
+    zgen load sindresorhus/pure
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git vagrant)
+    zgen load $HOME/dotfiles/zsh/completion
+    zgen load $HOME/dotfiles/zsh/utility
+    zgen load $HOME/dotfiles/zsh/custom
 
-source $ZSH/oh-my-zsh.sh
+    zgen save
+fi
 
-# User configuration
+# Define colors for BSD ls.
+export LSCOLORS='exfxcxdxbxGxDxabagacad'
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+# Define colors for the completion system.
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
 
-alias unhide="defaults write com.apple.finder AppleShowAllFiles YES && killall Finder"
-alias hide="defaults write com.apple.finder AppleShowAllFiles NO && killall Finder"
+# Colorized Man pages
+man() {
+	env \
+		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+		LESS_TERMCAP_md=$(printf "\e[1;31m") \
+		LESS_TERMCAP_me=$(printf "\e[0m") \
+		LESS_TERMCAP_se=$(printf "\e[0m") \
+		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+		LESS_TERMCAP_ue=$(printf "\e[0m") \
+		LESS_TERMCAP_us=$(printf "\e[1;32m") \
+			man "$@"
+}
+
