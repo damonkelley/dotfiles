@@ -1,4 +1,5 @@
 " Airline config
+let g:airline_theme='tomorrow'
 let g:airline_powerline_fonts=0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
@@ -72,3 +73,4 @@ let g:pymode_run = 0
 let g:pymode_virtualenv = 0
 let g:pymode_lint = 0
 let g:pymode_rope = 0
+let g:pymode_breakpoint_bind = '<leader>pb'

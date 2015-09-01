@@ -1,5 +1,4 @@
 color gruvbox
-
 if g:uname == "Darwin\n"
     let g:gruvbox_italic=0 " OSX setting
 endif

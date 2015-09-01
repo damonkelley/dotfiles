@@ -28,6 +28,7 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'wting/rust.vim', { 'for': 'rust' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'klen/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'luochen1990/rainbow'
 
 " Syntax
 Plug 'chase/vim-ansible-yaml'
@@ -36,9 +37,9 @@ Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'damonkelley/django.vim'
 Plug 'groenewege/vim-less'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'Glench/vim-jinja2-syntax'
 
 " Colors
 Plug 'morhetz/gruvbox'
-Plug 'freeo/vim-kalisi'
 
 call plug#end()
