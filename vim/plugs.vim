@@ -4,6 +4,7 @@ Plug 'gmarik/Vundle.vim'
 Plug 'L9'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-vinegar'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'myusuf3/numbers.vim'
 Plug 'tpope/vim-surround'
@@ -27,7 +28,7 @@ Plug 'majutsushi/tagbar'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'wting/rust.vim', { 'for': 'rust' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'klen/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'damonkelley/python-syntax'
 Plug 'luochen1990/rainbow'
 
 " Syntax
@@ -38,6 +39,7 @@ Plug 'damonkelley/django.vim'
 Plug 'groenewege/vim-less'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'Glench/vim-jinja2-syntax'
+Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " Colors
 Plug 'morhetz/gruvbox'
