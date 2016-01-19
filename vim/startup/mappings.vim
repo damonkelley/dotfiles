@@ -7,6 +7,11 @@ imap kj <Esc>
 no <up> ddkP
 no <down> ddp
 
+no <leader>vimrc :e ~/.vimrc<CR>
+no <leader>plugs :e ~/.vim/plugs.vim<CR>
+
+no <leader>rel :so ~/.vimrc<CR>
+
 no <leader>w :w<CR>
 
 if has('nvim')
@@ -46,14 +51,22 @@ nmap <leader>vs vip<leader>vs<CR>
 " Unite.vim
 nnoremap <leader>/ :Unite grep:.<CR>
 nnoremap <leader>y :Unite history/yank<CR>
-nnoremap <leader>r :<C-u>Unite -resume -start-insert -auto-resize file_rec/async<CR>
-nnoremap <leader>f :<C-u>Unite -resume -auto-resize file<CR>
+nnoremap <leader>fr :<C-u>Unite -resume -start-insert -auto-resize file_rec/async<CR>
+nnoremap <leader>fl :<C-u>Unite -resume -auto-resize file<CR>
 nnoremap <leader>b :Unite buffer bookmark<CR>
 
 let g:jedi#goto_command = "<leader>d"
 let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "gd"
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>pr"
+
+
+au FileType elixir map <Leader>ec :Econtroller 
+au FileType elixir map <Leader>er :Erouter<CR>
+au FileType elixir map <Leader>em :Emodel 
+au FileType elixir map <Leader>ev :Eview 
+au FileType elixir map <Leader>et :Etemplate 
+au FileType elixir map <Leader>el :Elib 
+au FileType elixir map <Leader>econf :Econfig 
