@@ -1,5 +1,7 @@
-set nocompatible
-set encoding=utf-8
+if !has('nvim')
+    set nocompatible
+    set encoding=utf-8
+endif
 set nobackup    " no backup files
 set backspace=indent,eol,start
 set visualbell
@@ -25,6 +27,7 @@ set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 
 set number
+set relativenumber
 set cursorline
 
 set listchars=eol:↲,tab:▶▹,nbsp:␣,extends:…,trail:•

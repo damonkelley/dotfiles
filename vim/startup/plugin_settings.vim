@@ -1,5 +1,4 @@
 " Airline config
-let g:airline_theme='tomorrow'
 let g:airline_powerline_fonts=0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
@@ -12,6 +11,23 @@ let g:indent_guides_guide_size = 1
 " PHP Fold Settings
 let g:php_folding = 2
 
+let g:tagbar_type_elixir = {
+    \ 'ctagstype' : 'elixir',
+    \ 'kinds' : [
+        \ 'f:functions',
+        \ 'functions:functions',
+        \ 'c:callbacks',
+        \ 'd:delegates',
+        \ 'e:exceptions',
+        \ 'i:implementations',
+        \ 'a:macros',
+        \ 'o:operators',
+        \ 'm:modules',
+        \ 'p:protocols',
+        \ 'r:records'
+    \ ]
+\ }
+
 " GitGutter
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
@@ -23,6 +39,8 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_python_python_exec = '/path/to/python3'
 let g:syntastic_python_checkers = ["python", 'pylama']
 let g:syntastic_php_checkers = ["php"]
+let g:syntastic_enable_elixir_checker = 1
+let g:syntastic_elixir_checkers = ["elixir", "mix"]
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', '\(app/cache\/$|vendor\/$\)')
@@ -67,10 +85,52 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 
-let python_highlight_all = 1
+" Python Settings
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>ru"
+let g:jedi#completions_command = "<C-x><C-o>"
+autocmd FileType python setlocal completeopt-=preview
 
-let g:pymode_run = 0
-let g:pymode_virtualenv = 0
-let g:pymode_lint = 0
-let g:pymode_rope = 0
-let g:pymode_breakpoint_bind = '<leader>pb'
+let ropevim_vim_completion = 0
+let ropevim_extended_completion = 0
+
+" Python refactoring settings
+let g:jedi#rename_command = "<leader>rr"
+au FileType python map <Leader>rem :RopeExtractMethod<CR>
+au FileType python map <Leader>rev :RopeExtractVariable<CR>
+au FileType python map <Leader>rmv :RopeMove<CR>
+au FileType python :compiler pytest
+
+
+let g:neoterm_position = 'horizontal'
+let g:neoterm_automap_keys = '<leader>tt'
+let g:neoterm_raise_when_tests_fail=1
+let g:neoterm_close_when_tests_succeed=1
+let g:neoterm_run_tests_bg=1
+let g:neoterm_size=20
+
+nnoremap <silent> <f10> :TREPLSendFile<cr>
+nnoremap <silent> <f9> :TREPLSend<cr>
+vnoremap <silent> <f9> :TREPLSend<cr>
+
+" run set test lib
+nnoremap <silent> <leader>ta :call neoterm#test#run('all')<cr>
+nnoremap <silent> <leader>tf :call neoterm#test#run('file')<cr>
+nnoremap <silent> <leader>tn :call neoterm#test#run('current')<cr>
+nnoremap <silent> <leader>tr :call neoterm#test#rerun()<cr>
+
+set statusline+=%#NeotermTestRunning#%{neoterm#test#status('running')}%*
+set statusline+=%#NeotermTestSuccess#%{neoterm#test#status('success')}%*
+set statusline+=%#NeotermTestFailed#%{neoterm#test#status('failed')}%*
+
+
+
+" Useful maps
+" hide/close terminal
+nnoremap <silent> <leader>th :call neoterm#close()<cr>
+" clear terminal
+nnoremap <silent> <leader>tl :call neoterm#clear()<cr>
+" kills the current job (send a <c-c>)
+nnoremap <silent> <leader>tc :call neoterm#kill()<cr>

@@ -1,4 +1,4 @@
-color gruvbox
+" color gruvbox
 if g:uname == "Darwin\n"
     let g:gruvbox_italic=0 " OSX setting
 endif
@@ -13,3 +13,4 @@ endif
 
 set t_Co=256   " 256 colors
 set t_ut=      " Use the current background color | Resolves issues with tmux
+color jellybeans
