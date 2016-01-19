@@ -1,12 +1,12 @@
 " Source the Vundle config
-if filereadable(expand("~/.vim/plugs.vim"))
-    source ~/.vim/plugs.vim
+if filereadable(expand("~/.config/nvim/plugs.vim"))
+    source ~/.config/nvim/plugs.vim
 endif
 
 let g:uname = system("uname -s")
 
 " Vim settings
-source ~/.vim/startup/settings.vim
-source ~/.vim/startup/mappings.vim
-source ~/.vim/startup/plugin_settings.vim
-source ~/.vim/startup/colors.vim
+source ~/.config/nvim/startup/settings.vim
+source ~/.config/nvim/startup/mappings.vim
+source ~/.config/nvim/startup/plugin_settings.vim
+source ~/.config/nvim/startup/colors.vim
