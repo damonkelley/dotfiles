@@ -8,7 +8,6 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/command-not-found
     zgen oh-my-zsh plugins/tmux
     zgen oh-my-zsh plugins/docker
-    zgen oh-my-zsh plugins/vi-mode
 
     zgen load zsh-users/zsh-syntax-highlighting
     zgen load zsh-users/zsh-completions src
@@ -41,3 +40,22 @@ man() {
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
         man "$@"
 }
+
+# Pyenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+# Exenv
+if which exenv > /dev/null; then eval "$(exenv init -)"; fi
+
+# added by travis gem
+[ -f /Users/dkelley/.travis/travis.sh ] && source /Users/dkelley/.travis/travis.sh
+
+# Kiex
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+
+# Autoenv
+[ -f /usr/local/opt/autoenv/activate.sh ] && source /usr/local/opt/autoenv/activate.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
