@@ -12,12 +12,12 @@
     co = checkout
     br = branch
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
 [core]
-	excludesfile = ~/.gitignore_global
+    excludesfile = ~/.gitignore_global
 [merge]
-  tool = vimdiff
+    tool = vimdiff
 [mergetool]
-  prompt = true
+    prompt = true
 [mergetool "vimdiff"]
-  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
