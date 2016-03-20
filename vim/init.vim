@@ -100,8 +100,7 @@ set smarttab
 set expandtab
 
 " Searching
-set hlsearch
-set incsearch
+set nohlsearch
 set ignorecase
 set smartcase
 
