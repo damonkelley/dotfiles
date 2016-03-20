@@ -34,6 +34,40 @@ function! FileModes()
   return fm
 endfunction
 
+function! ScrollPercentage()
+  return " %p%% "
+endfunction
+
+function! BufferFileType()
+  return " %y "
+endfunction
+
+function! NeotermTestStatus()
+  let section = ''
+  if exists(":T")
+    let section .= " "
+    let section .= "%#NeotermTestRunning#%{neoterm#test#status('running')}%*"
+    let section .= "%#NeotermTestSuccess#%{neoterm#test#status('success')}%*"
+    let section .= "%#NeotermTestFailed#%{neoterm#test#status('failed')}%*"
+    let section .= " "
+  endif
+  return section
+endfunction
+
+function! FugitiveStatus()
+  let section = ''
+
+  if exists('*fugitive#head')
+    let head = fugitive#head()
+
+    if !empty(head)
+      let section .= ' ' . head . ' '
+    endif
+  endif
+
+  return section
+endfunction
+
 function! LeftSide()
   let ls = ''
   let ls.= NumberSection()
@@ -48,46 +82,10 @@ endfunction
 function! RightSide()
   let rs = ''
 
-  if get(g:, 'vs_open', 0)
-    let rs .= '%5*'
-    let rs .= 'TP:Open'
-    let rs .= '%0*'
-    let rs .= ' '
-  elseif bufname("%") =~ '_spec.rb'
-    let rs .= '%4*'
-    let rs .= 'TP:Closed'
-    let rs .= '%0*'
-    let rs .= ' '
-  endif
-
-  if exists ("neomake#statusline#LoclistStatus")
-    let errors = neomake#statusline#LoclistStatus()
-    if errors =~ 'E'
-      let rs .= "%2*"
-      let rs .= errors
-    else
-      let rs .= "%4*"
-      let rs .= errors
-    endif
-    let rs .= "%0*"
-    let rs .= " "
-  endif
-
-  if exists(":T")
-      let rs .= " "
-      let rs .= "%#NeotermTestRunning#%{neoterm#test#status('running')}%*"
-      let rs .= "%#NeotermTestSuccess#%{neoterm#test#status('success')}%*"
-      let rs .= "%#NeotermTestFailed#%{neoterm#test#status('failed')}%*"
-      let rs .= " "
-  endif
-
-  if exists('*fugitive#head')
-    let head = fugitive#head()
-
-    if !empty(head)
-      let rs .= ' ' . head . ' '
-    endif
-  endif
+  let rs .= BufferFileType()
+  let rs .= ScrollPercentage()
+  let rs .= NeotermTestStatus()
+  let rs .= FugitiveStatus()
 
   return rs
 endfunction

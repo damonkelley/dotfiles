@@ -83,8 +83,8 @@ call plug#end()
 
 " Basic Settings {{{
 if !has('nvim')
-    set nocompatible
-    set encoding=utf-8
+  set nocompatible
+  set encoding=utf-8
 endif
 
 syntax enable
@@ -116,16 +116,17 @@ set listchars=eol:↲,tab:▶▹,nbsp:␣,extends:…,trail:•
 
 " Neovim {{{
 if has('nvim')
-    let g:python3_host_prog='/usr/local/bin/python3'
-    let g:python_host_prog='/usr/bin/python'
+  let g:python3_host_prog='/usr/local/bin/python3'
+  let g:python_host_prog='/usr/bin/python'
 endif
 "}}}
 
 " File Type Settings {{{
 augroup FileTypeSettings
-    au FileType javascript setl ts=2 softtabstop=2 sw=2
-    au FileType htmldjango setl ts=4 softtabstop=4 sw=4
-augroup end
+  au FileType javascript setl ts=2 softtabstop=2 sw=2
+  au FileType htmldjango setl ts=4 softtabstop=4 sw=4
+  au FileType vim setl ts=2 softtabstop=2 sw=2
+augroup END
 "}}}
 
 " Colors {{{
@@ -133,7 +134,7 @@ color gruvbox
 
 let s:uname = system("uname -s")
 if s:uname == "Darwin\n"
-    let g:gruvbox_italic=0 " OSX setting
+  let g:gruvbox_italic=0 " OSX setting
 endif
 
 let g:gruvbox_contrast_dark = 'hard'
@@ -163,7 +164,7 @@ let g:terminal_color_15   = "#b8bb26"
 
 " Display {{{
 if &term =~ '^rxvt-unicode'
-    hi Comment cterm=italic
+  hi Comment cterm=italic
 endif
 
 set t_ut=      " Use the current background color | Resolves issues with tmux
@@ -184,10 +185,10 @@ nnoremap <leader>w :w<CR>
 
 " Neovim Terminal
 if has('nvim')
-    tnoremap <C-h> <C-\><C-n><C-w>h
-    tnoremap <C-j> <C-\><C-n><C-w>j
-    tnoremap <C-k> <C-\><C-n><C-w>k
-    tnoremap <C-l> <C-\><C-n><C-w>l
+  tnoremap <C-h> <C-\><C-n><C-w>h
+  tnoremap <C-j> <C-\><C-n><C-w>j
+  tnoremap <C-k> <C-\><C-n><C-w>k
+  tnoremap <C-l> <C-\><C-n><C-w>l
 endif
 
 " Auto-pairs
@@ -212,8 +213,8 @@ map <Leader>vs :VimuxInterruptRunner<CR>
 map <Leader>vc :VimuxClearRunnerHistory<CR>
 
 function! VimuxSlime()
-    call VimuxSendText(@v)
-    call VimuxSendKeys("Enter")
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
 endfunction
 
 vmap <leader>vs "vy :call VimuxSlime()<CR>
