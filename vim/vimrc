@@ -6,51 +6,39 @@ call plug#begin()
 " Git {{{2
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-"}}}
 
 " tpope {{{2
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
-"}}}2
 
 " Parenthesis {{{2
 Plug 'jiangmiao/auto-pairs'
 Plug 'luochen1990/rainbow'
-"}}}2
 
 " Tools {{{2
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'kassio/neoterm'
-"}}}2
 
 " Navigations/Project {{{2
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-dispatch' | Plug 'radenling/vim-dispatch-neovim'
-Plug 'scrooloose/syntastic'
+Plug 'benekastah/neomake'
 Plug 'majutsushi/tagbar'
-"}}}2
+Plug 'mhinz/vim-grepper'
 
 " Completion {{{2
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
-"}}}2
 
 " Registers/Undo {{{2
 Plug 'junegunn/vim-peekaboo'
-"}}}2
-
-" Search {{{2
-Plug 'mileszs/ack.vim'
-Plug 'mhinz/vim-grepper'
-"}}}2
 
 " Writing {{{2
 Plug 'junegunn/goyo.vim'
-"}}}2
 
 " Language {{{2
 " Go
@@ -70,7 +58,6 @@ Plug 'Glench/vim-jinja2-syntax'
 Plug 'elixir-lang/vim-elixir'
 Plug 'thinca/vim-ref'
 Plug 'awetzel/elixir.nvim', {'do': './install.sh'}
-Plug 'avdgaag/vim-phoenix'
 Plug 'tpope/vim-endwise'
 
 " Ansible
@@ -85,12 +72,11 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
 Plug 'lambdatoast/elm.vim'
 Plug 'slim-template/vim-slim'
-"}}}2
 
 " Colors {{{2
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
-"}}}2
+" }}}
 
 call plug#end()
 "}}}
@@ -153,7 +139,7 @@ endif
 let g:gruvbox_contrast_dark = 'hard'
 set background=dark
 
-" Terminal colors
+" Terminal colors {{{
 let g:terminal_background = "#1d2021"
 let g:terminal_foreground = "#f9f5d7"
 let g:terminal_color_0    = "#7c6f64"
@@ -172,7 +158,7 @@ let g:terminal_color_12   = "#fb4934"
 let g:terminal_color_13   = "#fabd2f"
 let g:terminal_color_14   = "#b8bb26"
 let g:terminal_color_15   = "#b8bb26"
-
+" }}}
 " }}}
 
 " Display {{{
