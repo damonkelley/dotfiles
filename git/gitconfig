@@ -14,8 +14,10 @@
 [credential]
 	helper = osxkeychain
 [core]
-	excludesfile = /Users/damonkelley/.gitignore_global
-[diff]
-	tool = vimdiff
+	excludesfile = ~/.gitignore_global
 [merge]
-	tool = vimdiff
+  tool = vimdiff
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
