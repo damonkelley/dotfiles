@@ -191,11 +191,6 @@ if has('nvim')
   tnoremap <C-l> <C-\><C-n><C-w>l
 endif
 
-" Auto-pairs
-set <M-e>=e
-set <M-b>=b
-set <M-p>=p
-
 " VCS
 map <Leader>gs :Gstatus<CR>
 map <Leader>gt :GitGutterLineHighlightsToggle<CR>
