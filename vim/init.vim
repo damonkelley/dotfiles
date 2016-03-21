@@ -76,6 +76,7 @@ Plug 'slim-template/vim-slim'
 " Colors {{{2
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
+Plug 'w0ng/vim-hybrid'
 " }}}
 
 call plug#end()
@@ -90,6 +91,7 @@ endif
 syntax enable
 set cc=80
 set ls=2  " always show status line
+set showcmd
 
 " Tabs 
 set tabstop=4
@@ -122,14 +124,14 @@ endif
 
 " File Type Settings {{{
 augroup FileTypeSettings
-  au FileType javascript setl ts=2 softtabstop=2 sw=2
-  au FileType htmldjango setl ts=4 softtabstop=4 sw=4
-  au FileType vim setl ts=2 softtabstop=2 sw=2
+  au FileType javascript setlocal ts=2 softtabstop=2 sw=2
+  au FileType htmldjango setlocal ts=4 softtabstop=4 sw=4
+  au FileType vim setlocal ts=2 softtabstop=2 sw=2
 augroup END
 "}}}
 
 " Colors {{{
-color gruvbox
+color hybrid
 
 let s:uname = system("uname -s")
 if s:uname == "Darwin\n"
@@ -191,28 +193,28 @@ if has('nvim')
 endif
 
 " VCS
-map <Leader>gs :Gstatus<CR>
-map <Leader>gt :GitGutterLineHighlightsToggle<CR>
+noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gt :GitGutterLineHighlightsToggle<CR>
 
 " JSON Tidy
 noremap <leader>jt <Esc>:%!json_xs -f json -t json-pretty<CR>
 
 " Vimux
-map <Leader>vp :VimuxPromptCommand<CR>
-map <Leader>vl :VimuxRunLastCommand<CR>
-map <Leader>vq :VimuxCloseRunner<CR>
-map <Leader>vi :VimuxInspectRunner<CR>
-map <Leader>vz :VimuxZoomRunner<CR>
-map <Leader>vs :VimuxInterruptRunner<CR>
-map <Leader>vc :VimuxClearRunnerHistory<CR>
+noremap <Leader>vp :VimuxPromptCommand<CR>
+noremap <Leader>vl :VimuxRunLastCommand<CR>
+noremap <Leader>vq :VimuxCloseRunner<CR>
+noremap <Leader>vi :VimuxInspectRunner<CR>
+noremap <Leader>vz :VimuxZoomRunner<CR>
+noremap <Leader>vs :VimuxInterruptRunner<CR>
+noremap <Leader>vc :VimuxClearRunnerHistory<CR>
 
 function! VimuxSlime()
   call VimuxSendText(@v)
   call VimuxSendKeys("Enter")
 endfunction
 
-vmap <leader>vs "vy :call VimuxSlime()<CR>
-nmap <leader>vs vip<leader>vs<CR>
+vnoremap <leader>vs "vy :call VimuxSlime()<CR>
+nnoremap <leader>vs vip<leader>vs<CR>
 
 " FZF
 function! s:find_git_root()
