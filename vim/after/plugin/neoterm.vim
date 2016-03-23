@@ -17,3 +17,7 @@ nnoremap <silent> <leader>th :call neoterm#close()<cr>
 nnoremap <silent> <leader>tl :call neoterm#clear()<cr>
 nnoremap <silent> <leader>tc :call neoterm#kill()<cr>
 nnoremap <silent> <leader>to :call neoterm#open()<cr>
+
+hi NeotermTestRunning guifg=yellow
+hi NeotermTestSuccess guifg=green
+hi NeotermTestFailed guifg=red

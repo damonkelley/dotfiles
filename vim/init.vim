@@ -21,6 +21,7 @@ Plug 'luochen1990/rainbow'
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'kassio/neoterm'
+Plug 'janko-m/vim-test'
 
 " Navigations/Project {{{2
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -229,3 +230,5 @@ nnoremap <leader>b :Buffers<CR>
 " Other Files {{{
 source ~/.config/nvim/statusline.vim
 "}}}
+
+let test#strategy = 'neotermlite'
