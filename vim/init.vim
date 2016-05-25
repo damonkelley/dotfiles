@@ -13,27 +13,31 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 
+" Neovim {{{2
+if has('nvim')
+  Plug 'kassio/neoterm'
+  Plug 'mhinz/vim-grepper'
+  Plug 'damonkelley/neomake'
+
+  " Completion
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'zchee/deoplete-jedi'
+endif
+"}}}
+
 " Parenthesis {{{2
 Plug 'jiangmiao/auto-pairs'
 Plug 'luochen1990/rainbow'
 
 " Tools {{{2
-Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'kassio/neoterm'
 Plug 'janko-m/vim-test'
 
 " Navigations/Project {{{2
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-dispatch' | Plug 'radenling/vim-dispatch-neovim'
-Plug 'benekastah/neomake'
-Plug 'majutsushi/tagbar'
-Plug 'mhinz/vim-grepper'
+Plug 'justinmk/vim-sneak'
 
-" Completion {{{2
-Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-jedi'
 
 " Registers/Undo {{{2
 Plug 'junegunn/vim-peekaboo'
