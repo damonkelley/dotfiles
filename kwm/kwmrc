@@ -1,0 +1,186 @@
+/*
+This is a sample config for Kwm
+
+Commands prefixed with 'kwmc' will call
+local functions corresponding to the
+kwmc syntax.
+
+To run an external program or command,
+use the prefix 'exec' followed by command.
+e.g 'exec mvim' would open macvim
+
+Read file and execute commands as
+if they were written inside kwmrc.
+
+include filename
+
+e.g: bindsym-commands in a separate file called 'binds'
+include binds
+
+Create variables that can be used in the below commands.
+Variables are in file-scope and must be defined before
+they can be used. Re-definition is also possible.
+Variable names can not contain whitespace, where as
+the value can.
+
+define variable value
+
+e.g: create a variable for the hyper-key
+define hyper cmd+ctrl+alt+shift
+kwmc bindsym hyper-h window -f west
+*/
+// Set default values for screen padding
+kwmc config padding 0 22 0 0
+
+// Set default values for container gaps
+kwmc config gap 0 0
+
+// Default tiling mode for Kwm (bsp | monocle | float | off)
+kwmc config tiling bsp
+
+// Let Kwm listen for hotkeys
+kwmc config hotkeys on
+
+// Automatically float windows that fail to resize
+kwmc config float-non-resizable on
+
+// Automatically resize the window to its container
+kwmc config lock-to-container on
+
+// Set focus-follows-mouse-mode to autoraise
+kwmc config focus-follows-mouse autoraise
+
+/* Focus-follows-mouse is temporarily disabled when
+   a floating window has focus */
+kwmc config standby-on-float on
+
+/* The mouse will automatically move to the center
+   of the focused window */
+kwmc config mouse-follows-focus on
+
+// Allow window focus to wrap-around
+kwmc config cycle-focus off
+
+// Set default container split-ratio
+kwmc config split-ratio 0.5
+
+// New splits become the left leaf-node
+kwmc config spawn left
+
+/* Add custom tiling rules for applications that
+   does not get tiled by Kwm by default.
+   This is because some applications do not have the
+   AXWindowRole and AXStandardWindowSubRole */
+kwmc rule owner="iTerm2" properties={role="AXDialog"}
+
+// Enable border for focused window
+kwmc config border focused on
+kwmc config border focused size 2
+kwmc config border focused color 0xFFBDD322
+kwmc config border focused radius 6
+
+// Enable border for marked window
+kwmc config border marked on
+kwmc config border marked size 2
+kwmc config border marked color 0xFFCC5577
+kwmc config border marked radius 6
+
+// Enable the prefix mode
+kwmc mode prefix prefix on
+kwmc mode prefix timeout 0.75
+kwmc mode prefix restore default
+kwmc mode prefix color 0xFF458588
+
+/*  Default Keybinds */
+// Activate prefix mode
+kwmc bindsym ctrl-s mode activate prefix
+
+// Quit Kwm
+kwmc bindsym cmd+alt+ctrl-q quit
+
+// Launch iTerm2
+kwmc bindsym cmd-return exec open -na /Applications/iTerm.app
+
+// Set Space Tiling Mode To BSP
+kwmc bindsym cmd+ctrl-a space -t bsp
+
+// Set Space Tiling Mode To Monocle
+kwmc bindsym cmd+ctrl-s space -t monocle
+
+// Set Space Tiling Mode To Floating
+kwmc bindsym cmd+ctrl-d space -t float
+
+// Rotate Window-Tree By 90degrees (Clockwise)
+kwmc bindsym cmd+ctrl-r tree rotate 90
+
+// Modify Container
+kwmc bindsym prefix-s window -c split-mode toggle
+kwmc bindsym prefix-h window -c reduce 0.05
+kwmc bindsym prefix-l window -c expand 0.05
+kwmc bindsym prefix-< window -c type toggle
+
+// Set Temporary Window Container
+kwmc bindsym prefix-f window -z fullscreen
+kwmc bindsym prefix-d window -z parent
+kwmc bindsym prefix-w window -t focused
+/* Custom Bindings */
+
+define hyper cmd+ctrl+alt+shift
+kwmc bindsym hyper-h window -f west
+kwmc bindsym hyper-l window -f east
+kwmc bindsym hyper-j window -f south
+kwmc bindsym hyper-k window -f north
+
+kwmc bindsym hyper-n window -fm prev
+kwmc bindsym hyper-m window -fm next
+
+# Modify Container
+kwmc bindsym hyper-s window -c split-mode toggle
+kwmc bindsym hyper-h window -c reduce 0.05
+kwmc bindsym hyper-l window -c expand 0.05
+kwmc bindsym hyper-g window -c type toggle
+
+# Set Temporary Window Container
+kwmc bindsym hyper-f window -z fullscreen
+kwmc bindsym hyper-d window -z parent
+kwmc bindsym hyper-w window -t focused
+
+kwmc bindsym hyper-[ display -f 0
+kwmc bindsym hyper-] display -f 1
+kwmc bindsym hyper-left display -f 0
+kwmc bindsym hyper-right display -f 1
+
+kwmc bindsym hyper-= scratchpad toggle 0
+kwmc bindsym alt+shift-= scratchpad add; scratchpad hide 0;
+
+kwmc bindsym hyper-i space -fExperimental left
+kwmc bindsym hyper-o space -fExperimental right
+
+// Swap Focused Window
+kwmc bindsym alt+shift-h window -s west
+kwmc bindsym alt+shift-j window -s south
+kwmc bindsym alt+shift-k window -s north
+kwmc bindsym alt+shift-l window -s east
+kwmc bindsym alt+shift-m window -s mark
+
+// Detach Focused Window And Reinsert In Direction
+kwmc bindsym ctrl+shift-k window -m north
+kwmc bindsym ctrl+shift-l window -m east
+kwmc bindsym ctrl+shift-j window -m south
+kwmc bindsym ctrl+shift-h window -m west
+
+// Detach Marked Window And Reinsert At Focused Window
+kwmc bindsym ctrl+shift-x window -m mark
+
+// Move Focused Window To Space
+kwmc bindsym alt+shift-left window -m space left
+kwmc bindsym alt+shift-right window -m space right
+
+// Move Focused Windo To Screen
+kwmc bindsym alt+shift-1 window -m display 0
+kwmc bindsym alt+shift-2 window -m display 1
+
+kwmc bindsym prefix-1 window -m space 1; space -fExperimental 1
+kwmc bindsym prefix-2 window -m space 2; space -fExperimental 2
+kwmc bindsym prefix-3 window -m space 3; space -fExperimental 3
+kwmc bindsym prefix-4 window -m space 4; space -fExperimental 4
