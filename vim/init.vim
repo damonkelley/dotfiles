@@ -3,6 +3,8 @@
 " Plugins {{{
 call plug#begin()
 
+Plug 'takac/vim-hardtime'
+
 " Git {{{2
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -46,8 +48,9 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/goyo.vim'
 
 " Language {{{2
-" Go
-Plug 'fatih/vim-go', { 'for': 'go' }
+
+"Ruby
+Plug 'vim-ruby/vim-ruby'
 
 " Python
 Plug 'damonkelley/python-syntax', {'for': 'python'}
@@ -56,32 +59,27 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'python-rope/ropevim', {'for': 'python'}
 Plug '5long/pytest-vim-compiler', {'for': 'python'}
 Plug 'tmhedberg/SimpylFold', {'for': 'python'}
-Plug 'damonkelley/django.vim'
-Plug 'Glench/vim-jinja2-syntax'
 
 " Elixir
 Plug 'elixir-lang/vim-elixir'
-Plug 'thinca/vim-ref'
-Plug 'awetzel/elixir.nvim', {'do': './install.sh'}
+Plug 'slashmili/alchemist.vim'
+Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'tpope/vim-endwise'
 
 " Ansible
 Plug 'chase/vim-ansible-yaml'
 
-" PHP
-Plug 'evidens/vim-twig' 
-Plug 'StanAngeloff/php.vim', { 'for': 'php' }
-
 " Javascript
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
-Plug 'lambdatoast/elm.vim'
 Plug 'slim-template/vim-slim'
 
+Plug 'tpope/vim-fireplace'
+
 " Colors {{{2
-Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 Plug 'w0ng/vim-hybrid'
+Plug 'flazz/vim-colorschemes'
 " }}}
 
 call plug#end()
@@ -97,8 +95,9 @@ syntax enable
 set cc=80
 set ls=2  " always show status line
 set showcmd
+set belloff=all
 
-" Tabs 
+" Tabs
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -107,7 +106,7 @@ set smarttab
 set expandtab
 
 " Searching
-set nohlsearch
+set hlsearch
 set ignorecase
 set smartcase
 
@@ -120,6 +119,20 @@ set cursorline
 set listchars=eol:↲,tab:▶▹,nbsp:␣,extends:…,trail:•
 "}}}
 
+" Tags {{{
+set tags+=.git/tags
+
+function! ReTag()
+    let l:cmd = "ctags --tag-relative -Rf.git/tags"
+
+    if exists(':NeomakeSh')
+        execute ":NeomakeSh ".l:cmd
+    else
+        execute ":!".l:cmd."\<CR>"
+    endif
+endfunction
+" }}}
+
 " Neovim {{{
 if has('nvim')
   let g:python3_host_prog='/usr/local/bin/python3'
@@ -129,51 +142,39 @@ endif
 
 " File Type Settings {{{
 augroup FileTypeSettings
+  autocmd!
   au FileType javascript setlocal ts=2 softtabstop=2 sw=2
   au FileType htmldjango setlocal ts=4 softtabstop=4 sw=4
   au FileType vim setlocal ts=2 softtabstop=2 sw=2
+  au FileType elixir setlocal foldmethod=syntax foldlevel=20
+  au FileType ruby setlocal ts=2 sw=2 softtabstop=2
 augroup END
 "}}}
 
 " Colors {{{
 color hybrid
 
-let s:uname = system("uname -s")
-if s:uname == "Darwin\n"
-  let g:gruvbox_italic=0 " OSX setting
-endif
-
-let g:gruvbox_contrast_dark = 'hard'
 set background=dark
 
-" Terminal colors {{{
-let g:terminal_background = "#1d2021"
-let g:terminal_foreground = "#f9f5d7"
-let g:terminal_color_0    = "#7c6f64"
-let g:terminal_color_1    = "#fb4934"
-let g:terminal_color_2    = "#fe8019"
-let g:terminal_color_3    = "#7c6f64"
-let g:terminal_color_4    = "#83a598"
-let g:terminal_color_5    = "#8ec07c"
-let g:terminal_color_6    = "#8ec07c"
-let g:terminal_color_7    = "#7c6f64"
-let g:terminal_color_8    = "#ebdbb2"
-let g:terminal_color_9    = "#d3869b"
-let g:terminal_color_10   = "#b8bb26"
-let g:terminal_color_11   = "#b8bb26"
-let g:terminal_color_12   = "#fb4934"
-let g:terminal_color_13   = "#fabd2f"
-let g:terminal_color_14   = "#b8bb26"
-let g:terminal_color_15   = "#b8bb26"
-" }}}
-" }}}
-
-" Display {{{
-if &term =~ '^rxvt-unicode'
-  hi Comment cterm=italic
+if g:colors_name ==# 'hybrid'
+  let g:terminal_color_0  = '#2D3C46'
+  let g:terminal_color_1  = "#A54242"
+  let g:terminal_color_2  = "#8C9440"
+  let g:terminal_color_3  = "#DE935F"
+  let g:terminal_color_4  = "#5F819D"
+  let g:terminal_color_5  = "#85678F"
+  let g:terminal_color_6  = "#5E8D87"
+  let g:terminal_color_7  = "#6C7A80"
+  let g:terminal_color_8  = "#425059"
+  let g:terminal_color_9  = "#CC6666"
+  let g:terminal_color_10 = "#B5BD68"
+  let g:terminal_color_11 = "#F0C674"
+  let g:terminal_color_12 = "#81A2BE"
+  let g:terminal_color_13 = "#B294BB"
+  let g:terminal_color_14 = "#8ABEB7"
+  let g:terminal_color_15 = "#C4C8C6"
 endif
-
-set t_ut=      " Use the current background color | Resolves issues with tmux
+" }}}
 " }}}
 
 " Completion {{{
@@ -187,7 +188,17 @@ let maplocalleader = "\<Space>"
 " Generic Bindings
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>et :vsplit ~/.tmux.conf<CR>
+cnoremap <C-A> <HOME>
 nnoremap <leader>w :w<CR>
+
+nnoremap \ :noh<CR>
+
+nnoremap <Leader>rt :call ReTag()<CR>
+
+" Always use very magic searches
+nnoremap / /\v
+vnoremap / /\v
 
 " Neovim Terminal
 if has('nvim')
@@ -229,10 +240,55 @@ endfunction
 command! ProjectFiles execute 'Files' s:find_git_root()
 nnoremap <leader>fr :ProjectFiles<CR>
 nnoremap <leader>b :Buffers<CR>
+
+" Open FZF in a new tab.
+let g:fzf_layout = { 'window': 'execute (tabpagenr()-1)."tabnew"' }
 "}}}
 
 " Other Files {{{
 source ~/.config/nvim/statusline.vim
 "}}}
 
-let test#strategy = 'neotermlite'
+" Whitespace {{{
+function! MatchTrailingWhitespace()
+  call matchadd('Error', '\v\s+$')
+endfunction
+
+augroup whitespace_detect
+  autocmd!
+  au BufEnter * :call MatchTrailingWhitespace()
+augroup END
+" }}}
+
+" vim-test {{{
+function! NeomakeTest(cmd)
+  call neomake#Sh(a:cmd, function('s:neomakeTestCallback'))
+endfunction
+
+function! s:neomakeTestCallback(result)
+  if a:result.status != '0'
+    echohl TestFail | echom "Failed: " . a:result.name
+  else
+    echohl TestPass | echom "Failed: " . a:result.name
+  endif
+  echohl None
+endfunction
+
+highlight TestFail guibg=red guifg=white
+highlight TestPass guibg=green guifg=white
+
+let g:test#custom_strategies = {'neomake': function('NeomakeTest')}
+" }}}
+
+" Hardtimes {{{
+
+augroup hardtime_settings
+  autocmd!
+  autocmd FileType netrw call HardTimeOn()
+augroup END
+
+let g:hardtime_default_on = 1
+let g:hardtime_showmsg = 1
+let g:hardtime_allow_different_key = 1
+let g:list_of_normal_keys = ["h", "j", "k", "l", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+" }}}
