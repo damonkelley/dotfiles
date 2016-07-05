@@ -1,0 +1,15 @@
+set relativenumber
+set number
+
+set hlsearch
+set incsearch
+
+
+map ]<Space> o<Esc>k
+map [<Space> O<Esc>k
+map ]q :action GotoNextError<CR>
+map [q :action GotoPreviousError<CR>
+
+
+map <Space>rr :action Run<CR>
+map <Space>rn :action RunClass<CR>
