@@ -5,6 +5,9 @@ vim/bundle/*
 vim/autoload/plug.vim.old
 vim/plugged/*
 vim/.netrwhist
+vim/.init.vim-rplugin~
 
 *.swp
 *.swo
+
+fish/fishd.*
