@@ -1715,8 +1715,6 @@
 	<true/>
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
-	<key>NSFontPanelAttributes</key>
-	<string>1, 0</string>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/dotfiles/iTerm2</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
@@ -1751,20 +1749,12 @@
 		<key>TB Is Shown</key>
 		<integer>1</integer>
 	</dict>
-	<key>NSWindow Frame NSFontPanel</key>
-	<string>326 232 671 209 0 0 1440 900 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>139 441 606 456 0 0 1440 900 </string>
-	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>130 540 700 540 0 0 1920 1080 </string>
-	<key>NSWindow Frame UKCrashReporter</key>
-	<string>155 473 592 584 0 0 1920 1057 </string>
+	<string>269 562 606 456 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>723 26 714 871 0 0 1440 900 </string>
+	<string>842 516 836 511 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>963 2 954 1076 0 0 1920 1080 </string>
-	<key>NSWindow Frame iTerm Window 2</key>
-	<string>210 14 762 863 0 0 1440 877 </string>
+	<string>840 12 836 1015 0 0 1680 1027 </string>
 	<key>NeverWarnAboutShortLivedSessions_486B187A-3899-4830-9AA0-6FB532B06F4F</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_486B187A-3899-4830-9AA0-6FB532B06F4F_selection</key>
@@ -2389,7 +2379,7 @@
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
-			<integer>12</integer>
+			<integer>0</integer>
 			<key>Working Directory</key>
 			<string>/Users/dkelley</string>
 		</dict>
@@ -5449,7 +5439,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Hack-Regular 13</string>
+			<string>KnackNerdFontComplete---Regular 11</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -5521,30 +5511,23 @@
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
-			<integer>12</integer>
+			<integer>0</integer>
 			<key>Working Directory</key>
 			<string>/Users/dkelley</string>
 		</dict>
 	</array>
-	<key>NoSyncHaveWarnedAboutIncompatibleSoftware</key>
+	<key>NoSyncConfirmBeta</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
-	<string>7BFFAB1B-0392-4CAE-A284-A94F90B7E4E0</string>
-	<key>NoSyncLastTipTime</key>
-	<real>484533786.158131</real>
+	<string>70B516D7-6616-4CB0-AE9B-1A03002B0769</string>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
-	<key>NoSyncSilenceAnnoyingBellAutomatically</key>
-	<true/>
-	<key>NoSyncTimeOfFirstLaunchForIncompatibilityWarnings</key>
-	<real>485359921.43623799</real>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
-	<real>470121997.51427501</real>
-	<key>NoSyncTipsToNotShow</key>
-	<array>
-		<string>000</string>
-		<string>0000</string>
-	</array>
+	<real>487921745.68847698</real>
 	<key>OpenArrangementAtStartup</key>
 	<false/>
 	<key>OpenNoWindowsAtStartup</key>
@@ -5585,7 +5568,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/dkelley/dotfiles/iTerm2</string>
+	<string>/Users/damonkelley/dotfiles/iTerm2</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>SUEnableAutomaticChecks</key>
@@ -5593,19 +5576,17 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/nightly.xml?shard=22</string>
+	<string>https://iterm2.com/appcasts/final.xml?shard=87</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-05-24T17:32:11Z</date>
+	<date>2016-06-26T03:43:05Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
 	<false/>
-	<key>UKCrashReporterLastCrashReportDate</key>
-	<real>1456280704</real>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
@@ -5613,7 +5594,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20160519-nightly</string>
+	<string>3.0.2</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
