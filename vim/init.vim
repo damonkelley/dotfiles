@@ -18,12 +18,10 @@ Plug 'tpope/vim-commentary'
 " Neovim {{{2
 if has('nvim')
   Plug 'kassio/neoterm'
-  Plug 'mhinz/vim-grepper'
   Plug 'damonkelley/neomake'
 
   " Completion
   Plug 'Shougo/deoplete.nvim'
-  Plug 'zchee/deoplete-jedi'
 endif
 "}}}
 
@@ -32,7 +30,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'luochen1990/rainbow'
 
 " Tools {{{2
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'janko-m/vim-test'
 
 " Navigations/Project {{{2
@@ -49,16 +46,8 @@ Plug 'junegunn/goyo.vim'
 
 " Language {{{2
 
-"Ruby
 Plug 'vim-ruby/vim-ruby'
-
-" Python
 Plug 'damonkelley/python-syntax', {'for': 'python'}
-Plug 'jmcantrell/vim-virtualenv', {'for': 'python'}
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'python-rope/ropevim', {'for': 'python'}
-Plug '5long/pytest-vim-compiler', {'for': 'python'}
-Plug 'tmhedberg/SimpylFold', {'for': 'python'}
 
 " Elixir
 Plug 'elixir-lang/vim-elixir'
@@ -66,18 +55,10 @@ Plug 'slashmili/alchemist.vim'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'tpope/vim-endwise'
 
-" Ansible
-Plug 'chase/vim-ansible-yaml'
-
-" Javascript
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-
 Plug 'slim-template/vim-slim'
 
-Plug 'tpope/vim-fireplace'
-
+Plug 'plasticboy/vim-markdown' | Plug 'godlygeek/tabular'
 " Colors {{{2
-Plug 'chriskempson/base16-vim'
 Plug 'w0ng/vim-hybrid'
 Plug 'flazz/vim-colorschemes'
 " }}}
@@ -153,27 +134,24 @@ augroup END
 
 " Colors {{{
 color hybrid
-
 set background=dark
 
-if g:colors_name ==# 'hybrid'
-  let g:terminal_color_0  = '#2D3C46'
-  let g:terminal_color_1  = "#A54242"
-  let g:terminal_color_2  = "#8C9440"
-  let g:terminal_color_3  = "#DE935F"
-  let g:terminal_color_4  = "#5F819D"
-  let g:terminal_color_5  = "#85678F"
-  let g:terminal_color_6  = "#5E8D87"
-  let g:terminal_color_7  = "#6C7A80"
-  let g:terminal_color_8  = "#425059"
-  let g:terminal_color_9  = "#CC6666"
-  let g:terminal_color_10 = "#B5BD68"
-  let g:terminal_color_11 = "#F0C674"
-  let g:terminal_color_12 = "#81A2BE"
-  let g:terminal_color_13 = "#B294BB"
-  let g:terminal_color_14 = "#8ABEB7"
-  let g:terminal_color_15 = "#C4C8C6"
-endif
+let g:terminal_color_0  = '#2D3C46'
+let g:terminal_color_1  = "#A54242"
+let g:terminal_color_2  = "#8C9440"
+let g:terminal_color_3  = "#DE935F"
+let g:terminal_color_4  = "#5F819D"
+let g:terminal_color_5  = "#85678F"
+let g:terminal_color_6  = "#5E8D87"
+let g:terminal_color_7  = "#6C7A80"
+let g:terminal_color_8  = "#425059"
+let g:terminal_color_9  = "#CC6666"
+let g:terminal_color_10 = "#B5BD68"
+let g:terminal_color_11 = "#F0C674"
+let g:terminal_color_12 = "#81A2BE"
+let g:terminal_color_13 = "#B294BB"
+let g:terminal_color_14 = "#8ABEB7"
+let g:terminal_color_15 = "#C4C8C6"
 " }}}
 " }}}
 
@@ -291,4 +269,9 @@ let g:hardtime_default_on = 1
 let g:hardtime_showmsg = 1
 let g:hardtime_allow_different_key = 1
 let g:list_of_normal_keys = ["h", "j", "k", "l", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+" }}}
+
+
+" Markdown {{{
+let g:vim_markdown_folding_disabled = 1
 " }}}
