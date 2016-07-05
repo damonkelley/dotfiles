@@ -15,6 +15,7 @@
     helper = osxkeychain
 [core]
     excludesfile = ~/.gitignore_global
+	autocrlf = input
 [merge]
     tool = vimdiff
 [mergetool]
