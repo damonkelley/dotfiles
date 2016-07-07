@@ -129,6 +129,7 @@ augroup FileTypeSettings
   au FileType vim setlocal ts=2 softtabstop=2 sw=2
   au FileType elixir setlocal foldmethod=syntax foldlevel=20
   au FileType ruby setlocal ts=2 sw=2 softtabstop=2
+  au FileType markdown setlocal spell
 augroup END
 "}}}
 
