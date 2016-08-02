@@ -3,8 +3,6 @@
 " Plugins {{{
 call plug#begin()
 
-Plug 'takac/vim-hardtime'
-
 " Git {{{2
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -14,20 +12,26 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+
+Plug 'guns/vim-sexp'
 
 " Neovim {{{2
 if has('nvim')
   Plug 'kassio/neoterm'
-  Plug 'damonkelley/neomake'
+  Plug 'neomake/neomake'
 
   " Completion
   Plug 'Shougo/deoplete.nvim'
+  Plug 'clojure-vim/async-clj-omni'
 endif
 "}}}
 
 " Parenthesis {{{2
-Plug 'jiangmiao/auto-pairs'
-Plug 'luochen1990/rainbow'
+" Plug 'jiangmiao/auto-pairs'
+Plug 'kien/rainbow_parentheses.vim'
 
 " Tools {{{2
 Plug 'janko-m/vim-test'
@@ -135,6 +139,8 @@ augroup END
 
 " Colors {{{
 color hybrid
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1
 set background=dark
 
 let g:terminal_color_0  = '#2D3C46'
@@ -162,7 +168,7 @@ let g:deoplete#enable_at_startup = 1
 
 " Mappings {{{
 let mapleader = "\<Space>"
-let maplocalleader = "\<Space>"
+let maplocalleader = "\\"
 
 " Generic Bindings
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
@@ -170,8 +176,6 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>et :vsplit ~/.tmux.conf<CR>
 cnoremap <C-A> <HOME>
 nnoremap <leader>w :w<CR>
-
-nnoremap \ :noh<CR>
 
 nnoremap <Leader>rt :call ReTag()<CR>
 
@@ -194,23 +198,6 @@ noremap <Leader>gt :GitGutterLineHighlightsToggle<CR>
 " JSON Tidy
 noremap <leader>jt <Esc>:%!json_xs -f json -t json-pretty<CR>
 
-" Vimux
-noremap <Leader>vp :VimuxPromptCommand<CR>
-noremap <Leader>vl :VimuxRunLastCommand<CR>
-noremap <Leader>vq :VimuxCloseRunner<CR>
-noremap <Leader>vi :VimuxInspectRunner<CR>
-noremap <Leader>vz :VimuxZoomRunner<CR>
-noremap <Leader>vs :VimuxInterruptRunner<CR>
-noremap <Leader>vc :VimuxClearRunnerHistory<CR>
-
-function! VimuxSlime()
-  call VimuxSendText(@v)
-  call VimuxSendKeys("Enter")
-endfunction
-
-vnoremap <leader>vs "vy :call VimuxSlime()<CR>
-nnoremap <leader>vs vip<leader>vs<CR>
-
 " FZF
 function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
@@ -219,10 +206,6 @@ endfunction
 command! ProjectFiles execute 'Files' s:find_git_root()
 nnoremap <leader>fr :ProjectFiles<CR>
 nnoremap <leader>b :Buffers<CR>
-
-" Open FZF in a new tab.
-let g:fzf_layout = { 'window': 'execute (tabpagenr()-1)."tabnew"' }
-"}}}
 
 " Other Files {{{
 source ~/.config/nvim/statusline.vim
@@ -276,3 +259,7 @@ let g:list_of_normal_keys = ["h", "j", "k", "l", "+", "<UP>", "<DOWN>", "<LEFT>"
 " Markdown {{{
 let g:vim_markdown_folding_disabled = 1
 " }}}
+
+" Clojure autocompletion
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.]*'

@@ -2,6 +2,7 @@ vim/colors/*
 vim/syntax/*
 !vim/bundle/Vundle.vim
 vim/bundle/*
+vim/spell/*
 vim/autoload/plug.vim.old
 vim/plugged/*
 vim/.netrwhist
@@ -9,5 +10,7 @@ vim/.init.vim-rplugin~
 
 *.swp
 *.swo
+
+.DS_Store
 
 fish/fishd.*
