@@ -154,7 +154,6 @@ endif
 color hybrid
 set background=dark
 " }}}
-" }}}
 
 " Completion {{{
 let g:deoplete#enable_at_startup = 1
@@ -229,30 +228,8 @@ augroup whitespace_detect
   autocmd!
   au BufEnter * :call MatchTrailingWhitespace()
 augroup END
+"}}}
+
 " Markdown {{{
 let g:vim_markdown_folding_disabled = 1
-" }}}
-
-" Clojure autocompletion {{{
-let g:deoplete#keyword_patterns = {}
-let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.]*'
-
-" Clojure
-let g:clojure_fold = 1
-
-function! CljLint()
-  execute ":Require eastwood.lint | Eval (eastwood.lint/eastwood {:namespaces ['" . fireplace#ns(). "] :linters [:all]})"
-endfunction
-
-function! CljTestFile()
-  echomsg expand("%")
-  exec ":Require speclj.cli | Eval (speclj.cli/run \"". expand("%") ."\" )"
-endfunction
-
-augroup clojure_mapping
-    autocmd!
-    au FileType clojure nnoremap <F6> :call CljLint()<CR>
-    au FileType clojure nnoremap <leader>tf :call CljTestFile()<CR>
-    au FileType clojure setlocal foldlevel=20
-augroup END
 " }}}
