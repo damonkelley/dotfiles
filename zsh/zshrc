@@ -1,61 +1,36 @@
-source $HOME/zgen/zgen.zsh
+source ~/.zplug/init.zsh
 
-if ! zgen saved; then
-    echo "Creating a zgen save"
-    zgen oh-my-zsh
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
+# zplug "git/git", use:"contrib/completion/git-prompt.sh"
+zplug "themes/gianu", from:oh-my-zsh
 
-    zgen oh-my-zsh plugins/git
-    zgen oh-my-zsh plugins/command-not-found
-    zgen oh-my-zsh plugins/tmux
-    zgen oh-my-zsh plugins/docker
-
-    zgen load zsh-users/zsh-syntax-highlighting
-    zgen load zsh-users/zsh-completions src
-
-    zgen load mafredri/zsh-async
-    zgen load sindresorhus/pure
-
-    zgen load $HOME/dotfiles/zsh/completion
-    zgen load $HOME/dotfiles/zsh/utility
-    zgen load $HOME/dotfiles/zsh/custom
-
-    zgen save
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
 fi
 
-# Define colors for BSD ls.
-export LSCOLORS='exfxcxdxbxGxDxabagacad'
+zplug load --verbose
 
-# Define colors for the completion system.
-export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
+setopt promptsubst
+autoload -U colors && colors
+bindkey -e
 
-# Colorized Man pages
-man() {
-    env \
-        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-        LESS_TERMCAP_md=$(printf "\e[1;31m") \
-        LESS_TERMCAP_me=$(printf "\e[0m") \
-        LESS_TERMCAP_se=$(printf "\e[0m") \
-        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-        LESS_TERMCAP_ue=$(printf "\e[0m") \
-        LESS_TERMCAP_us=$(printf "\e[1;32m") \
-        man "$@"
-}
+PROMPT='%{$fg_bold[yellow]%}%c%{$reset_color%}$(git_prompt_info)%{$reset_color%} → '
 
-# Pyenv
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+ZSH_THEME_GIT_PROMPT_PREFIX=" (%{$fg_bold[green]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX=")"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[green]%} %{$fg[yellow]%}✗%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$reset_color%}"
 
-# Exenv
-if which exenv > /dev/null; then eval "$(exenv init -)"; fi
+export EDITOR=nvim
 
-# added by travis gem
-[ -f /Users/dkelley/.travis/travis.sh ] && source /Users/dkelley/.travis/travis.sh
-
-# Kiex
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
-
-# Autoenv
-[ -f /usr/local/opt/autoenv/activate.sh ] && source /usr/local/opt/autoenv/activate.sh
+alias ls='ls -GF'
+alias la='ls -alF'
+alias vim='nvim'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# added by travis gem
+[ -f /Users/damonkelley/.travis/travis.sh ] && source /Users/damonkelley/.travis/travis.sh
