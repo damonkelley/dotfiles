@@ -6,6 +6,8 @@ set -x ESHELL /bin/zsh
 set -x PATH /usr/local/bin $PATH
 set -x EDITOR nvim
 
+set fish_greeting ""
+
 set -g __fish_git_prompt_show_informative_status 1
 set -g __fish_git_prompt_hide_untrackedfiles 1
 

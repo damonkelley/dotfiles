@@ -42,18 +42,6 @@ function! BufferFileType()
   return " %y "
 endfunction
 
-function! NeotermTestStatus()
-  let section = ''
-  if exists(":T")
-    let section .= " "
-    let section .= "%#NeotermTestRunning#%{neoterm#test#status('running')}%*"
-    let section .= "%#NeotermTestSuccess#%{neoterm#test#status('success')}%*"
-    let section .= "%#NeotermTestFailed#%{neoterm#test#status('failed')}%*"
-    let section .= " "
-  endif
-  return section
-endfunction
-
 function! FugitiveStatus()
   let section = ''
 
@@ -61,7 +49,7 @@ function! FugitiveStatus()
     let head = fugitive#head()
 
     if !empty(head)
-      let section .= ' ' . head . ' '
+      let section .= ':' . head . ' '
     endif
   endif
 
@@ -84,7 +72,6 @@ function! RightSide()
 
   let rs .= BufferFileType()
   let rs .= ScrollPercentage()
-  let rs .= NeotermTestStatus()
   let rs .= FugitiveStatus()
 
   return rs

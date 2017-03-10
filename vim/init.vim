@@ -14,32 +14,25 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'tpope/vim-abolish'
 
-Plug 'guns/vim-sexp'
+Plug 'tpope/vim-projectionist'
 
 " Neovim {{{2
 if has('nvim')
-  Plug 'kassio/neoterm'
   Plug 'neomake/neomake'
 
   " Completion
   Plug 'Shougo/deoplete.nvim'
-  Plug 'clojure-vim/async-clj-omni'
 endif
 "}}}
 
 " Parenthesis {{{2
-" Plug 'jiangmiao/auto-pairs'
-Plug 'kien/rainbow_parentheses.vim'
-
-" Tools {{{2
-Plug 'janko-m/vim-test'
+Plug 'jiangmiao/auto-pairs'
 
 " Navigations/Project {{{2
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'justinmk/vim-sneak'
 
 
 " Registers/Undo {{{2
@@ -47,21 +40,25 @@ Plug 'junegunn/vim-peekaboo'
 
 " Writing {{{2
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/vim-easy-align'
 
 " Language {{{2
-
-Plug 'vim-ruby/vim-ruby'
 Plug 'damonkelley/python-syntax', {'for': 'python'}
 
 " Elixir
-Plug 'elixir-lang/vim-elixir'
-Plug 'slashmili/alchemist.vim'
-Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'tpope/vim-endwise'
+Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
+Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
+Plug 'powerman/vim-plugin-AnsiEsc', {'for': 'elixir'}
+Plug 'tpope/vim-endwise', {'for': 'elixir'}
+"
+"Clojure
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'godlygeek/tabular'
 
-Plug 'slim-template/vim-slim'
+Plug 'vim-scripts/bats.vim'
 
-Plug 'plasticboy/vim-markdown' | Plug 'godlygeek/tabular'
+Plug 'rhysd/vim-clang-format'
+
 " Colors {{{2
 Plug 'w0ng/vim-hybrid'
 Plug 'flazz/vim-colorschemes'
@@ -80,7 +77,9 @@ syntax enable
 set cc=80
 set ls=2  " always show status line
 set showcmd
-set belloff=all
+if exists('&belloff')
+  set belloff=all
+endif
 
 " Tabs
 set tabstop=4
@@ -97,11 +96,18 @@ set smartcase
 
 " Line Numbers
 set number
-set relativenumber
+if exists('&relativenumber')
+  set relativenumber
+endif
 
 set cursorline
 
 set listchars=eol:↲,tab:▶▹,nbsp:␣,extends:…,trail:•
+set exrc
+
+if exists('&inccommand')
+  set inccommand=split
+endif
 "}}}
 
 " Tags {{{
@@ -121,7 +127,7 @@ endfunction
 " Neovim {{{
 if has('nvim')
   let g:python3_host_prog='/usr/local/bin/python3'
-  let g:python_host_prog='/usr/bin/python'
+  let g:python_host_prog='/usr/local/bin/python'
 endif
 "}}}
 
@@ -134,31 +140,19 @@ augroup FileTypeSettings
   au FileType elixir setlocal foldmethod=syntax foldlevel=20
   au FileType ruby setlocal ts=2 sw=2 softtabstop=2
   au FileType markdown setlocal spell
+  au FileType clojure setlocal lispwords+=describe,context,it,around
+  au FileType clojure setlocal lispwords+=describe,context,it,around
+  au CmdwinEnter * setlocal cc=0 nonumber norelativenumber
 augroup END
 "}}}
 
 " Colors {{{
-color hybrid
-let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1
-set background=dark
+if exists('&termguicolors')
+  set termguicolors
+endif
 
-let g:terminal_color_0  = '#2D3C46'
-let g:terminal_color_1  = "#A54242"
-let g:terminal_color_2  = "#8C9440"
-let g:terminal_color_3  = "#DE935F"
-let g:terminal_color_4  = "#5F819D"
-let g:terminal_color_5  = "#85678F"
-let g:terminal_color_6  = "#5E8D87"
-let g:terminal_color_7  = "#6C7A80"
-let g:terminal_color_8  = "#425059"
-let g:terminal_color_9  = "#CC6666"
-let g:terminal_color_10 = "#B5BD68"
-let g:terminal_color_11 = "#F0C674"
-let g:terminal_color_12 = "#81A2BE"
-let g:terminal_color_13 = "#B294BB"
-let g:terminal_color_14 = "#8ABEB7"
-let g:terminal_color_15 = "#C4C8C6"
+color hybrid
+set background=dark
 " }}}
 " }}}
 
@@ -173,15 +167,24 @@ let maplocalleader = "\\"
 " Generic Bindings
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>lv :vsplit .nvimrc<CR>
 nnoremap <leader>et :vsplit ~/.tmux.conf<CR>
 cnoremap <C-A> <HOME>
 nnoremap <leader>w :w<CR>
 
 nnoremap <Leader>rt :call ReTag()<CR>
 
+" Search for word under the cursor
+nnoremap <silent> <leader>* :Ag <C-R><C-W><CR>
+nnoremap <leader>/ :Ag 
+
 " Always use very magic searches
 nnoremap / /\v
 vnoremap / /\v
+nnoremap <leader>\ :noh<CR>
+
+nnoremap * *``
+
 
 " Neovim Terminal
 if has('nvim')
@@ -199,6 +202,7 @@ noremap <Leader>gt :GitGutterLineHighlightsToggle<CR>
 noremap <leader>jt <Esc>:%!json_xs -f json -t json-pretty<CR>
 
 " FZF
+
 function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
@@ -206,6 +210,11 @@ endfunction
 command! ProjectFiles execute 'Files' s:find_git_root()
 nnoremap <leader>fr :ProjectFiles<CR>
 nnoremap <leader>b :Buffers<CR>
+
+" Easy Align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+"}}}
 
 " Other Files {{{
 source ~/.config/nvim/statusline.vim
@@ -220,46 +229,30 @@ augroup whitespace_detect
   autocmd!
   au BufEnter * :call MatchTrailingWhitespace()
 augroup END
-" }}}
-
-" vim-test {{{
-function! NeomakeTest(cmd)
-  call neomake#Sh(a:cmd, function('s:neomakeTestCallback'))
-endfunction
-
-function! s:neomakeTestCallback(result)
-  if a:result.status != '0'
-    echohl TestFail | echom "Failed: " . a:result.name
-  else
-    echohl TestPass | echom "Failed: " . a:result.name
-  endif
-  echohl None
-endfunction
-
-highlight TestFail guibg=red guifg=white
-highlight TestPass guibg=green guifg=white
-
-let g:test#custom_strategies = {'neomake': function('NeomakeTest')}
-" }}}
-
-" Hardtimes {{{
-
-augroup hardtime_settings
-  autocmd!
-  autocmd FileType netrw call HardTimeOn()
-augroup END
-
-let g:hardtime_default_on = 1
-let g:hardtime_showmsg = 1
-let g:hardtime_allow_different_key = 1
-let g:list_of_normal_keys = ["h", "j", "k", "l", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
-" }}}
-
-
 " Markdown {{{
 let g:vim_markdown_folding_disabled = 1
 " }}}
 
-" Clojure autocompletion
+" Clojure autocompletion {{{
 let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.]*'
+
+" Clojure
+let g:clojure_fold = 1
+
+function! CljLint()
+  execute ":Require eastwood.lint | Eval (eastwood.lint/eastwood {:namespaces ['" . fireplace#ns(). "] :linters [:all]})"
+endfunction
+
+function! CljTestFile()
+  echomsg expand("%")
+  exec ":Require speclj.cli | Eval (speclj.cli/run \"". expand("%") ."\" )"
+endfunction
+
+augroup clojure_mapping
+    autocmd!
+    au FileType clojure nnoremap <F6> :call CljLint()<CR>
+    au FileType clojure nnoremap <leader>tf :call CljTestFile()<CR>
+    au FileType clojure setlocal foldlevel=20
+augroup END
+" }}}
