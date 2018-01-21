@@ -15,6 +15,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-rhubarb'
 
 Plug 'tpope/vim-projectionist'
 
@@ -49,8 +50,8 @@ Plug 'damonkelley/python-syntax', {'for': 'python'}
 Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
 Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
 Plug 'powerman/vim-plugin-AnsiEsc', {'for': 'elixir'}
-Plug 'tpope/vim-endwise', {'for': 'elixir'}
-"
+Plug 'tpope/vim-endwise', {'for': ['elixir', 'ruby']}
+
 "Clojure
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'godlygeek/tabular'
@@ -59,9 +60,11 @@ Plug 'vim-scripts/bats.vim'
 
 Plug 'rhysd/vim-clang-format'
 
+Plug 'kassio/neoterm'
+Plug 'janko-m/vim-test'
+
 " Colors {{{2
-Plug 'w0ng/vim-hybrid'
-Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
 " }}}
 
 call plug#end()
@@ -105,6 +108,8 @@ set cursorline
 set listchars=eol:↲,tab:▶▹,nbsp:␣,extends:…,trail:•
 set exrc
 
+set completeopt-=preview
+
 if exists('&inccommand')
   set inccommand=split
 endif
@@ -113,13 +118,18 @@ endif
 " Tags {{{
 set tags+=.git/tags
 
+function! TagComplete(id, code, event)
+  echohl DiffAdd | echo "Tagging complete" | echohl None
+endfunction
+
 function! ReTag()
-    let l:cmd = "ctags --tag-relative -Rf.git/tags"
+    let l:cmd = "ctags --tag-relative=yes -Rf.git/tags"
+    let l:opts = {'on_exit': 'TagComplete'}
 
     if exists(':NeomakeSh')
         execute ":NeomakeSh ".l:cmd
     else
-        execute ":!".l:cmd."\<CR>"
+      call jobstart(l:cmd, l:opts)
     endif
 endfunction
 " }}}
@@ -138,6 +148,7 @@ augroup FileTypeSettings
   au FileType htmldjango setlocal ts=4 softtabstop=4 sw=4
   au FileType vim setlocal ts=2 softtabstop=2 sw=2
   au FileType elixir setlocal foldmethod=syntax foldlevel=20
+  au FileType elixir nnoremap <leader>tr :silent exec '!tmux send-keys -R -t 1 "mix test" Enter' <Bar> redraw!<CR>
   au FileType ruby setlocal ts=2 sw=2 softtabstop=2
   au FileType markdown setlocal spell
   au FileType clojure setlocal lispwords+=describe,context,it,around
@@ -151,7 +162,10 @@ if exists('&termguicolors')
   set termguicolors
 endif
 
-color hybrid
+let g:gruvbox_contrast_light = 'medium'
+let g:gruvbox_contrast_dark = 'hard'
+
+colorscheme gruvbox
 set background=dark
 " }}}
 
@@ -182,15 +196,23 @@ nnoremap / /\v
 vnoremap / /\v
 nnoremap <leader>\ :noh<CR>
 
-nnoremap * *``
+let g:neoterm_autoscroll = 1
+nnoremap <leader>rf :TREPLSendFile<CR>
+vnoremap <leader>re :TREPLSendSelection<CR>
+nnoremap <leader>re :TREPLSendLine<CR>
+
+let g:test#preserve_screen = 0
+nmap <silent> <leader>tn :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ta :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tg :TestVisit<CR>
+
 
 
 " Neovim Terminal
 if has('nvim')
-  tnoremap <C-h> <C-\><C-n><C-w>h
-  tnoremap <C-j> <C-\><C-n><C-w>j
-  tnoremap <C-k> <C-\><C-n><C-w>k
-  tnoremap <C-l> <C-\><C-n><C-w>l
+  tnoremap <C-\> <C-\><C-n>
 endif
 
 " VCS
@@ -207,7 +229,8 @@ function! s:find_git_root()
 endfunction
 
 command! ProjectFiles execute 'Files' s:find_git_root()
-nnoremap <leader>fr :ProjectFiles<CR>
+nnoremap <leader>fa :ProjectFiles<CR>
+nnoremap <leader>fr :GFiles<CR>
 nnoremap <leader>b :Buffers<CR>
 
 " Easy Align
