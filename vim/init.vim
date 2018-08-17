@@ -18,13 +18,17 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-rhubarb'
 
 Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'guns/vim-sexp'
 
 " Neovim {{{2
 if has('nvim')
   Plug 'neomake/neomake'
+  Plug 'sbdchd/neoformat'
 
   " Completion
-  Plug 'Shougo/deoplete.nvim'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'clojure-vim/async-clj-omni'
 endif
 "}}}
 
@@ -48,13 +52,19 @@ Plug 'damonkelley/python-syntax', {'for': 'python'}
 
 " Elixir
 Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
-Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
+" Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
 Plug 'powerman/vim-plugin-AnsiEsc', {'for': 'elixir'}
 Plug 'tpope/vim-endwise', {'for': ['elixir', 'ruby']}
 
 "Clojure
+Plug 'venantius/vim-cljfmt'
+let g:clj_fmt_autosave = 0
+
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'godlygeek/tabular'
+
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 Plug 'vim-scripts/bats.vim'
 
@@ -63,8 +73,14 @@ Plug 'rhysd/vim-clang-format'
 Plug 'kassio/neoterm'
 Plug 'janko-m/vim-test'
 
+
 " Colors {{{2
 Plug 'morhetz/gruvbox'
+Plug 'jacoborus/tender.vim'
+Plug 'NLKNguyen/papercolor-theme'
+
+Plug 'parsonsmatt/intero-neovim', {'for': 'haskell'}
+Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 " }}}
 
 call plug#end()
@@ -84,7 +100,7 @@ if exists('&belloff')
   set belloff=all
 endif
 
-" Tabs
+" tabs
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -92,18 +108,16 @@ set softtabstop=4
 set smarttab
 set expandtab
 
-" Searching
+" searching
 set hlsearch
 set ignorecase
 set smartcase
 
-" Line Numbers
+" line numbers
 set number
 if exists('&relativenumber')
   set relativenumber
 endif
-
-set cursorline
 
 set listchars=eol:↲,tab:▶▹,nbsp:␣,extends:…,trail:•
 set exrc
@@ -126,11 +140,7 @@ function! ReTag()
     let l:cmd = "ctags --tag-relative=yes -Rf.git/tags"
     let l:opts = {'on_exit': 'TagComplete'}
 
-    if exists(':NeomakeSh')
-        execute ":NeomakeSh ".l:cmd
-    else
-      call jobstart(l:cmd, l:opts)
-    endif
+    call jobstart(l:cmd, l:opts)
 endfunction
 " }}}
 
@@ -142,19 +152,19 @@ endif
 "}}}
 
 " File Type Settings {{{
-augroup FileTypeSettings
+augroup filetypesettings
   autocmd!
-  au FileType javascript setlocal ts=2 softtabstop=2 sw=2
-  au FileType htmldjango setlocal ts=4 softtabstop=4 sw=4
-  au FileType vim setlocal ts=2 softtabstop=2 sw=2
-  au FileType elixir setlocal foldmethod=syntax foldlevel=20
-  au FileType elixir nnoremap <leader>tr :silent exec '!tmux send-keys -R -t 1 "mix test" Enter' <Bar> redraw!<CR>
-  au FileType ruby setlocal ts=2 sw=2 softtabstop=2
-  au FileType markdown setlocal spell
-  au FileType clojure setlocal lispwords+=describe,context,it,around
-  au FileType clojure setlocal lispwords+=describe,context,it,around
-  au CmdwinEnter * setlocal cc=0 nonumber norelativenumber
-augroup END
+  au filetype javascript setlocal ts=2 softtabstop=2 sw=2
+  au filetype htmldjango setlocal ts=4 softtabstop=4 sw=4
+  au filetype vim setlocal ts=2 softtabstop=2 sw=2
+  au filetype elixir setlocal foldmethod=syntax foldlevel=20
+  au filetype elixir nnoremap <leader>tr :silent exec '!tmux send-keys -r -t 1 "mix test" enter' <Bar> redraw!<CR>
+  au filetype ruby setlocal ts=2 sw=2 softtabstop=2
+  au filetype markdown setlocal spell
+  au filetype clojure setlocal lispwords+=describe,context,it,around,should-invoke
+  au cmdwinenter * setlocal cc=0 nonumber norelativenumber
+  autocmd filetype yaml setlocal ts=2 sts=2 sw=2 expandtab
+augroup end
 "}}}
 
 " Colors {{{
@@ -165,11 +175,12 @@ endif
 let g:gruvbox_contrast_light = 'medium'
 let g:gruvbox_contrast_dark = 'hard'
 
-colorscheme gruvbox
-set background=dark
+set background=light
+colorscheme PaperColor
+highlight search cterm=underline ctermfg=214 gui=underline guifg=#fabd2f
 " }}}
 
-" Completion {{{
+" completion {{{
 let g:deoplete#enable_at_startup = 1
 " }}}
 
@@ -188,8 +199,8 @@ nnoremap <leader>w :w<CR>
 nnoremap <Leader>rt :call ReTag()<CR>
 
 " Search for word under the cursor
-nnoremap <silent> <leader>* :Ag <C-R><C-W><CR>
-nnoremap <leader>/ :Ag 
+nnoremap <silent> <leader>* :Rg! <C-R><C-W><CR>
+nnoremap <leader>/ :Rg!
 
 " Always use very magic searches
 nnoremap / /\v
@@ -197,9 +208,9 @@ vnoremap / /\v
 nnoremap <leader>\ :noh<CR>
 
 let g:neoterm_autoscroll = 1
-nnoremap <leader>rf :TREPLSendFile<CR>
-vnoremap <leader>re :TREPLSendSelection<CR>
-nnoremap <leader>re :TREPLSendLine<CR>
+nnoremap <leader>rf :treplsendfile<cr>
+vnoremap <leader>re :treplsendselection<cr>
+nnoremap <leader>re :treplsendline<cr>
 
 let g:test#preserve_screen = 0
 nmap <silent> <leader>tn :TestNearest<CR>
@@ -212,8 +223,13 @@ nmap <silent> <leader>tg :TestVisit<CR>
 
 " Neovim Terminal
 if has('nvim')
-  tnoremap <C-\> <C-\><C-n>
+  tnoremap <c-\> <c-\><c-n>
+
+  augroup myterminal
+    au TermOpen * setlocal nonumber norelativenumber
+  augroup END
 endif
+
 
 " VCS
 noremap <Leader>gs :Gstatus<CR>
@@ -232,6 +248,23 @@ command! ProjectFiles execute 'Files' s:find_git_root()
 nnoremap <leader>fa :ProjectFiles<CR>
 nnoremap <leader>fr :GFiles<CR>
 nnoremap <leader>b :Buffers<CR>
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
+" easy align
+xmap ga <plug>(easyalign)
+nmap ga <plug>(easyalign)
 
 " Easy Align
 xmap ga <Plug>(EasyAlign)
@@ -253,6 +286,22 @@ augroup whitespace_detect
 augroup END
 "}}}
 
-" Markdown {{{
-let g:vim_markdown_folding_disabled = 1
+" formatting {{{
+augroup fmt
+  autocmd!
+  " autocmd BufWritePre * undojoin | Neoformat
+augroup END
+" }}}
+
+" Clojure Autocompletion {{{
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.]*'
+
+" More Clojure
+let g:clojure_fold = 1
+
+augroup clojure_mapping
+    autocmd!
+    au filetype clojure setlocal foldlevel=20
+augroup end
 " }}}

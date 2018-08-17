@@ -4,3 +4,4 @@ if exists(":Neomake")
 endif
 
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_haskell_enabled_makers = ['hlint']
