@@ -2,6 +2,9 @@
     email = damon.kelley@gmail.com
     name = Damon Kelley
 
+[includeif "gitdir/i:~/client/"]
+    path =  ~/client/.gitconfig
+
 [filter "media"]
     clean = git-media-clean %f
     smudge = git-media-smudge %f

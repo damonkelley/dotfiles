@@ -1,6 +1,7 @@
-source ~/.zplug/init.zsh
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
 
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "zsh-users/zsh-syntax-highlighting", defer:3
 # zplug "git/git", use:"contrib/completion/git-prompt.sh"
 zplug "themes/gianu", from:oh-my-zsh
 
@@ -13,11 +14,21 @@ fi
 
 zplug load --verbose
 
+export HISTSIZE=1000
+export SAVEHIST=1000
+export HISTFILE=~/.history
+setopt inc_append_history
+setopt share_history
+
 setopt promptsubst
 autoload -U colors && colors
 bindkey -e
 
-PROMPT='%{$fg_bold[yellow]%}%c%{$reset_color%}$(git_prompt_info)%{$reset_color%} → '
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
+PROMPT='%{$fg_bold[magenta]%}%c%{$reset_color%}$(git_prompt_info)%{$reset_color%} → '
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" (%{$fg_bold[green]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX=")"
@@ -34,3 +45,7 @@ alias vim='nvim'
 
 # added by travis gem
 [ -f /Users/damonkelley/.travis/travis.sh ] && source /Users/damonkelley/.travis/travis.sh
+
+eval "$(rbenv init -)"
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+export PATH="/Users/damonkelley/.local/bin:$PATH"

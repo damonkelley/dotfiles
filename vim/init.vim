@@ -23,8 +23,7 @@ Plug 'guns/vim-sexp'
 
 " Neovim {{{2
 if has('nvim')
-  Plug 'neomake/neomake'
-  Plug 'sbdchd/neoformat'
+  Plug 'w0rp/ale'
 
   " Completion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -79,8 +78,11 @@ Plug 'morhetz/gruvbox'
 Plug 'jacoborus/tender.vim'
 Plug 'NLKNguyen/papercolor-theme'
 
-Plug 'parsonsmatt/intero-neovim', {'for': 'haskell'}
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': './install.sh'
+    \ }
 " }}}
 
 call plug#end()
@@ -107,6 +109,8 @@ set softtabstop=4
 
 set smarttab
 set expandtab
+
+set nowrap
 
 " searching
 set hlsearch
@@ -172,11 +176,11 @@ if exists('&termguicolors')
   set termguicolors
 endif
 
-let g:gruvbox_contrast_light = 'medium'
+let g:gruvbox_contrast_light = 'hard'
 let g:gruvbox_contrast_dark = 'hard'
 
 set background=light
-colorscheme PaperColor
+colorscheme gruvbox
 highlight search cterm=underline ctermfg=214 gui=underline guifg=#fabd2f
 " }}}
 
@@ -305,3 +309,29 @@ augroup clojure_mapping
     au filetype clojure setlocal foldlevel=20
 augroup end
 " }}}
+
+
+set hidden
+let g:LanguageClient_serverCommands = {
+    \ 'haskell': ['hie', '--lsp', '-d', '-l', '~/haskell-language-client.log']
+    \ }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <leader>cm :call LanguageClient_contextMenu()<CR>
+map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
+map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
+map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
+map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
+map <Leader>lb :call LanguageClient#textDocument_references()<CR>
+map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
+
+hi link ALEError Error
+hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gold
+hi link ALEWarning Warning
+hi link ALEInfo SpellCap
+
+let g:ale_elixir_elixir_ls_release = '/Users/damonkelley/code/elixir-ls/'
+
+let g:ale_linters = {'elixir': ['elixir-ls']}
+let g:ale_fixers = {'elixir': ['mix_format']}
