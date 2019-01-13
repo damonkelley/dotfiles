@@ -1,8 +1,8 @@
 # Script to symlink dotfiles
 
 mkdir -p ~/.config
-ln -s ~/dotfiles/vim ~/.config/nvim 
-ln -s ~/dotfiles/idea/ideavimrc ~/.ideavimrc
-ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
-ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
+ln -svfn ~/dotfiles/vim ~/.config/nvim
+ln -svf ~/dotfiles/idea/ideavimrc ~/.ideavimrc
+ln -svf ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -svf ~/dotfiles/git/gitconfig ~/.gitconfig
+ln -svf ~/dotfiles/zsh/zshrc ~/.zshrc
