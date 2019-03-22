@@ -3,23 +3,15 @@
 " Plugins {{{
 call plug#begin()
 
-" Git {{{2
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" tpope {{{2
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-rhubarb'
-
-Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
-Plug 'guns/vim-sexp'
 
 " Neovim {{{2
 if has('nvim')
@@ -27,63 +19,31 @@ if has('nvim')
 
   " Completion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'clojure-vim/async-clj-omni'
 endif
 "}}}
 
-" Parenthesis {{{2
 Plug 'jiangmiao/auto-pairs'
-
-" Navigations/Project {{{2
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
-
-" Registers/Undo {{{2
 Plug 'junegunn/vim-peekaboo'
-
-" Writing {{{2
-Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 
-" Language {{{2
 Plug 'damonkelley/python-syntax', {'for': 'python'}
-
-" Elixir
 Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
-" Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
-Plug 'powerman/vim-plugin-AnsiEsc', {'for': 'elixir'}
 Plug 'tpope/vim-endwise', {'for': ['elixir', 'ruby']}
-
-"Clojure
-Plug 'venantius/vim-cljfmt'
-let g:clj_fmt_autosave = 0
-
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-Plug 'godlygeek/tabular'
-
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-
 Plug 'vim-scripts/bats.vim'
-
-Plug 'rhysd/vim-clang-format'
-
-Plug 'kassio/neoterm'
 Plug 'janko-m/vim-test'
 
 
-" Colors {{{2
 Plug 'morhetz/gruvbox'
-Plug 'jacoborus/tender.vim'
-Plug 'NLKNguyen/papercolor-theme'
 
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': './install.sh'
     \ }
-" }}}
 
 call plug#end()
 "}}}
@@ -211,18 +171,12 @@ nnoremap / /\v
 vnoremap / /\v
 nnoremap <leader>\ :noh<CR>
 
-let g:neoterm_autoscroll = 1
-nnoremap <leader>rf :treplsendfile<cr>
-vnoremap <leader>re :treplsendselection<cr>
-nnoremap <leader>re :treplsendline<cr>
-
 let g:test#preserve_screen = 0
 nmap <silent> <leader>tn :TestNearest<CR>
 nmap <silent> <leader>tf :TestFile<CR>
 nmap <silent> <leader>ta :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tg :TestVisit<CR>
-
 
 
 " Neovim Terminal
@@ -251,6 +205,7 @@ endfunction
 command! ProjectFiles execute 'Files' s:find_git_root()
 nnoremap <leader>fa :ProjectFiles<CR>
 nnoremap <leader>fr :GFiles<CR>
+nnoremap <leader>mf :GFiles?<CR>
 nnoremap <leader>b :Buffers<CR>
 
 command! -bang -nargs=* Rg
@@ -297,23 +252,11 @@ augroup fmt
 augroup END
 " }}}
 
-" Clojure Autocompletion {{{
-let g:deoplete#keyword_patterns = {}
-let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.]*'
-
-" More Clojure
-let g:clojure_fold = 1
-
-augroup clojure_mapping
-    autocmd!
-    au filetype clojure setlocal foldlevel=20
-augroup end
-" }}}
-
-
 set hidden
 let g:LanguageClient_serverCommands = {
-    \ 'haskell': ['hie', '--lsp', '-d', '-l', '~/haskell-language-client.log']
+    \ 'haskell': ['hie', '--lsp', '-d', '-l', '~/haskell-language-client.log'],
+    \ 'elixir': ['/Users/damonkelley/code/elixir-ls/language_server.sh'],
+    \ 'typescript': ['node', '/Users/damonkelley/code/javascript-typescript-langserver/lib/language-server', '-l', '~/javascript-typescript-ls.log']
     \ }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
@@ -331,7 +274,6 @@ hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gol
 hi link ALEWarning Warning
 hi link ALEInfo SpellCap
 
-let g:ale_elixir_elixir_ls_release = '/Users/damonkelley/code/elixir-ls/'
 
-let g:ale_linters = {'elixir': ['elixir-ls']}
+" let g:ale_linters = {'elixir': ['elixir-ls']}
 let g:ale_fixers = {'elixir': ['mix_format']}
