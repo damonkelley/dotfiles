@@ -12,38 +12,26 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-endwise', {'for': ['elixir', 'ruby']}
 
-" Neovim {{{2
-if has('nvim')
-  Plug 'w0rp/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'jiangmiao/auto-pairs'
 
-  " Completion
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-endif
-"}}}
-
-Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-easy-align'
 
-Plug 'damonkelley/python-syntax', {'for': 'python'}
 Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
-Plug 'tpope/vim-endwise', {'for': ['elixir', 'ruby']}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-Plug 'pangloss/vim-javascript'
 Plug 'vim-scripts/bats.vim'
 Plug 'janko-m/vim-test'
+Plug 'hashivim/vim-terraform'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
-
+Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
-
-Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': './install.sh'
-    \ }
 
 call plug#end()
 "}}}
@@ -139,8 +127,8 @@ endif
 let g:gruvbox_contrast_light = 'hard'
 let g:gruvbox_contrast_dark = 'hard'
 
-set background=light
-colorscheme gruvbox
+set background=dark
+colorscheme base16-github
 highlight search cterm=underline ctermfg=214 gui=underline guifg=#fabd2f
 " }}}
 
@@ -245,35 +233,3 @@ augroup whitespace_detect
 augroup END
 "}}}
 
-" formatting {{{
-augroup fmt
-  autocmd!
-  " autocmd BufWritePre * undojoin | Neoformat
-augroup END
-" }}}
-
-set hidden
-let g:LanguageClient_serverCommands = {
-    \ 'haskell': ['hie', '--lsp', '-d', '-l', '~/haskell-language-client.log'],
-    \ 'elixir': ['/Users/damonkelley/code/elixir-ls/language_server.sh'],
-    \ 'typescript': ['node', '/Users/damonkelley/code/javascript-typescript-langserver/lib/language-server', '-l', '~/javascript-typescript-ls.log']
-    \ }
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <leader>cm :call LanguageClient_contextMenu()<CR>
-map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
-map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
-map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
-map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
-map <Leader>lb :call LanguageClient#textDocument_references()<CR>
-map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
-map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
-
-hi link ALEError Error
-hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gold
-hi link ALEWarning Warning
-hi link ALEInfo SpellCap
-
-
-" let g:ale_linters = {'elixir': ['elixir-ls']}
-let g:ale_fixers = {'elixir': ['mix_format']}

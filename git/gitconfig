@@ -10,10 +10,7 @@
     smudge = git-media-smudge %f
 
 [alias]
-    s = status
-    ci = commit
-    co = checkout
-    br = branch
+    remove-merged-branches = ! sh -c 'git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d'
 [credential]
     helper = osxkeychain
 [core]
