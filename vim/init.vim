@@ -79,6 +79,8 @@ set completeopt-=preview
 if exists('&inccommand')
   set inccommand=split
 endif
+
+set hidden
 "}}}
 
 " Tags {{{
@@ -128,7 +130,7 @@ let g:gruvbox_contrast_light = 'hard'
 let g:gruvbox_contrast_dark = 'hard'
 
 set background=dark
-colorscheme base16-github
+colorscheme gruvbox
 highlight search cterm=underline ctermfg=214 gui=underline guifg=#fabd2f
 " }}}
 
