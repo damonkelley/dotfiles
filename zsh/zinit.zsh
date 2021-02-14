@@ -23,7 +23,6 @@ zinit light-mode for \
 
 # Plugins
 zinit light Aloxaf/fzf-tab
-zinit light zsh-users/zsh-autosuggestions
 zpcompinit; zpcdreplay
 
 zinit light zdharma/fast-syntax-highlighting
