@@ -10,6 +10,8 @@ source $HOME/dotfiles/zsh/options.zsh
 alias ls='ls -GF'
 alias la='ls -alF'
 alias vim='nvim'
+alias cat=bat
+alias ls=exa
 
 eval "$(starship init zsh)"
 
