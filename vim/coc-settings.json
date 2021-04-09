@@ -3,11 +3,6 @@
         "autoFixOnSave": true
     },
     "languageserver": {
-        "terraform": {
-            "command": "terraform-ls",
-            "args": ["serve"],
-            "filetypes": ["terraform"]
-        },
         "elixirLS": {
             "command": "/Users/damonkelley/code/elixir-ls/release/language_server.sh",
             "filetypes": ["elixir", "eelixir"]

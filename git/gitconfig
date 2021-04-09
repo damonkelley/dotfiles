@@ -16,9 +16,30 @@
 [core]
     excludesfile = ~/.gitignore_global
 	autocrlf = input
+    pager = delta
 [merge]
     tool = vimdiff
 [mergetool]
     prompt = true
 [mergetool "vimdiff"]
     cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
+
+    syntax-theme     = gruvbox
+    plus-style       = "syntax #2d4a16"
+    plus-emph-style  = "white  #6B8C4F"
+    minus-style      = "syntax #60141B"
+    minus-emph-style = "white  #88323A"
+
+[delta "decorations"]
+   commit-decoration-style      = "bold yellow box ul"
+   file-style                   = "bold yellow"
+   file-decoration-style        = "bold yellow box ul"
+   hunk-header-style            = "bold blue"
+   hunk-header-decoration-style = "blue box"
