@@ -5,6 +5,7 @@ call plug#begin()
 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'TimUntersberger/neogit'
 
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-surround'
@@ -29,9 +30,13 @@ Plug 'janko-m/vim-test'
 Plug 'hashivim/vim-terraform'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'fatih/vim-go'
 
 Plug 'chriskempson/base16-vim'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'rktjmp/lush.nvim'
+Plug 'npxbr/gruvbox.nvim', {'branch': 'main'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 "}}}
@@ -235,8 +240,34 @@ augroup whitespace_detect
 augroup END
 "}}}
 
-"
 " Terraform {{{
 let g:terraform_fmt_on_save=1
 let g:terraform_align=1
 "}}}
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+
+  highlight = {
+    enable = true,
+  },
+
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+
+  indent = {
+    enable = true
+  },
+}
+EOF
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()

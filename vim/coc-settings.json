@@ -36,6 +36,7 @@
             "formatOnSaveFiletypes": [
                 "javascript",
                 "typescript",
+                "go",
                 "terraform"
             ]
         }
