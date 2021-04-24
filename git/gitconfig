@@ -2,6 +2,9 @@
     email = damon.kelley@gmail.com
     name = Damon Kelley
 
+[init]
+    defaultBranch = main
+
 [includeif "gitdir/i:~/client/"]
     path =  ~/client/.gitconfig
 
