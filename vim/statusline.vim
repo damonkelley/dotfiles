@@ -56,6 +56,14 @@ function! FugitiveStatus()
   return section
 endfunction
 
+function! Diagnostics()
+  if &rtp =~ 'coc'
+    return "%{coc#status()}%{get(b:,'coc_current_function','')}"
+  else
+    return ""
+  endif
+endfunction
+
 function! LeftSide()
   let ls = ''
   let ls.= NumberSection()
@@ -73,6 +81,7 @@ function! RightSide()
   let rs .= BufferFileType()
   let rs .= ScrollPercentage()
   let rs .= FugitiveStatus()
+  let rs .= Diagnostics()
 
   return rs
 endfunction

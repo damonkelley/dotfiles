@@ -7,6 +7,12 @@
             "command": "/Users/damonkelley/code/elixir-ls/release/language_server.sh",
             "filetypes": ["elixir", "eelixir"]
         },
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod"],
+            "disableWorkspaceFolders": true,
+            "filetypes": ["go"]
+        },
         "haskell": {
             "command": "hie-wrapper",
             "args": ["--lsp"],
