@@ -3,6 +3,8 @@
 " Plugins {{{
 call plug#begin()
 
+Plug 'nvim-lua/plenary.nvim'
+
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'TimUntersberger/neogit'
@@ -34,7 +36,7 @@ Plug 'fatih/vim-go'
 
 Plug 'chriskempson/base16-vim'
 " Plug 'morhetz/gruvbox'
-Plug 'rktjmp/lush.nvim'
+Plug 'rktjmp/lush.nvim', {'branch': 'main'}
 Plug 'npxbr/gruvbox.nvim', {'branch': 'main'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -245,6 +247,7 @@ let g:terraform_fmt_on_save=1
 let g:terraform_align=1
 "}}}
 
+let g:vimsyn_embed = 'l'
 lua <<EOF
   require 'treesitter'
 EOF

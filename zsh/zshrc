@@ -2,7 +2,7 @@ export HISTSIZE=1000
 export SAVEHIST=1000
 export HISTFILE=~/.history
 export EDITOR=nvim
-export PATH="/Users/damonkelley/.local/bin:$PATH"
+export PATH="/Users/damonkelley/.local/bin:/Users/damonkelley/.bin:$PATH"
 
 source $HOME/dotfiles/zsh/zinit.zsh
 source $HOME/dotfiles/zsh/options.zsh
@@ -23,3 +23,7 @@ bindkey '^I' $fzf_default_completion
 
 enable-fzf-tab
 
+
+function dots {
+    tmux display-popup -d /Users/damonkelley/dotfiles -E nvim .
+}
