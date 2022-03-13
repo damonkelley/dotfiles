@@ -1,6 +1,6 @@
 {
     "eslint": {
-        "autoFixOnSave": true
+        "autoFixOnSave": false
     },
     "languageserver": {
         "elixirLS": {
@@ -40,8 +40,8 @@
     "coc": {
         "preferences": {
             "formatOnSaveFiletypes": [
-                "javascript",
                 "typescript",
+                "typescriptreact",
                 "go",
                 "terraform"
             ]

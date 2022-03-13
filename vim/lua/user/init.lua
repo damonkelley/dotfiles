@@ -1,0 +1,5 @@
+require('user.options')
+require('user.colors')
+require('user.filetypes')
+require('user.keymaps')
+require('user.terminal')
