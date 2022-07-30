@@ -79,16 +79,29 @@ _G.packer_plugins = {
     path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/start/diffview.nvim",
     url = "https://github.com/sindrets/diffview.nvim"
   },
+  ["gitsigns.nvim"] = {
+    config = { "\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0" },
+    loaded = true,
+    path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
   ["gruvbox.nvim"] = {
     loaded = true,
     path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
     url = "https://github.com/npxbr/gruvbox.nvim"
   },
   harpoon = {
-    config = { "\27LJ\2\nð\4\0\0\6\0\22\00016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0'\4\5\0005\5\6\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\a\0'\4\b\0005\5\t\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\n\0'\4\v\0005\5\f\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\r\0'\4\14\0005\5\15\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\16\0'\4\17\0005\5\18\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\19\0'\4\20\0005\5\21\0B\0\5\1K\0\1\0\1\0\1\vsilent\2/:lua require('harpoon.ui').nav_file(4)<CR>\14<leader>4\1\0\1\vsilent\2/:lua require('harpoon.ui').nav_file(3)<CR>\14<leader>3\1\0\1\vsilent\2/:lua require('harpoon.ui').nav_file(2)<CR>\14<leader>2\1\0\1\vsilent\2/:lua require('harpoon.ui').nav_file(1)<CR>\14<leader>1\1\0\1\vsilent\0027:lua require('harpoon.ui').toggle_quick_menu()<CR>\15<leader>hm\1\0\1\vsilent\0020:lua require('harpoon.mark').add_file()<CR>\15<leader>ha\6n\20nvim_set_keymap\bapi\bvim\0" },
     loaded = true,
     path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
+  },
+  ["markdown-preview.nvim"] = {
+    commands = { "MarkdownPreview" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim",
+    url = "https://github.com/iamcco/markdown-preview.nvim"
   },
   neogit = {
     config = { "\27LJ\2\n]\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\17integrations\1\0\0\1\0\1\rdiffview\2\nsetup\vneogit\frequire\0" },
@@ -106,12 +119,34 @@ _G.packer_plugins = {
     path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
+  ["packer.nvim"] = {
+    loaded = true,
+    path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    url = "https://github.com/wbthomason/packer.nvim"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["refactoring.nvim"] = {
+    loaded = true,
+    path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/start/refactoring.nvim",
+    url = "https://github.com/ThePrimeagen/refactoring.nvim"
+  },
+  ["telescope-coc.nvim"] = {
+    config = { "\27LJ\2\nH\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\bcoc\19load_extension\14telescope\frequire\0" },
+    loaded = true,
+    path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/start/telescope-coc.nvim",
+    url = "https://github.com/fannheyward/telescope-coc.nvim"
+  },
+  ["telescope-fzf-native.nvim"] = {
+    loaded = true,
+    path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
+  },
   ["telescope.nvim"] = {
+    config = { "\27LJ\2\nH\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\bfzf\19load_extension\14telescope\frequire\0" },
     loaded = true,
     path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
@@ -120,6 +155,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
+  },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-repeat"] = {
     loaded = true,
@@ -132,7 +172,6 @@ _G.packer_plugins = {
     url = "https://github.com/tpope/vim-surround"
   },
   ["vim-test"] = {
-    config = { "\27LJ\2\n¥\3\0\0\6\0\21\0-6\0\0\0009\0\1\0)\1\0\0=\1\2\0006\0\0\0009\0\3\0009\0\4\0'\2\5\0'\3\6\0'\4\a\0005\5\b\0B\0\5\0016\0\0\0009\0\3\0009\0\4\0'\2\5\0'\3\t\0'\4\n\0005\5\v\0B\0\5\0016\0\0\0009\0\3\0009\0\4\0'\2\5\0'\3\f\0'\4\r\0005\5\14\0B\0\5\0016\0\0\0009\0\3\0009\0\4\0'\2\5\0'\3\15\0'\4\16\0005\5\17\0B\0\5\0016\0\0\0009\0\3\0009\0\4\0'\2\5\0'\3\18\0'\4\19\0005\5\20\0B\0\5\1K\0\1\0\1\0\1\vsilent\2\19:TestVisit<CR>\15<Leader>tg\1\0\1\vsilent\2\18:TestLast<CR>\15<Leader>tl\1\0\1\vsilent\2\19:TestSuite<CR>\15<Leader>ta\1\0\1\vsilent\2\18:TestFile<CR>\15<Leader>tf\1\0\1\vsilent\2\21:TestNearest<CR>\15<Leader>tn\6n\20nvim_set_keymap\bapi\25test#preserve_screen\6g\bvim\0" },
     loaded = true,
     path = "/Users/damonkelley/.local/share/nvim/site/pack/packer/start/vim-test",
     url = "https://github.com/vim-test/vim-test"
@@ -155,18 +194,28 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: vim-test
-time([[Config for vim-test]], true)
-try_loadstring("\27LJ\2\n¥\3\0\0\6\0\21\0-6\0\0\0009\0\1\0)\1\0\0=\1\2\0006\0\0\0009\0\3\0009\0\4\0'\2\5\0'\3\6\0'\4\a\0005\5\b\0B\0\5\0016\0\0\0009\0\3\0009\0\4\0'\2\5\0'\3\t\0'\4\n\0005\5\v\0B\0\5\0016\0\0\0009\0\3\0009\0\4\0'\2\5\0'\3\f\0'\4\r\0005\5\14\0B\0\5\0016\0\0\0009\0\3\0009\0\4\0'\2\5\0'\3\15\0'\4\16\0005\5\17\0B\0\5\0016\0\0\0009\0\3\0009\0\4\0'\2\5\0'\3\18\0'\4\19\0005\5\20\0B\0\5\1K\0\1\0\1\0\1\vsilent\2\19:TestVisit<CR>\15<Leader>tg\1\0\1\vsilent\2\18:TestLast<CR>\15<Leader>tl\1\0\1\vsilent\2\19:TestSuite<CR>\15<Leader>ta\1\0\1\vsilent\2\18:TestFile<CR>\15<Leader>tf\1\0\1\vsilent\2\21:TestNearest<CR>\15<Leader>tn\6n\20nvim_set_keymap\bapi\25test#preserve_screen\6g\bvim\0", "config", "vim-test")
-time([[Config for vim-test]], false)
--- Config for: harpoon
-time([[Config for harpoon]], true)
-try_loadstring("\27LJ\2\nð\4\0\0\6\0\22\00016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0'\4\5\0005\5\6\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\a\0'\4\b\0005\5\t\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\n\0'\4\v\0005\5\f\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\r\0'\4\14\0005\5\15\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\16\0'\4\17\0005\5\18\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\19\0'\4\20\0005\5\21\0B\0\5\1K\0\1\0\1\0\1\vsilent\2/:lua require('harpoon.ui').nav_file(4)<CR>\14<leader>4\1\0\1\vsilent\2/:lua require('harpoon.ui').nav_file(3)<CR>\14<leader>3\1\0\1\vsilent\2/:lua require('harpoon.ui').nav_file(2)<CR>\14<leader>2\1\0\1\vsilent\2/:lua require('harpoon.ui').nav_file(1)<CR>\14<leader>1\1\0\1\vsilent\0027:lua require('harpoon.ui').toggle_quick_menu()<CR>\15<leader>hm\1\0\1\vsilent\0020:lua require('harpoon.mark').add_file()<CR>\15<leader>ha\6n\20nvim_set_keymap\bapi\bvim\0", "config", "harpoon")
-time([[Config for harpoon]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
+time([[Config for gitsigns.nvim]], false)
 -- Config for: neogit
 time([[Config for neogit]], true)
 try_loadstring("\27LJ\2\n]\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\17integrations\1\0\0\1\0\1\rdiffview\2\nsetup\vneogit\frequire\0", "config", "neogit")
 time([[Config for neogit]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+try_loadstring("\27LJ\2\nH\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\bfzf\19load_extension\14telescope\frequire\0", "config", "telescope.nvim")
+time([[Config for telescope.nvim]], false)
+-- Config for: telescope-coc.nvim
+time([[Config for telescope-coc.nvim]], true)
+try_loadstring("\27LJ\2\nH\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\bcoc\19load_extension\14telescope\frequire\0", "config", "telescope-coc.nvim")
+time([[Config for telescope-coc.nvim]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file MarkdownPreview lua require("packer.load")({'markdown-preview.nvim'}, { cmd = "MarkdownPreview", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+time([[Defining lazy-load commands]], false)
+
 if should_profile then save_profiles() end
 
 end)

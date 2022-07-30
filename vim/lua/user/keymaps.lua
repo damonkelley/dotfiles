@@ -16,5 +16,22 @@ vim.api.nvim_set_keymap('n', '<Leader>fr', ':Telescope git_files<CR>', {})
 vim.api.nvim_set_keymap('n', '<Leader>mf', ':Telescope git_status<CR>', {})
 vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope buffers<CR>', {})
 
-vim.api.nvim_set_keymap('n', '<Leader>*', ':Telescope grep_string<CR>', { silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>/', ':Telescope live_grep prompt_prefix=🔍>  <CR>', { silent = true})
+vim.keymap.set(
+  'n',
+  '<Leader>*',
+  function() require('telescope.builtin').grep_string() end,
+  { silent = true}
+)
+
+vim.keymap.set(
+  'n',
+  '<Leader>!',
+  function() require('telescope.builtin').live_grep() end,
+  { silent = true}
+)
+
+vim.keymap.set('n', '<Leader>/', function()
+  vim.ui.input({prompt = 'Grep> '}, function(value)
+    require('telescope.builtin').grep_string({search = value})
+  end)
+end)

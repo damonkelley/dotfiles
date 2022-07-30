@@ -22,7 +22,8 @@ opt.listchars={
   tab = '▶▹',
   nbsp = '␣',
   extends = '…',
-  trail = '•'
+  trail = '•',
+  lead = '•',
 }
 
 opt.inccommand  = "split"
@@ -35,3 +36,5 @@ vim.g.python3_host_prog='/usr/local/bin/python3'
 vim.python_host_prog='/usr/local/bin/python'
 
 vim.g.vimsyn_embed = 'l' -- Syntax highlighing for embedded vimscript
+
+opt.wildignore:append({"*.o", "*~", "*.pyc", "*pycache*" })

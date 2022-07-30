@@ -1,50 +1,67 @@
 {
-    "eslint": {
-        "autoFixOnSave": false
-    },
-    "languageserver": {
-        "elixirLS": {
-            "command": "/Users/damonkelley/code/elixir-ls/release/language_server.sh",
-            "filetypes": ["elixir", "eelixir"]
-        },
-        "golang": {
-            "command": "gopls",
-            "rootPatterns": ["go.mod"],
-            "disableWorkspaceFolders": true,
-            "filetypes": ["go"]
-        },
-        "haskell": {
-            "command": "hie-wrapper",
-            "args": ["--lsp"],
-            "rootPatterns": [
-                "stack.yaml",
-                "cabal.config",
-                "package.yaml"
-            ],
-            "filetypes": [
-                "hs",
-                "lhs",
-                "haskell"
-            ],
-            "initializationOptions": {
-                "languageServerHaskell": {
-                    "hlintOn": true,
-                    "formatOnImportOn": true,
-                    "formattingProvider": "floskell",
-                    "useCustomHieWrapper": true,
-                    "useCustomHieWrapperPath": "hie-wrapper"
-                }
-            }
-        }
-    },
-    "coc": {
-        "preferences": {
-            "formatOnSaveFiletypes": [
-                "typescript",
-                "typescriptreact",
-                "go",
-                "terraform"
-            ]
-        }
+  "eslint": {
+    "autoFixOnSave": false
+  },
+  "python": {
+    "linting": {
+      "flake8Enabled": true
     }
+  },
+  "pyright.organizeimports.provider": "isort",
+  "python.formatting.provider": "black",
+  "languageserver": {
+    "elixirLS": {
+      "command": "/Users/damonkelley/code/elixir-ls/release/language_server.sh",
+      "filetypes": ["elixir", "eelixir"]
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "disableWorkspaceFolders": true,
+      "filetypes": ["go"]
+    },
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
+    },
+    "haskell": {
+      "command": "hie-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": [
+        "stack.yaml",
+        "cabal.config",
+        "package.yaml"
+      ],
+      "filetypes": [
+        "hs",
+        "lhs",
+        "haskell"
+      ],
+      "initializationOptions": {
+        "languageServerHaskell": {
+          "hlintOn": true,
+          "formatOnImportOn": true,
+          "formattingProvider": "floskell",
+          "useCustomHieWrapper": true,
+          "useCustomHieWrapperPath": "hie-wrapper"
+        }
+      }
+    }
+  },
+  "coc": {
+    "preferences": {
+      "formatOnSaveFiletypes": [
+        "typescript",
+        "typescriptreact",
+        "go",
+        "terraform"
+      ]
+    }
+  }
 }
