@@ -2,12 +2,12 @@
 
 config=~/.config/alacritty/alacritty.yml
 
-if [ "$(yq eval '.colors | alias == "gruvbox-dark"' "$config")" == "true" ]; then
+if [ "$(yq eval '.colors | alias == "dark"' "$config")" == "true" ]; then
     echo "Switching to light mode"
-    yq eval '.colors alias = "gruvbox-light"' -i "$config"
+    yq eval '.colors alias = "light"' -i "$config"
 else
     echo "Switching to dark mode"
-    yq eval '.colors alias = "gruvbox-dark"' -i "$config"
+    yq eval '.colors alias = "dark"' -i "$config"
 fi
 
 touch "$config"
