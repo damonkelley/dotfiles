@@ -10,9 +10,7 @@ require("packer").startup(function(use)
 	use({ "tpope/vim-fugitive" })
 
 	use({ "vim-test/vim-test" })
-	use({ "rcarriga/vim-ultest", run = ":UpdateRemotePlugins" })
 
-	use({ "npxbr/gruvbox.nvim", branch = "main" })
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 
 	use({
@@ -38,7 +36,6 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({ "ThePrimeagen/harpoon" })
 	use({
 		"lewis6991/gitsigns.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
@@ -47,12 +44,13 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({ "neoclide/coc.nvim", branch = "release"})
-    use({ "fannheyward/telescope-coc.nvim",
-        config = function()
-          require('telescope').load_extension('coc')
-        end
-      })
+	use({ "neoclide/coc.nvim", branch = "release" })
+	use({
+		"fannheyward/telescope-coc.nvim",
+		config = function()
+			require("telescope").load_extension("coc")
+		end,
+	})
 
 	-- use({
 	-- 	"neovim/nvim-lspconfig",
@@ -68,34 +66,19 @@ require("packer").startup(function(use)
 	-- 		require("lsp")
 	-- 	end,
 	-- })
-  --
-    use {
-      "ThePrimeagen/refactoring.nvim",
-      requires = {
-        {"nvim-lua/plenary.nvim"},
-        {"nvim-treesitter/nvim-treesitter"}
-      }
-    }
 
-    use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
+	use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install", cmd = "MarkdownPreview" })
+
+	use("folke/tokyonight.nvim")
 end)
 
 vim.cmd([[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    autocmd BufWritePost init.lua source <afile> | PackerCompile
   augroup end
 ]])
 
 require("user")
 require("treesitter")
 require("tags").setup({ location = ".git/tags" })
-
-require('refactoring').setup({})
-vim.api.nvim_set_keymap("v", "<leader>re", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], {noremap = true, silent = true, expr = false})
-vim.api.nvim_set_keymap("v", "<leader>rf", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], {noremap = true, silent = true, expr = false})
-vim.api.nvim_set_keymap("v", "<leader>rv", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], {noremap = true, silent = true, expr = false})
-vim.api.nvim_set_keymap("v", "<leader>ri", [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], {noremap = true, silent = true, expr = false})
-
--- Inline variable can also pick up the identifier currently under the cursor without visual mode
-vim.api.nvim_set_keymap("n", "<leader>ri", [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], {noremap = true, silent = true, expr = false})

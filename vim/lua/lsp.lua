@@ -3,12 +3,35 @@ vim.api.nvim_set_keymap("n", "<space>E", "<cmd>lua vim.diagnostic.open_float()<C
 vim.api.nvim_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 vim.api.nvim_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<space>ac", "<cmd>Telescope lsp_code_actions<CR>", opts)
+vim.api.nvim_set_keymap("n", "<space>ac", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
---
-local on_attach = function(_, buffer_number)
+local formatting_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+local lsp_formatting = function(bufnr)
+	vim.lsp.buf.format({
+		filter = function(client)
+			print(vim.inspect(client))
+			-- apply whatever logic you want (in this example, we'll only use null-ls)
+			return client.name == "null-ls"
+		end,
+		bufnr = bufnr,
+	})
+end
+
+local enable_autoformatting = function(client, bufnr)
+	if client.supports_method("textDocument/formatting") then
+		vim.api.nvim_clear_autocmds({ group = formatting_augroup, buffer = bufnr })
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = formatting_augroup,
+			buffer = bufnr,
+			callback = function()
+				lsp_formatting(bufnr)
+			end,
+		})
+	end
+end
+
+local on_attach = function(client, buffer_number)
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(buffer_number, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -41,16 +64,18 @@ local on_attach = function(_, buffer_number)
 	vim.api.nvim_buf_set_keymap(buffer_number, "n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(buffer_number, "n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(buffer_number, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-	vim.api.nvim_buf_set_keymap(buffer_number, "n", "<space>gq", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(buffer_number, "v", "<space>gq", "<cmd>lua require('lsp').format_range()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(buffer_number, "n", "<space>gq", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 	vim.api.nvim_buf_set_option(0, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+
+	enable_autoformatting(client, buffer_number)
 end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright", "rust_analyzer", "tsserver" }
+local servers = { "pyright", "rust_analyzer", "tsserver", "terraformls", "tflint" }
 for _, lsp in pairs(servers) do
 	require("lspconfig")[lsp].setup({
 		on_attach = on_attach,
@@ -58,7 +83,7 @@ for _, lsp in pairs(servers) do
 			-- This will be the default in neovim 0.7+
 			debounce_text_changes = 150,
 		},
-        capabilities = capabilities
+		capabilities = capabilities,
 	})
 end
 
@@ -68,7 +93,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 require("lspconfig").sumneko_lua.setup({
 	on_attach = on_attach,
-    capabilities = capabilities,
+	capabilities = capabilities,
 	settings = {
 		Lua = {
 			runtime = {
@@ -92,67 +117,58 @@ local null_ls = require("null-ls")
 
 null_ls.setup({
 	sources = {
-		-- null_ls.builtins.diagnostics.eslint,
-		null_ls.builtins.formatting.prettier,
-		null_ls.builtins.formatting.stylua,
-
-		null_ls.builtins.code_actions.gitsigns,
-		null_ls.builtins.diagnostics.gitlint,
-
-		null_ls.builtins.completion.spell,
-
-		null_ls.builtins.diagnostics.codespell,
-		-- null_ls.builtins.formatting.codespell,
-
 		null_ls.builtins.code_actions.shellcheck,
 		null_ls.builtins.diagnostics.shellcheck,
 		null_ls.builtins.formatting.shellharden,
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.code_actions.gitsigns,
+		null_ls.builtins.diagnostics.gitlint,
+		null_ls.builtins.diagnostics.codespell,
 
-		null_ls.builtins.formatting.autopep8,
-		-- null_ls.builtins.diagnostics.flake8,
-		-- null_ls.builtins.diagnostics.mypy,
-		-- null_ls.builtins.formatting.isort,
+		null_ls.builtins.code_actions.eslint.with({
+			dynamic_command = require("null-ls.helpers.command_resolver").from_yarn_pnp,
+		}),
+		null_ls.builtins.formatting.eslint.with({
+			dynamic_command = require("null-ls.helpers.command_resolver").from_yarn_pnp,
+		}),
+		null_ls.builtins.diagnostics.eslint.with({
+			dynamic_command = require("null-ls.helpers.command_resolver").from_yarn_pnp,
+		}),
 	},
+	on_attach = function(client, bufnr)
+		enable_autoformatting(client, bufnr)
+	end,
 })
 
 local cmp = require("cmp")
 
 cmp.setup({
-	mapping = {
-		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-		["<C-e>"] = cmp.mapping({
-			i = cmp.mapping.abort(),
-			c = cmp.mapping.close(),
-		}),
+	mapping = cmp.mapping.preset.insert({
+		["<C-b>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-\\>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+	}),
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
 	},
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp", group_index = 1 },
 	}, {
-		{ name = "buffer" },
+		{ name = "buffer", group_index = 2 },
 	}),
 })
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline("/", {
-	sources = {
-		{ name = "buffer" },
-	},
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "path" },
 	}, {
 		{ name = "cmdline" },
 	}),
 })
-
-
 
 M = {}
 

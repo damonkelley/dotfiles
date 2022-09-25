@@ -32,9 +32,11 @@ opt.hidden = true
 
 opt.termguicolors = true
 
+opt.cmdheight = 0
+
 vim.g.python3_host_prog='/usr/local/bin/python3'
 vim.python_host_prog='/usr/local/bin/python'
 
-vim.g.vimsyn_embed = 'l' -- Syntax highlighing for embedded vimscript
+vim.g.vimsyn_embed = 'l' -- Syntax highlighting for embedded vimscript
 
 opt.wildignore:append({"*.o", "*~", "*.pyc", "*pycache*" })
