@@ -44,32 +44,63 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({ "neoclide/coc.nvim", branch = "release" })
+	-- use({ "neoclide/coc.nvim", branch = "release" })
+	-- use({
+	-- 	"fannheyward/telescope-coc.nvim",
+	-- 	config = function()
+	-- 		require("telescope").load_extension("coc")
+	-- 	end,
+	-- })
+  --
+    use({"hrsh7th/nvim-cmp" ,
+      requires = {
+        { "jose-elias-alvarez/null-ls.nvim" },
+        { "hrsh7th/cmp-nvim-lsp" },
+        { "hrsh7th/cmp-buffer" },
+        { "hrsh7th/cmp-path" },
+        { "hrsh7th/cmp-cmdline" },
+        { "PaterJason/cmp-conjure" },
+      }
+    })
+
 	use({
-		"fannheyward/telescope-coc.nvim",
+		"neovim/nvim-lspconfig",
 		config = function()
-			require("telescope").load_extension("coc")
+			require("lsp")
 		end,
 	})
 
-	-- use({
-	-- 	"neovim/nvim-lspconfig",
-	-- 	requires = {
-	-- 		{ "jose-elias-alvarez/null-ls.nvim" },
-	-- 		{ "hrsh7th/cmp-nvim-lsp" },
-	-- 		{ "hrsh7th/cmp-buffer" },
-	-- 		{ "hrsh7th/cmp-path" },
-	-- 		{ "hrsh7th/cmp-cmdline" },
-	-- 		{ "hrsh7th/nvim-cmp" },
-	-- 	},
-	-- 	config = function()
-	-- 		require("lsp")
-	-- 	end,
-	-- })
-
-	use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install", cmd = "MarkdownPreview" })
-
 	use("folke/tokyonight.nvim")
+
+	use({
+		"MunifTanjim/exrc.nvim",
+		requires = {
+			"MunifTanjim/nui.nvim",
+		},
+		config = function()
+			vim.o.exrc = false
+			require("exrc").setup({
+				files = {
+					".nvimrc.lua",
+					".nvimrc",
+					".exrc.lua",
+					".exrc",
+				},
+			})
+		end,
+	})
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
+
+	use("earthly/earthly.vim")
+	use("jxnblk/vim-mdx-js")
+    use('JoosepAlviste/nvim-ts-context-commentstring')
+
+    use({'Olical/conjure'})
 end)
 
 vim.cmd([[

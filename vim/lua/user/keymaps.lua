@@ -35,16 +35,20 @@ end)
 
 local current_buffer = 0
 
-vim.api.nvim_buf_create_user_command(current_buffer, "OnEnter", function(opts)
+vim.api.nvim_create_user_command("OnEnter", function(opts)
     vim.keymap.set("n", "<Enter>",
       function()
-        vim.cmd([[botright vsplit | term ]] .. opts.args)
+        vim.cmd([[botright split | term ]] .. opts.args)
         vim.cmd("startinsert")
       end,
       { buffer = current_buffer }
   )
 end, { nargs = 1 })
 
-vim.api.nvim_buf_create_user_command(current_buffer, "Todo", function(opts)
-  vim.cmd([[botright vsplit z_damonkelley/todo.md ]])
+vim.api.nvim_create_user_command("Todo", function(opts)
+  git_root = vim.fn.system("git rev-parse --show-toplevel")
+
+  local trimmed_git_root = string.gsub(git_root, '%s+', '')
+
+  vim.cmd("botright vsplit " ..  trimmed_git_root .. "/.git/todo.md")
 end, { nargs = 0 })

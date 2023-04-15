@@ -5,6 +5,10 @@ vim.opt.foldexpr=vim.fn["nvim_treesitter#foldexpr"]()
 require('nvim-treesitter.configs').setup {
   ensure_installed = "all",
 
+  context_commentstring = {
+    enable = true
+  },
+
   highlight = {
     enable = true,
   },

@@ -1,11 +1,11 @@
 vim.opt_local.shiftwidth = 2
 
-vim.cmd([[
-augroup localterrafor
-  autocmd!
-  au BufWritePre *.tf lua vim.lsp.buf.formatting_sync()
-augroup end
-]])
+-- vim.cmd([[
+-- augroup localterrafor
+--   autocmd!
+--   au BufWritePre *.tf lua vim.lsp.buf.formatting_sync()
+-- augroup end
+-- ]])
 
 local current_buffer = 0
 

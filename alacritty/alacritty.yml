@@ -13,114 +13,140 @@ font:
   size: 14.0
 draw_bold_text_with_bright_colors: true
 schemes:
-  tokyonight-storm: &dark
+  tokyonight-storm: &tokyonight-storm
     primary:
-      background: '0x24283b'
-      foreground: '0xc0caf5'
+      background: "0x24283b"
+      foreground: "0xc0caf5"
     normal:
-      black: '0x1D202F'
-      red: '0xf7768e'
-      green: '0x9ece6a'
-      yellow: '0xe0af68'
-      blue: '0x7aa2f7'
-      magenta: '0xbb9af7'
-      cyan: '0x7dcfff'
-      white: '0xa9b1d6'
+      black: "0x1D202F"
+      red: "0xf7768e"
+      green: "0x9ece6a"
+      yellow: "0xe0af68"
+      blue: "0x7aa2f7"
+      magenta: "0xbb9af7"
+      cyan: "0x7dcfff"
+      white: "0xa9b1d6"
     bright:
-      black: '0x414868'
-      red: '0xf7768e'
-      green: '0x9ece6a'
-      yellow: '0xe0af68'
-      blue: '0x7aa2f7'
-      magenta: '0xbb9af7'
-      cyan: '0x7dcfff'
-      white: '0xc0caf5'
+      black: "0x414868"
+      red: "0xf7768e"
+      green: "0x9ece6a"
+      yellow: "0xe0af68"
+      blue: "0x7aa2f7"
+      magenta: "0xbb9af7"
+      cyan: "0x7dcfff"
+      white: "0xc0caf5"
   indexed_colors:
-    - {index: 16, color: '0xff9e64'}
-    - {index: 17, color: '0xdb4b4b'}
+    - {index: 16, color: "0xff9e64"}
+    - {index: 17, color: "0xdb4b4b"}
   tokyonight-day: &light
-    # Default colors
-    primary:
-      background: '0xe1e2e7'
-      foreground: '0x3760bf'
+    primary: # Default colors
+      background: "0xe1e2e7"
+      foreground: "0x3760bf"
     # Normal colors
     normal:
-      black: '0xe9e9ed'
-      red: '0xf52a65'
-      green: '0x587539'
-      yellow: '0x8c6c3e'
-      blue: '0x2e7de9'
-      magenta: '0x9854f1'
-      cyan: '0x007197'
-      white: '0x6172b0'
+      black: "0xe9e9ed"
+      red: "0xf52a65"
+      green: "0x587539"
+      yellow: "0x8c6c3e"
+      blue: "0x2e7de9"
+      magenta: "0x9854f1"
+      cyan: "0x007197"
+      white: "0x6172b0"
     # Bright colors
     bright:
-      black: '0xa1a6c5'
-      red: '0xf52a65'
-      green: '0x587539'
-      yellow: '0x8c6c3e'
-      blue: '0x2e7de9'
-      magenta: '0x9854f1'
-      cyan: '0x007197'
-      white: '0x3760bf'
+      black: "0xa1a6c5"
+      red: "0xf52a65"
+      green: "0x587539"
+      yellow: "0x8c6c3e"
+      blue: "0x2e7de9"
+      magenta: "0x9854f1"
+      cyan: "0x007197"
+      white: "0x3760bf"
     indexed_colors:
-      - {index: 16, color: '0xb15c00'}
-      - {index: 17, color: '0xc64343'}
+      - {index: 16, color: "0xb15c00"}
+      - {index: 17, color: "0xc64343"}
+  tokyonight-night: &dark
+    primary:
+      background: "0x1a1b26"
+      foreground: "0xc0caf5"
+    # Normal colors
+    normal:
+      black: "0x15161e"
+      red: "0xf7768e"
+      green: "0x9ece6a"
+      yellow: "0xe0af68"
+      blue: "0x7aa2f7"
+      magenta: "0xbb9af7"
+      cyan: "0x7dcfff"
+      white: "0xa9b1d6"
+    # Bright colors
+    bright:
+      black: "0x414868"
+      red: "0xf7768e"
+      green: "0x9ece6a"
+      yellow: "0xe0af68"
+      blue: "0x7aa2f7"
+      magenta: "0xbb9af7"
+      cyan: "0x7dcfff"
+      white: "0xc0caf5"
+    indexed_colors:
+      - {index: 16, color: "0xff9e64"}
+      - {index: 17, color: "0xdb4b4b"}
   gruvbox-light: &gruvbox-light
     cursor:
-      cursor: '0x3c3836'
+      cursor: "0x3c3836"
     primary:
       # hard contrast: background = '0xf9f5d7'
-      background: '0xfbf1c7'
+      background: "0xfbf1c7"
       # soft contrast: background = '0xf2e5bc'
-      foreground: '0x3c3836'
+      foreground: "0x3c3836"
     normal:
-      black: '0xfbf1c7'
-      red: '0xcc241d'
-      green: '0x98971a'
-      yellow: '0xd79921'
-      blue: '0x458588'
-      magenta: '0xb16286'
-      cyan: '0x689d6a'
-      white: '0x7c6f64'
+      black: "0xfbf1c7"
+      red: "0xcc241d"
+      green: "0x98971a"
+      yellow: "0xd79921"
+      blue: "0x458588"
+      magenta: "0xb16286"
+      cyan: "0x689d6a"
+      white: "0x7c6f64"
     bright:
-      black: '0x928374'
-      red: '0x9d0006'
-      green: '0x79740e'
-      yellow: '0xb57614'
-      blue: '0x076678'
-      magenta: '0x8f3f71'
-      cyan: '0x427b58'
-      white: '0x3c3836'
+      black: "0x928374"
+      red: "0x9d0006"
+      green: "0x79740e"
+      yellow: "0xb57614"
+      blue: "0x076678"
+      magenta: "0x8f3f71"
+      cyan: "0x427b58"
+      white: "0x3c3836"
   gruvbox-dark: &gruvbox-dark
     cursor:
-      cursor: '#ebdbb2'
+      cursor: "#ebdbb2"
     primary:
       # hard contrast: background = '#1d2021'
-      background: '#282828'
+      background: "#282828"
       # soft contrast: background = '#32302f'
-      foreground: '#ebdbb2'
+      foreground: "#ebdbb2"
     normal:
-      black: '#282828'
-      red: '#cc241d'
-      green: '#98971a'
-      yellow: '#d79921'
-      blue: '#458588'
-      magenta: '#b16286'
-      cyan: '#689d6a'
-      white: '#a89984'
+      black: "#282828"
+      red: "#cc241d"
+      green: "#98971a"
+      yellow: "#d79921"
+      blue: "#458588"
+      magenta: "#b16286"
+      cyan: "#689d6a"
+      white: "#a89984"
     bright:
-      black: '#928374'
-      red: '#fb4934'
-      green: '#b8bb26'
-      yellow: '#fabd2f'
-      blue: '#83a598'
-      magenta: '#d3869b'
-      cyan: '#8ec07c'
-      white: '#ebdbb2'
+      black: "#928374"
+      red: "#fb4934"
+      green: "#b8bb26"
+      yellow: "#fabd2f"
+      blue: "#83a598"
+      magenta: "#d3869b"
+      cyan: "#8ec07c"
+      white: "#ebdbb2"
 colors: *light
 selection:
-  semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
   save_to_clipboard: true
 live_config_reload: true
 key_bindings:

@@ -7,6 +7,12 @@
       "flake8Enabled": true
     }
   },
+  "workspace.rootPatterns": [
+    "pyproject.toml",
+    ".git",
+    ".hg",
+    ".projections.json"
+  ],
   "pyright.organizeimports.provider": "isort",
   "python.formatting.provider": "black",
   "languageserver": {
@@ -43,15 +49,26 @@
       }
     }
   },
+  "diagnostic-languageserver.filetypes": {
+    "markdown": ["write-good", "markdownlint"],
+    "sh": "shellcheck",
+    "yaml": ["yamllint"]
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "lua": "lua-format",
+    "sh": "shfmt"
+  },
   "coc": {
     "preferences": {
       "formatOnSaveFiletypes": [
-        "typescript",
-        "typescriptreact",
+        "python",
         "go",
         "json",
-        "javascript",
-        "terraform"
+        "terraform",
+        "sh",
+        "typescriptreact",
+        "typescript",
+        "clojure"
       ]
     }
   }
