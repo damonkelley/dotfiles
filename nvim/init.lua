@@ -29,6 +29,7 @@ require('packer').startup(function(use)
   use "hashivim/vim-terraform"
   use {'nvim-treesitter/nvim-treesitter', run = ":TSUpdate"}
   use "kdheepak/lazygit.nvim"
+  use "vim-test/vim-test"
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
