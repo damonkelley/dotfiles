@@ -32,13 +32,13 @@ require('packer').startup(function(use)
   use "vim-test/vim-test"
 
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+    'nvim-telescope/telescope.nvim', tag = '0.1.3',
     requires = {
       {'nvim-lua/plenary.nvim'},
       {'BurntSushi/ripgrep' },
       {'sharkdp/fd'},
       {'nvim-tree/nvim-web-devicons'},
-      {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
     }
   }
 
