@@ -214,6 +214,11 @@ _G.packer_plugins = {
     path = "/Users/damonkelley/dotfiles/data/nvim/site/pack/packer/start/vim-terraform",
     url = "https://github.com/hashivim/vim-terraform"
   },
+  ["vim-test"] = {
+    loaded = true,
+    path = "/Users/damonkelley/dotfiles/data/nvim/site/pack/packer/start/vim-test",
+    url = "https://github.com/vim-test/vim-test"
+  },
   ["vim-unimpaired"] = {
     loaded = true,
     path = "/Users/damonkelley/dotfiles/data/nvim/site/pack/packer/start/vim-unimpaired",
