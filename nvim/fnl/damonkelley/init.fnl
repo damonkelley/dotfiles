@@ -2,4 +2,7 @@
   {require [damonkelley.core
             damonkelley.languageserver
             damonkelley.mappings
-            damonkelley.telescope]})
+            damonkelley.telescope
+            damonkelley.treesitter]})
+            
+            

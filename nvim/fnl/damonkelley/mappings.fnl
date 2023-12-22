@@ -15,3 +15,5 @@
 (vim.keymap.set "n" "<Space>tf" ":TestFile<CR>")
 (vim.keymap.set "n" "<Space>tl" ":TestLast<CR>")
 (vim.keymap.set "n" "<Space>ta" ":TestSuite<CR>")
+
+(vim.keymap.set "n" "<Space>w" ":w<CR>")
