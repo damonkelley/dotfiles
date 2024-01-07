@@ -1,7 +1,7 @@
 # Script to symlink dotfiles
 
 mkdir -p ~/.config
-ln -svfn ~/dotfiles/vim ~/.config/nvim
+ln -svfn ~/dotfiles/nvim ~/.config/nvim
 ln -svfn ~/dotfiles/bin ~/.bin
 ln -svfn ~/dotfiles/alacritty ~/.config/alacritty
 ln -svf ~/dotfiles/starship/starship.toml ~/.config
