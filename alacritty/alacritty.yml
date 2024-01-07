@@ -144,7 +144,7 @@ schemes:
       magenta: "#d3869b"
       cyan: "#8ec07c"
       white: "#ebdbb2"
-colors: *light
+colors: *dark
 selection:
   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
   save_to_clipboard: true
@@ -156,4 +156,5 @@ key_bindings:
   - {key: D, mods: Alt, chars: "\ed"}
   - {key: A, mods: Alt, chars: "\ea"}
   - {key: Q, mods: Alt, chars: "\eq"}
+  - {key: Return, mods: Alt, chars: "\e\r"}
   - {key: Slash, mods: Control, action: None}
