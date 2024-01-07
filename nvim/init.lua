@@ -1,82 +1,105 @@
-local ensure_packer = function()
-    local fn = vim.fn
-    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-    if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-        vim.cmd [[packadd packer.nvim]]
-        return true
-    end
-    return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 
-local packer_bootstrap = ensure_packer()
+-- Bootstap hotpot into lazy plugin dir if it does not exist yet.
+local hotpotpath = vim.fn.stdpath("data") .. "/lazy/hotpot.nvim"
+if not vim.loop.fs_stat(hotpotpath) then
+  vim.notify("Bootstrapping hotpot.nvim...", vim.log.levels.INFO)
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--single-branch",
+    -- You may with to pin a known version tag with `--branch=vX.Y.Z`
+    -- "--branch=v0.9.6", -- disabled to fix an error with lazy.nvim
+    "https://github.com/rktjmp/hotpot.nvim.git",
+    hotpotpath,
+  })
+end
 
-require('packer').startup(function(use)
-    use 'wbthomason/packer.nvim'
+-- As per lazy's install instructions, but insert hotpots path at the front
+vim.opt.runtimepath:prepend({hotpotpath, lazypath})
 
-    use "folke/tokyonight.nvim"
+require("hotpot") --
 
-    use "Olical/aniseed"
-    use "Olical/conjure"
-    use "tpope/vim-commentary"
-    use "tpope/vim-surround"
-    use "tpope/vim-repeat"
-    use "tpope/vim-vinegar"
-    use "tpope/vim-unimpaired"
-    use "tpope/vim-sexp-mappings-for-regular-people"
-    use "guns/vim-sexp"
-    use "gpanders/nvim-parinfer"
-    use "hashivim/vim-terraform"
-    use { 'nvim-treesitter/nvim-treesitter', run = ":TSUpdate" }
-    use "kdheepak/lazygit.nvim"
-    use "vim-test/vim-test"
-    use { 'michaelb/sniprun', run = 'sh install.sh' }
+-- require('lazy').setup({
+--     "folke/tokyonight.nvim",
 
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.3',
-        requires = {
-            { 'nvim-lua/plenary.nvim' },
-            { 'BurntSushi/ripgrep' },
-            { 'sharkdp/fd' },
-            { 'nvim-tree/nvim-web-devicons' },
-            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-        }
-    }
+--     {
+--         "akinsho/toggleterm.nvim",
+--         version = '*',
+--         config = function() require("toggleterm").setup() end
+--     },
 
-    use "jose-elias-alvarez/null-ls.nvim"
+--     {
+--         'nvim-lualine/lualine.nvim',
+--         config = function() require("lualine").setup() end
+--     },
+
+--     "tpope/vim-commentary",
+--     "tpope/vim-surround",
+--     "tpope/vim-repeat",
+--     "tpope/vim-vinegar",
+--     "tpope/vim-unimpaired",
+--     "tpope/vim-sexp-mappings-for-regular-people",
+--     "guns/vim-sexp",
+--     "gpanders/nvim-parinfer",
+--     "hashivim/vim-terraform",
+--     { 'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
+--     "kdheepak/lazygit.nvim",
+--     "vim-test/vim-test",
+
+--     {
+--         'nvim-telescope/telescope.nvim',
+--         version = '0.1.3',
+--         dependencies = {
+--             { 'nvim-lua/plenary.nvim' },
+--             { 'BurntSushi/ripgrep' },
+--             { 'sharkdp/fd' },
+--             { 'nvim-tree/nvim-web-devicons' },
+--             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+--         }
+--     },
+
+--     {
+--         'VonHeikemen/lsp-zero.nvim',
+--         branch = 'v3.x',
+--         dependencies = {
+--             {
+--                 'williamboman/mason.nvim',
+--                 config = function() require('mason').setup() end
+--             },
+--             { 'williamboman/mason-lspconfig.nvim' },
+--             { 'neovim/nvim-lspconfig' },
+--             { 'hrsh7th/cmp-nvim-lsp' },
+--             { 'hrsh7th/nvim-cmp' },
+--             "L3MON4D3/LuaSnip",
+--             version = "v2.*",
+--             build = "make install_jsregexp" -- install jsregexp (optional!).
+--         }
+--     },
 
 
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        requires = {
-            { 'neovim/nvim-lspconfig' },
-            {
-                'williamboman/mason.nvim',
-                run = function()
-                    pcall(vim.cmd, 'MasonUpdate')
-                end,
-            },
-            { 'williamboman/mason-lspconfig.nvim' },
-            { 'jay-babu/mason-null-ls.nvim' },
-            { 'jose-elias-alvarez/null-ls.nvim' },
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'L3MON4D3/LuaSnip' },
-        }
-    }
+--     {
+--         "elixir-tools/elixir-tools.nvim",
+--         version = "*",
+--         dependencies = { "nvim-lua/plenary.nvim", },
+--     },
 
-    use {
-        "elixir-tools/elixir-tools.nvim",
-        tag = "stable",
-        requires = { "nvim-lua/plenary.nvim" }
-    }
+--     "folke/trouble.nvim",
+--     { "rktjmp/hotpot.nvim" },
+--     "Olical/conjure",
 
-    use "folke/trouble.nvim"
+-- })
 
-    if packer_bootstrap then
-        require('packer').sync()
-    end
-end)
-
-vim.g["aniseed#env"] = { module = "damonkelley.init", compile = true }
+require("damonkelley.init")

@@ -1,8 +1,7 @@
-(module damonkelley.init
-  {require [damonkelley.core
-            damonkelley.languageserver
-            damonkelley.mappings
-            damonkelley.telescope
-            damonkelley.treesitter]})
-            
-            
+(require :damonkelley.plugins)
+(require :damonkelley.core)
+(require :damonkelley.languageserver)
+(require :damonkelley.mappings)
+(require :damonkelley.telescope)
+(require :damonkelley.treesitter)
+(require :damonkelley.commands)

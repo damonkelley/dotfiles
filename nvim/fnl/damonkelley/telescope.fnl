@@ -1,5 +1,2 @@
-(module damonkelley.telescope 
-  {autoload {: telescope}})
-  
-
+(local telescope (require :telescope))
 (telescope.load_extension "fzf")

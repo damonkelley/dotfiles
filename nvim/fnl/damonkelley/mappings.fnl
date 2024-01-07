@@ -1,5 +1,4 @@
-(module damonkelley.mappings
-  {autoload {telescope telescope.builtin}})
+(local telescope (require :telescope.builtin))
 
 (vim.keymap.set "n" "<Space>f" ":Telescope fd<Enter>")
 (vim.keymap.set "n" "<Space>b" ":Telescope buffers<Enter>")
@@ -17,3 +16,8 @@
 (vim.keymap.set "n" "<Space>ta" ":TestSuite<CR>")
 
 (vim.keymap.set "n" "<Space>w" ":w<CR>")
+(vim.keymap.set "n" "<Space>ev"
+    (fn []
+      (vim.cmd.edit (vim.fs.dirname (vim.fn.expand "$MYVIMRC")))))
+
+(vim.keymap.set "n" "<F5>" vim.lsp.codelens.run)

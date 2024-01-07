@@ -1,9 +1,9 @@
-(module damonkelley.languageserver
-  { autoload {lsp lsp-zero
-              : lspconfig
-              : mason-null-ls
-              : elixir
-              nvim aniseed.nvim}})
+(local lsp (require :lsp-zero))
+(local lspconfig (require :lspconfig))
+(local mason-lspconfig (require :mason-lspconfig))
+(local elixir (require :elixir))
+
+(mason-lspconfig.setup {:ensure_installed ["lua_ls" "fennel_language_server"]})
 
 (lsp.preset {:name :recommended})
 
@@ -18,20 +18,23 @@
    :hint  "⚑"
    :info  "»"})
 
+(lspconfig.fennel_language_server.setup
+      {:settings
+          {:fennel
+              {:diagnostics
+                  {:globals ["vim"]}}}})
+
 (vim.keymap.set "n" "<M-Enter>" vim.lsp.buf.code_action)
 
 (lspconfig.lua_ls.setup (lsp.nvim_lua_ls))
 
-; Skip the default elixirls server and perfer elixir-tools
-(lsp.skip_server_setup ["elixirls"])
-
 (lsp.setup)
 
-(mason-null-ls.setup {:automatic_setup true})
-  
-(elixir.setup {:nextls {:enable  true}
-               :credo  {:enable  true}
+(elixir.setup {:nextls {:enable  true
+                        :init_options {:experimental {:completions {:enable true}}}}
+               :credo  {:enable  false}
                :elixirls {:enable true
+                          :tag "v0.18.1"
                           :settings (elixir.elixirls.settings
                                       {:enableTestLenses true
                                        :suggestSpecs true})}})

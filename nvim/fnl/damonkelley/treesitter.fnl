@@ -1,9 +1,10 @@
-(module damonkelley.treesitter
-  {autoload {configs nvim-treesitter.configs}})
+(local configs (require :nvim-treesitter.configs))
 
 (configs.setup {:ensure_installed ["elixir"
-                                   "html"
-                                   "heex"
-                                   "lua"]
+                                    "html"
+                                    "heex"
+                                    "vimdoc"
+                                    "lua"
+                                    "fennel"]
                                    
-                :highlight {:enable true}})
+                 :highlight {:enable true}})
