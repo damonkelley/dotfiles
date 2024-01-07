@@ -9,11 +9,11 @@ source $HOME/dotfiles/zsh/options.zsh
 
 alias ls='ls -GF'
 alias la='ls -alF'
-alias oldvim='nvim'
-alias vim='XDG_DATA_HOME=~/dotfiles/data XDG_CONFIG_HOME=~/dotfiles nvim'
+alias vim='nvim'
 alias cat=bat
 alias ls=exa
 
+export STARSHIP_CONFIG=~/dotfiles/starship/starship.toml
 eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -26,7 +26,9 @@ bindkey '^I' $fzf_default_completion
 enable-fzf-tab
 
 function dots {
-    tmux display-popup -d /Users/damonkelley/dotfiles -E nvim .
+    tmux display-popup -d /Users/damonkelley/dotfiles -E vim .
 }
 
 [ -f $HOME/dotfiles/zsh/ignore.zsh ] && source $HOME/dotfiles/zsh/ignore.zsh
+
+. /usr/local/opt/asdf/libexec/asdf.sh
