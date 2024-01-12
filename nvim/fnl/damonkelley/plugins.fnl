@@ -6,11 +6,7 @@
 (local plugins [
                 (plugin "folke/tokyonight.nvim" {})
                 (plugin "rose-pine/neovim" {:name "rose-pine"})
-                (plugin "akinsho/toggleterm.nvim"
-                    {:version "*"
-                     :config #((. (require :toggleterm) :setup))})
-                (plugin "nvim-lualine/lualine.nvim"
-                    {:config #((. (require :lualine) :setup))})
+
                 (plugin "tpope/vim-commentary" {})
                 (plugin "tpope/vim-surround" {})
                 (plugin "tpope/vim-repeat" {})
@@ -18,11 +14,23 @@
                 (plugin "tpope/vim-unimpaired" {})
                 (plugin "tpope/vim-sexp-mappings-for-regular-people" {})
                 (plugin "guns/vim-sexp" {})
+
                 (plugin "gpanders/nvim-parinfer" {})
                 (plugin "hashivim/vim-terraform" {})
                 (plugin "nvim-treesitter/nvim-treesitter" {:build  ":TSUpdate"})
                 (plugin "kdheepak/lazygit.nvim" {})
                 (plugin "vim-test/vim-test" {})
+                (plugin "akinsho/toggleterm.nvim")
+                (plugin "folke/trouble.nvim" {})
+                (plugin "rktjmp/hotpot.nvim" {}) 
+
+                (plugin "Olical/conjure" {}
+                    {:version "*"
+                     :config #((. (require :toggleterm) :setup))})
+
+                (plugin "nvim-lualine/lualine.nvim"
+                    {:config #((. (require :lualine) :setup))})
+
                 (plugin "nvim-telescope/telescope.nvim"
                  {:version  "0.1.3"
                   :dependencies [(plugin "nvim-lua/plenary.nvim" {})
@@ -30,6 +38,7 @@
                                  (plugin "sharkdp/fd" {})
                                  (plugin "nvim-tree/nvim-web-devicons" {})
                                  (plugin "nvim-telescope/telescope-fzf-native.nvim" {:build  "make"})]})
+
                 (plugin "VonHeikemen/lsp-zero.nvim"
                  {:branch "v3.x"
                   :dependencies [(plugin "williamboman/mason.nvim"
@@ -44,10 +53,7 @@
                         
                 (plugin "elixir-tools/elixir-tools.nvim"
                   {:version "*"
-                   :dependencies [ "nvim-lua/plenary.nvim"]})
+                   :dependencies [(plugin "nvim-lua/plenary.nvim")]})])
 
-                (plugin "folke/trouble.nvim" {})
-                (plugin "rktjmp/hotpot.nvim" {}) 
-                (plugin "Olical/conjure" {})])
 
 (lazy.setup plugins)
