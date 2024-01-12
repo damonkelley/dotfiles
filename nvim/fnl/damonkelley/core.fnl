@@ -15,4 +15,4 @@
 (nvim.opt :hidden true)
 (nvim.opt :termguicolors true)
 
-(nvim.colorscheme :tokyonight-night)
+(nvim.colorscheme :rose-pine)

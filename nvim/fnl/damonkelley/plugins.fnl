@@ -1,50 +1,53 @@
 (local lazy (require :lazy))
 
+(fn plugin [name options]
+  (do (tset options 1 name) options))
 
 (local plugins [
-                "folke/tokyonight.nvim"
-                { 1 "akinsho/toggleterm.nvim"
-                    :version "*"
-                    :config #((. (require :toggleterm) :setup))}
-                { 1 "nvim-lualine/lualine.nvim"
-                    :config #((. (require :lualine) :setup))}
-                "tpope/vim-commentary"
-                "tpope/vim-surround"
-                "tpope/vim-repeat"
-                "tpope/vim-vinegar"
-                "tpope/vim-unimpaired"
-                "tpope/vim-sexp-mappings-for-regular-people"
-                "guns/vim-sexp"
-                "gpanders/nvim-parinfer"
-                "hashivim/vim-terraform"
-                { 1 "nvim-treesitter/nvim-treesitter" :build  ":TSUpdate"}
-                "kdheepak/lazygit.nvim"
-                "vim-test/vim-test"
-                { 1 "nvim-telescope/telescope.nvim"
-                 :version  "0.1.3"
-                 :dependencies [ "nvim-lua/plenary.nvim"
-                                 "BurntSushi/ripgrep"
-                                 "sharkdp/fd"
-                                 "nvim-tree/nvim-web-devicons"
-                                { 1 "nvim-telescope/telescope-fzf-native.nvim" :build  "make"}]}
-                { 1 "VonHeikemen/lsp-zero.nvim"
-                 :branch "v3.x"
-                 :dependencies [{ 1 "williamboman/mason.nvim"
-                                  :config #((. (require :mason) :setup))}
-                                { 1 "williamboman/mason-lspconfig.nvim"}
-                                "neovim/nvim-lspconfig" 
-                                "hrsh7th/cmp-nvim-lsp" 
-                                "hrsh7th/nvim-cmp" 
-                                { 1 "L3MON4D3/LuaSnip"
-                                  :version  "v2.*"
-                                  :build "make install_jsregexp"}]}  ;install jsregexp (optional!).
+                (plugin "folke/tokyonight.nvim" {})
+                (plugin "rose-pine/neovim" {:name "rose-pine"})
+                (plugin "akinsho/toggleterm.nvim"
+                    {:version "*"
+                     :config #((. (require :toggleterm) :setup))})
+                (plugin "nvim-lualine/lualine.nvim"
+                    {:config #((. (require :lualine) :setup))})
+                (plugin "tpope/vim-commentary" {})
+                (plugin "tpope/vim-surround" {})
+                (plugin "tpope/vim-repeat" {})
+                (plugin "tpope/vim-vinegar" {})
+                (plugin "tpope/vim-unimpaired" {})
+                (plugin "tpope/vim-sexp-mappings-for-regular-people" {})
+                (plugin "guns/vim-sexp" {})
+                (plugin "gpanders/nvim-parinfer" {})
+                (plugin "hashivim/vim-terraform" {})
+                (plugin "nvim-treesitter/nvim-treesitter" {:build  ":TSUpdate"})
+                (plugin "kdheepak/lazygit.nvim" {})
+                (plugin "vim-test/vim-test" {})
+                (plugin "nvim-telescope/telescope.nvim"
+                 {:version  "0.1.3"
+                  :dependencies [(plugin "nvim-lua/plenary.nvim" {})
+                                 (plugin "BurntSushi/ripgrep" {})
+                                 (plugin "sharkdp/fd" {})
+                                 (plugin "nvim-tree/nvim-web-devicons" {})
+                                 (plugin "nvim-telescope/telescope-fzf-native.nvim" {:build  "make"})]})
+                (plugin "VonHeikemen/lsp-zero.nvim"
+                 {:branch "v3.x"
+                  :dependencies [(plugin "williamboman/mason.nvim"
+                                   {:config #((. (require :mason) :setup))})
+                                 (plugin "williamboman/mason-lspconfig.nvim" {})
+                                 (plugin "neovim/nvim-lspconfig" {}) 
+                                 (plugin "hrsh7th/cmp-nvim-lsp" {}) 
+                                 (plugin "hrsh7th/nvim-cmp" {}) 
+                                 (plugin "L3MON4D3/LuaSnip"
+                                   {:version  "v2.*"
+                                    :build "make install_jsregexp"})]})  ;install jsregexp (optional!).
                         
-                { 1 "elixir-tools/elixir-tools.nvim"
-                  :version "*"
-                  :dependencies [ "nvim-lua/plenary.nvim"]}
+                (plugin "elixir-tools/elixir-tools.nvim"
+                  {:version "*"
+                   :dependencies [ "nvim-lua/plenary.nvim"]})
 
-                "folke/trouble.nvim"
-                "rktjmp/hotpot.nvim" 
-                "Olical/conjure"])
+                (plugin "folke/trouble.nvim" {})
+                (plugin "rktjmp/hotpot.nvim" {}) 
+                (plugin "Olical/conjure" {})])
 
 (lazy.setup plugins)
