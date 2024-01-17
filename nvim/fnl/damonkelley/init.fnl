@@ -5,3 +5,4 @@
 (require :damonkelley.telescope)
 (require :damonkelley.treesitter)
 (require :damonkelley.commands)
+(require :damonkelley.terminal)

@@ -5,6 +5,8 @@
                                     "heex"
                                     "vimdoc"
                                     "lua"
-                                    "fennel"]
+                                    "fennel"
+                                    "bash"
+                                    "yaml"]
                                    
                  :highlight {:enable true}})

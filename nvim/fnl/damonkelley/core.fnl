@@ -14,5 +14,6 @@
 (nvim.opt :wrap false)
 (nvim.opt :hidden true)
 (nvim.opt :termguicolors true)
+(nvim.opt :exrc true)
 
 (nvim.colorscheme :rose-pine)

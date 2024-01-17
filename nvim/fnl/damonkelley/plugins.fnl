@@ -1,10 +1,7 @@
-(local lazy (require :lazy))
-
 (fn plugin [name options]
   (do (tset options 1 name) options))
 
-(local plugins [
-                (plugin "folke/tokyonight.nvim" {})
+(local plugins [(plugin "folke/tokyonight.nvim" {})
                 (plugin "rose-pine/neovim" {:name "rose-pine"})
 
                 (plugin "tpope/vim-commentary" {})
@@ -20,11 +17,11 @@
                 (plugin "nvim-treesitter/nvim-treesitter" {:build  ":TSUpdate"})
                 (plugin "kdheepak/lazygit.nvim" {})
                 (plugin "vim-test/vim-test" {})
-                (plugin "akinsho/toggleterm.nvim")
+                (plugin "akinsho/toggleterm.nvim" {})
                 (plugin "folke/trouble.nvim" {})
                 (plugin "rktjmp/hotpot.nvim" {}) 
 
-                (plugin "Olical/conjure" {}
+                (plugin "Olical/conjure"
                     {:version "*"
                      :config #((. (require :toggleterm) :setup))})
 
@@ -53,7 +50,9 @@
                         
                 (plugin "elixir-tools/elixir-tools.nvim"
                   {:version "*"
-                   :dependencies [(plugin "nvim-lua/plenary.nvim")]})])
+                   :dependencies [(plugin "nvim-lua/plenary.nvim" {})]})])
 
 
-(lazy.setup plugins)
+
+(let [lazy (require :lazy)]
+  (lazy.setup plugins))
