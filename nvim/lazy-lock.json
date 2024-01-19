@@ -4,7 +4,7 @@
   "conjure": { "branch": "master", "commit": "4880144f13a7693cded529b302de491bfbaedbd6" },
   "elixir-tools.nvim": { "branch": "main", "commit": "163522196c962fa87cac0df2a0d1ad332e1e0755" },
   "fd": { "branch": "master", "commit": "58284b8dbe4b3697f7f5970ad02dc14230bf8888" },
-  "hotpot.nvim": { "branch": "master", "commit": "0d0f414682a3e7d1561beac1f1545d8f8541599f" },
+  "hotpot.nvim": { "branch": "master", "commit": "9d4051550ff68d13aad9432fd3e631674da4e72e" },
   "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
   "lazygit.nvim": { "branch": "main", "commit": "1e08e3f5ac1152339690140e61a4a32b3bdc7de5" },
   "lsp-zero.nvim": { "branch": "v3.x", "commit": "68e2e00387a2d93fc54dfa646e2847c4fa4773d3" },
