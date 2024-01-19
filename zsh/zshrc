@@ -31,4 +31,4 @@ function dots {
 
 [ -f $HOME/dotfiles/zsh/ignore.zsh ] && source $HOME/dotfiles/zsh/ignore.zsh
 
-. /usr/local/opt/asdf/libexec/asdf.sh
+# . /usr/local/opt/asdf/libexec/asdf.sh
