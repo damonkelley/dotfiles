@@ -4,7 +4,7 @@ export HISTFILE=~/.history
 export EDITOR=nvim
 export PATH="/Users/damonkelley/.local/bin:/Users/damonkelley/.bin:$PATH"
 
-DOTFILES="$( pwd -P )"
+DOTFILES="$( dirname $( dirname $( realpath ~/.zshrc )))"
 
 source $DOTFILES/zsh/zinit.zsh
 source $DOTFILES/zsh/options.zsh
