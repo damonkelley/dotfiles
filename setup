@@ -1,0 +1,18 @@
+set -e
+
+SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
+echo "SCRIPTPATH ==> $SCRIPTPATH\n\n"
+
+mkdir -p ~/.config
+ln -svfn $SCRIPTPATH/nvim ~/.config/nvim
+ln -svfn $SCRIPTPATH/bin ~/.bin
+ln -svfn $SCRIPTPATH/alacritty ~/.config/alacritty
+ln -svf $SCRIPTPATH/starship/starship.toml ~/.config
+ln -svf $SCRIPTPATH/idea/ideavimrc ~/.ideavimrc
+ln -svf $SCRIPTPATH/tmux/tmux.conf ~/.tmux.conf
+ln -svf $SCRIPTPATH/git/gitconfig ~/.gitconfig
+ln -svf $SCRIPTPATH/git/gitignore_global ~/.gitignore_global
+ln -svf $SCRIPTPATH/zsh/zshrc ~/.zshrc
+
+brew bundle install --file $SCRIPTPATH/Brewfile.tools
