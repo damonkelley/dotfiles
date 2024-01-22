@@ -16,3 +16,5 @@ ln -svf $SCRIPTPATH/git/gitignore_global ~/.gitignore_global
 ln -svf $SCRIPTPATH/zsh/zshrc ~/.zshrc
 
 brew bundle install --file $SCRIPTPATH/Brewfile.tools
+
+$(dirname $(dirname $(which fzf)))/opt/fzf/install --key-bindings --completion --no-update-rc
