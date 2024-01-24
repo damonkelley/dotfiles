@@ -28,7 +28,7 @@ bindkey '^I' $fzf_default_completion
 enable-fzf-tab
 
 function dots {
-    tmux display-popup -d $DOTFILES -E vim .
+    tmux display-popup -d $DOTFILES -E nvim .
 }
 
 [ -f $DOTFILES/zsh/ignore.zsh ] && source $DOTFILES/zsh/ignore.zsh
