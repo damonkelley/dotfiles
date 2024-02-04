@@ -1,2 +1,5 @@
 # ~/.config/starship.toml
 command_timeout = 1000
+
+[elixir]
+disabled=true
