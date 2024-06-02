@@ -3,6 +3,7 @@
 (nvim.opt :inccommand :split)
 (nvim.opt :colorcolumn "80")
 (nvim.opt :cursorline true)
+(nvim.opt :scrolloff 10)
 (nvim.opt :tabstop 4)
 (nvim.opt :shiftwidth 4)
 (nvim.opt :softtabstop 4)
@@ -15,5 +16,6 @@
 (nvim.opt :hidden true)
 (nvim.opt :termguicolors true)
 (nvim.opt :exrc true)
+(nvim.g :mapleader " ")
 
 (nvim.colorscheme :rose-pine)

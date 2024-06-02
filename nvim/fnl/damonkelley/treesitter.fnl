@@ -6,7 +6,9 @@
                                     "vimdoc"
                                     "lua"
                                     "fennel"
+                                    "clojure"
                                     "bash"
+                                    "java"
+                                    "kotlin"
                                     "yaml"]
-                                   
                  :highlight {:enable true}})
