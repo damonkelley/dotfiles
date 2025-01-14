@@ -2,7 +2,6 @@
 (require :damonkelley.core)
 (require :damonkelley.languageserver)
 (require :damonkelley.mappings)
-(require :damonkelley.telescope)
 (require :damonkelley.treesitter)
 (require :damonkelley.commands)
 (require :damonkelley.terminal)

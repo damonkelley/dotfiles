@@ -18,4 +18,4 @@
 (nvim.opt :exrc true)
 (nvim.g :mapleader " ")
 
-(nvim.colorscheme :rose-pine)
+(nvim.colorscheme :adwaita)

@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 set -e
 
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
@@ -6,6 +8,7 @@ echo "SCRIPTPATH ==> $SCRIPTPATH\n\n"
 
 mkdir -p ~/.config
 ln -svfn $SCRIPTPATH/nvim ~/.config/nvim
+ln -svfn $SCRIPTPATH/ghostty ~/.config/ghostty
 ln -svfn $SCRIPTPATH/bin ~/.bin
 ln -svfn $SCRIPTPATH/alacritty ~/.config/alacritty
 ln -svf $SCRIPTPATH/starship/starship.toml ~/.config

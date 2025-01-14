@@ -7,6 +7,7 @@ vim/autoload/plug.vim.old
 vim/plugged/*
 vim/.netrwhist
 vim/.init.vim-rplugin~
+zsh/client.zsh
 
 *.swp
 *.swo

@@ -13,3 +13,13 @@ map [q :action GotoPreviousError<CR>
 
 map <Space>rr :action Run<CR>
 map <Space>rn :action RunClass<CR>
+map <Space>rc :action ChooseRunConfiguration<CR>
+map <Space>rt :action ActivateRunToolWindow<CR>
+
+map <Space>tt :action ActivateTerminalToolWindow<CR>
+
+map <Space>a :action FindAction<CR>
+map <Space>m :action RefactoringMenu<CR>
+map <Space>b :action Switcher<CR>
+
+map <Space>g :action BuildMenu<CR>

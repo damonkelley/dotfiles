@@ -1,6 +1,6 @@
 tap "homebrew/bundle"
 brew "bat"
-brew "exa"
+brew "eza"
 brew "fd"
 brew "fzf"
 brew "lazygit"
