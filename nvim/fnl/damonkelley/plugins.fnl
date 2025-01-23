@@ -51,7 +51,7 @@
                         :dependencies [(plugin "nvim-lua/plenary.nvim" {})]
                         :opts {:ui {:enable false}
                                :workspaces [{:name "heal-strains-crumb"
-                                             :path "~/vault/heal-strains-crumb"}]}
+                                             :path "~/vault/heal-strain-crumb"}]}
                         })
 
                 (plugin "Olical/conjure" {:dependencies [(plugin "Olical/AnsiEsc" {})
