@@ -26,7 +26,9 @@
                                                           (nvim.opt :timeout true)
                                                           (nvim.opt :timeoutlen 300)))})
 
-                (plugin "MeanderingProgrammer/markdown.nvim" {:config #((. (require :render-markdown) :setup) {})})
+                (plugin "MeanderingProgrammer/markdown.nvim" 
+                        {:ft ["markdown" "Avante"]
+                         :opts {:file_types ["markdown" "Avante"]}})
 
                 (plugin "stevearc/oil.nvim" {:config true})
 
@@ -37,24 +39,14 @@
                 (plugin "nvim-treesitter/nvim-treesitter" {:build  ":TSUpdate"})
                 (plugin "vim-test/vim-test" {})
                 (plugin "akinsho/toggleterm.nvim" {:config #((. (require :toggleterm) :setup))})
-                (plugin "folke/trouble.nvim" {})
                 (plugin "rktjmp/hotpot.nvim" {}) 
 
                 (plugin "NeogitOrg/neogit"
                         {:dependencies ["nvim-lua/plenary.nvim" "sindrets/diffview.nvim"]
                          :config true})
 
-                (plugin "epwalsh/obsidian.nvim" {
-                        :version "*"
-                        ; :lazy true
-                        ; :ft "markdown"
-                        :dependencies [(plugin "nvim-lua/plenary.nvim" {})]
-                        :opts {:ui {:enable false}
-                               :workspaces [{:name "heal-strains-crumb"
-                                             :path "~/vault/heal-strain-crumb"}]}
-                        })
-
-                (plugin "Olical/conjure" {:dependencies [(plugin "Olical/AnsiEsc" {})
+                (plugin "Olical/conjure" {:branch "main"
+                                          :dependencies [(plugin "Olical/AnsiEsc" {})
                                                          (plugin "m00qek/baleia.nvim" {:config #((. (require :baleia) :setup))})]})
 
                 (plugin "Olical/nfnl" {:ft "fennel"})
@@ -97,7 +89,25 @@
 
                 (plugin "elixir-tools/elixir-tools.nvim"
                         {:version "*"
-                         :dependencies [(plugin "nvim-lua/plenary.nvim" {})]})])
+                         :dependencies [(plugin "nvim-lua/plenary.nvim" {})]})
+
+
+                ; (plugin "olimorris/codecompanion.nvim"
+                ;         {:dependencies [(plugin "nvim-lua/plenary.nvim" {})
+                ;                         (plugin "nvim-treesitter/nvim-treesitter" {})]})
+
+
+                (plugin "yetone/avante.nvim"
+                        {:event "VeryLazy"
+                        :version "*"
+                        :build "make"
+                        :opts {:provider "copilot"
+                        :dependencies [(plugin "stevearc/dressing.nvim" {})
+                                       (plugin "nvim-lua/plenary.nvim" {})
+                                       (plugin "MunifTanjim/nui.nvim" {})
+                                       (plugin "zbirenbaum/copilot.lua" {})]}})
+
+                ])
 
 
 
