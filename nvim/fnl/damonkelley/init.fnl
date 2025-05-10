@@ -1,7 +1,0 @@
-(require :damonkelley.plugins)
-(require :damonkelley.core)
-(require :damonkelley.languageserver)
-(require :damonkelley.mappings)
-(require :damonkelley.treesitter)
-(require :damonkelley.commands)
-(require :damonkelley.terminal)
