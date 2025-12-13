@@ -1,3 +1,11 @@
+-- Enable LSP servers (Neovim 0.11+ native LSP)
+-- Configs are in ~/.config/nvim/lsp/*.lua
+vim.lsp.enable({
+    'lua_ls',
+    'clojure_lsp',
+    'typescript_language_server',
+})
+
 local fzf = require("fzf-lua")
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -11,7 +19,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
         vim.keymap.set('n', ']d', function() vim.diagnostic.goto_prev() end, opts)
         vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("n", "<M-Enter>", function() fzf.lsp_code_actions() end, opts)
+        vim.keymap.set("n", "<M-Enter>", function() vim.lsp.buf.code_action() end, opts)
         vim.keymap.set("n", "<F3>", function() vim.lsp.buf.format({ async = false }) end, opts)
         vim.keymap.set("n", "<F5>", vim.lsp.codelens.run)
         vim.keymap.set('n', '<leader>vrr', function() fzf.lsp_references() end, opts)

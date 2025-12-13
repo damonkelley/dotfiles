@@ -8,5 +8,6 @@ return {
         keys = {
             {"<leader>gs", "<CMD>Neogit<CR>", desc = "Git Status"}
         }
-    }
+    },
+    { "tpope/vim-fugitive" }
 }

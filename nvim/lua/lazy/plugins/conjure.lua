@@ -2,6 +2,7 @@ return {
     {
         "Olical/conjure",
         branch = "main",
+        enabled = true,
         dependencies = {
             "Olical/AnsiEsc",
             { "m00qek/baleia.nvim", opts = {} }

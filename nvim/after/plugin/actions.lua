@@ -31,4 +31,4 @@ local function function_picker()
     })
 end
 
-vim.keymap.set('n', '<leader><Enter>', function_picker, { desc = "Run Action Picker" })
+vim.keymap.set('n', '<leader><Enter>', function_picker, { desc = "Run Action Picker", silent = true})

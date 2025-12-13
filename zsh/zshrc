@@ -50,3 +50,11 @@ autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 
 complete -C "$(which aws_completer)" aws
+eval "$(mise activate zsh)"
+
+# bun completions
+[ -s "/Users/damonkelley/.bun/_bun" ] && source "/Users/damonkelley/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

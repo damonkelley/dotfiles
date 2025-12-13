@@ -14,6 +14,7 @@ ln -svfn $SCRIPTPATH/alacritty ~/.config/alacritty
 ln -svf $SCRIPTPATH/starship/starship.toml ~/.config
 ln -svf $SCRIPTPATH/idea/ideavimrc ~/.ideavimrc
 ln -svf $SCRIPTPATH/tmux/tmux.conf ~/.tmux.conf
+ln -svfn $SCRIPTPATH/zellij ~/.config/zellij
 ln -svf $SCRIPTPATH/git/gitconfig ~/.gitconfig
 ln -svf $SCRIPTPATH/git/gitignore_global ~/.gitignore_global
 ln -svf $SCRIPTPATH/zsh/zshrc ~/.zshrc

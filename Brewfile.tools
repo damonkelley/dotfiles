@@ -1,14 +1,17 @@
-tap "homebrew/bundle"
 brew "bat"
+brew "direnv"
 brew "eza"
 brew "fd"
 brew "fzf"
-brew "lazygit"
-brew "neovim"
-brew "reattach-to-user-namespace"
 brew "ripgrep"
-brew "rust"
 brew "starship"
+
+brew "rust"
+brew "neovim"
+brew "bun"
+
 brew "tmux"
-brew "direnv"
+brew "reattach-to-user-namespace"
+brew "zellij"
+
 cask "font-jetbrains-mono-nerd-font"
