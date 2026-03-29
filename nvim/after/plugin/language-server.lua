@@ -1,6 +1,7 @@
 -- Enable LSP servers (Neovim 0.11+ native LSP)
 -- Configs are in ~/.config/nvim/lsp/*.lua
 vim.lsp.enable({
+    'gleam',
     'lua_ls',
     'clojure_lsp',
     'typescript_language_server',
