@@ -16,6 +16,8 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
 
 DOTFILES="$( dirname $( dirname $( realpath ~/.zshrc )))"
 
+eval "$(mise activate zsh)"
+
 source $DOTFILES/zsh/zinit.zsh
 source $DOTFILES/zsh/options.zsh
 
@@ -50,8 +52,6 @@ autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 
 complete -C "$(which aws_completer)" aws
-eval "$(mise activate zsh)"
-
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
