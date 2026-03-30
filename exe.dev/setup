@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+set -e
+
+SCRIPTPATH="$( cd -- "$(dirname "$0")/.." >/dev/null 2>&1 ; pwd -P )"
+
+echo "SCRIPTPATH ==> $SCRIPTPATH"
+
+# Install zsh via apt
+if ! command -v zsh &> /dev/null; then
+  sudo apt-get update && sudo apt-get install -y zsh
+fi
+
+# Set zsh as default shell
+if [ "$SHELL" != "$(which zsh)" ]; then
+  sudo chsh -s "$(which zsh)" "$(whoami)"
+fi
+
+# Install mise
+if ! command -v mise &> /dev/null; then
+  curl https://mise.run | sh
+fi
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# Install tools via mise
+mise use -g bat@latest
+mise use -g direnv@latest
+mise use -g eza@latest
+mise use -g fd@latest
+mise use -g fzf@latest
+mise use -g ripgrep@latest
+mise use -g starship@latest
+mise use -g rust@latest
+mise use -g neovim@latest
+mise use -g bun@latest
+mise use -g tmux@latest
+mise use -g zellij@latest
+
+# Symlinks
+mkdir -p ~/.config
+ln -svfn $SCRIPTPATH/nvim ~/.config/nvim
+ln -svfn $SCRIPTPATH/ghostty ~/.config/ghostty
+ln -svfn $SCRIPTPATH/bin ~/.bin
+ln -svfn $SCRIPTPATH/alacritty ~/.config/alacritty
+ln -svf $SCRIPTPATH/starship/starship.toml ~/.config
+ln -svf $SCRIPTPATH/idea/ideavimrc ~/.ideavimrc
+ln -svf $SCRIPTPATH/tmux/tmux.conf ~/.tmux.conf
+ln -svfn $SCRIPTPATH/zellij ~/.config/zellij
+ln -svf $SCRIPTPATH/git/gitconfig ~/.gitconfig
+ln -svf $SCRIPTPATH/git/gitignore_global ~/.gitignore_global
+ln -svf $SCRIPTPATH/zsh/zshrc ~/.zshrc
