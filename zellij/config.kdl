@@ -481,7 +481,7 @@ default_layout "default"
 // - false
 // Default: false
 // 
-// web_server false
+web_server true
 // Whether to allow sessions started in the terminal to be shared through a local web server, assuming one is
 // running (see the `web_server` option for more details).
 // (Requires restart)
