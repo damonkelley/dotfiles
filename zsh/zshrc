@@ -26,6 +26,7 @@ alias la='ls -alF'
 alias vim='nvim'
 alias cat=bat
 alias ls=eza
+[[ "$(uname)" = "Linux" ]] && alias tmux='tmux -u'
 
 export STARSHIP_CONFIG=$DOTFILES/starship/starship.toml
 eval "$(starship init zsh)"
