@@ -14,6 +14,11 @@ DOTFILES_DIR="$HOME/dotfiles"
 GITHUB_DIR="$HOME/github"
 MISE_BIN="$HOME/.local/bin/mise"
 
+# exe.dev GitHub integration hostnames (see exe.dev ▶ integrations list)
+# Repos are cloneable without tokens via these hosts:
+DOTFILES_URL="https://damonkelley-dotfiles.int.exe.xyz/damonkelley/dotfiles.git"
+PI_CONFIG_URL="https://damonkelley-pi-config.int.exe.xyz/damonkelley/pi-config.git"
+
 log()  { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
 warn() { printf '\033[1;33m!!\033[0m %s\n' "$*" >&2; }
 
@@ -66,9 +71,9 @@ mise use -g zellij@latest
 # ---------------------------------------------------------------------------
 # 4. Dotfiles
 # ---------------------------------------------------------------------------
-log "Cloning dotfiles"
+log "Cloning dotfiles via GitHub integration"
 if [ ! -d "$DOTFILES_DIR/.git" ]; then
-  git clone --quiet https://github.com/damonkelley/dotfiles.git "$DOTFILES_DIR"
+  git clone --quiet "$DOTFILES_URL" "$DOTFILES_DIR"
 else
   git -C "$DOTFILES_DIR" pull --quiet
 fi
@@ -96,11 +101,9 @@ bun install -g @earendil-works/pi-coding-agent
 log "Setting up projects"
 mkdir -p "$GITHUB_DIR"
 
-# pi-config is made available by your exe.dev GitHub integration.
-# Clone it once if it's not already there:
+log "Cloning pi-config via GitHub integration"
 if [ ! -d "$GITHUB_DIR/pi-config/.git" ]; then
-  log "Cloning pi-config"
-  git clone --quiet https://github.com/damonkelley/pi-config.git "$GITHUB_DIR/pi-config" \
+  git clone --quiet "$PI_CONFIG_URL" "$GITHUB_DIR/pi-config" \
     || warn "Could not clone pi-config — check your exe.dev GitHub integration"
 fi
 
@@ -121,6 +124,4 @@ cat <<EOF
   Dotfiles:    $DOTFILES_DIR
   Projects:    $GITHUB_DIR
   pi-config:   $GITHUB_DIR/pi-config
-
-  Shelley:     https://$(hostname -s 2>/dev/null || echo dev-vm).shelley.exe.xyz
 EOF
