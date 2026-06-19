@@ -95,8 +95,8 @@ ln -sfv  "$DOTFILES_DIR/zsh/zshrc"       "$HOME/.zshrc"
 # ---------------------------------------------------------------------------
 # 5. Projects + pi
 # ---------------------------------------------------------------------------
-log "Installing pi"
-bun install -g @earendil-works/pi-coding-agent
+# Note: pi itself is already installed on exeuntu VMs. We keep the box's naive
+# pi config (exe.dev context, theme, etc.) and only add pi-config as a package.
 
 log "Setting up projects"
 mkdir -p "$GITHUB_DIR"
@@ -112,6 +112,18 @@ if [ -f "$GITHUB_DIR/pi-config/packages/web/package.json" ]; then
   log "Linking web CLI"
   (cd "$GITHUB_DIR/pi-config/packages/web" && bun install --quiet && bun link)
 fi
+
+# Merge pi-config into ~/.pi/agent/settings.json packages, preserving everything
+# else (naive exe.dev config, theme, lastChangelogVersion, provider, etc.).
+# Idempotent: skips if already present.
+log "Registering pi-config package in pi settings"
+SETTINGS="$HOME/.pi/agent/settings.json"
+mkdir -p "$(dirname "$SETTINGS")"
+[ -f "$SETTINGS" ] || echo '{}' > "$SETTINGS"
+TMP=$(mktemp)
+jq --arg p "$GITHUB_DIR/pi-config" \
+   '.packages = ((.packages // []) | if index($p) then . else . + [$p] end)' \
+   "$SETTINGS" > "$TMP" && mv "$TMP" "$SETTINGS"
 
 # ---------------------------------------------------------------------------
 # 6. Done
