@@ -55,23 +55,22 @@ ln -svf $SCRIPTPATH/git/gitconfig ~/.gitconfig
 ln -svf $SCRIPTPATH/git/gitignore_global ~/.gitignore_global
 ln -svf $SCRIPTPATH/zsh/zshrc ~/.zshrc
 
-# Clone projects (uses exe.dev GitHub integration for auth)
-mkdir -p ~/github
-cd ~/github
-gh repo clone damonkelley/pi-config 2>/dev/null || true
-
-# Link web package
-cd ~/github/pi-config/packages/web
-bun install
-bun link
-
 # Install pi
 bun install -g @earendil-works/pi-coding-agent
 
+# Setup is idempotent — pi-config and other repos are available via
+# your exe.dev GitHub integration (e.g. pi-config.int.exe.xyz)
+
+# Optional: set up pi-config
+# mkdir -p ~/github && cd ~/github
+# git clone https://<integration>.int.exe.xyz/damonkelley/pi-config.git
+# cd pi-config/packages/web && bun link
+
+mkdir -p ~/github
+
 echo ""
 echo "=== Setup complete! ==="
-echo "  SSH in with: ssh dev.exe.xyz"
 echo "  Run 'zsh' to activate your shell"
 echo "  Your dotfiles: ~/dotfiles/"
 echo "  Your projects: ~/github/"
-echo "  Pi config: ~/github/pi-config/"
+echo "  Pi config available via your exe.dev GitHub integration"
