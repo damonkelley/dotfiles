@@ -44,6 +44,7 @@ function dots {
 }
 
 [ -f $DOTFILES/zsh/ignore.zsh ] && source $DOTFILES/zsh/ignore.zsh
+[ -f $DOTFILES/zsh/secrets.env ] && source $DOTFILES/zsh/secrets.env
 
 eval "$(direnv hook zsh)"
 
@@ -59,3 +60,4 @@ complete -C "$(which aws_completer)" aws
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+

@@ -2,6 +2,7 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        branch = "main",
         config = function()
             require("nvim-treesitter").setup({
                 ensure_installed = {
@@ -29,6 +30,5 @@ return {
                 },
             })
         end
-    },
-    "nvim-treesitter/nvim-treesitter-textobjects",
+    }
 }

@@ -6,10 +6,12 @@ SCRIPTPATH="$( cd -- "$(dirname "$0")/.." >/dev/null 2>&1 ; pwd -P )"
 
 echo "SCRIPTPATH ==> $SCRIPTPATH"
 
-# Install zsh via apt
-if ! command -v zsh &> /dev/null; then
-  sudo apt-get update && sudo apt-get install -y zsh
-fi
+# System packages
+sudo apt-get update
+sudo apt-get install -y \
+  zsh git jq curl wget gh \
+  fonts-firacode \
+  && sudo apt-get autoremove -y
 
 # Set zsh as default shell
 if [ "$SHELL" != "$(which zsh)" ]; then
@@ -17,23 +19,25 @@ if [ "$SHELL" != "$(which zsh)" ]; then
 fi
 
 # Install mise
-if ! command -v mise &> /dev/null; then
+if ! command -v mise &>/dev/null; then
   curl https://mise.run | sh
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
 
-# Install tools via mise
+# Tools via mise
+mise use -g babashka@latest
 mise use -g bat@latest
+mise use -g bun@latest
 mise use -g direnv@latest
 mise use -g eza@latest
 mise use -g fd@latest
 mise use -g fzf@latest
-mise use -g ripgrep@latest
-mise use -g starship@latest
-mise use -g rust@latest
 mise use -g neovim@latest
-mise use -g bun@latest
+mise use -g node@latest
+mise use -g ripgrep@latest
+mise use -g rust@latest
+mise use -g starship@latest
 mise use -g tmux@latest
 mise use -g zellij@latest
 
@@ -50,3 +54,26 @@ ln -svfn $SCRIPTPATH/zellij ~/.config/zellij
 ln -svf $SCRIPTPATH/git/gitconfig ~/.gitconfig
 ln -svf $SCRIPTPATH/git/gitignore_global ~/.gitignore_global
 ln -svf $SCRIPTPATH/zsh/zshrc ~/.zshrc
+
+# GitHub auth (uses gh CLI — will prompt if not logged in)
+gh auth login --git-protocol https || true
+
+# Clone projects
+mkdir -p ~/github
+cd ~/github
+git clone git@github.com:damonkelley/pi-config.git 2>/dev/null || true
+
+# Link web package
+cd ~/github/pi-config/packages/web
+bun install
+bun link
+
+# Install pi
+bun install -g @earendil-works/pi-coding-agent
+
+echo ""
+echo "=== Setup complete! ==="
+echo "  SSH in with: ssh dev.exe.xyz"
+echo "  Run 'zsh' to activate your shell"
+echo "  Your projects: ~/github/"
+echo "  Pi config: ~/github/pi-config/"

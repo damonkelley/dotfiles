@@ -43,8 +43,8 @@ return {
             local cwd = vim.uv.cwd()
             local basename = vim.fs.basename(cwd)
 			_99.setup({
-                -- provider = _99.Providers.ClaudeCodeProvider,  -- default: OpenCodeProvider
-                model = "anthropic/claude-opus-4-6",
+                provider = _99.Providers.ClaudeCodeProvider,  -- default: OpenCodeProvider
+                model = "claude-opus-4-6",
 				logger = {
 					type = "file",
 					level = _99.DEBUG,

@@ -1,0 +1,219 @@
+#!/usr/bin/env bb
+
+(ns session-picker
+  (:require [babashka.fs :as fs]
+            [babashka.process :as process]
+            [clojure.string :as str]))
+
+(def state-dir
+  (str (or (System/getenv "XDG_STATE_HOME")
+           (str (System/getProperty "user.home") "/.local/state"))
+       "/zellij-sessions"))
+
+(def mru-file (str state-dir "/session-picker-mru.edn"))
+
+(defn current-session []
+  (System/getenv "ZELLIJ_SESSION_NAME"))
+
+(defn in-zellij? []
+  (some? (System/getenv "ZELLIJ")))
+
+(defn trim-line [s]
+  (some-> s str/trim not-empty))
+
+(defn sh-output [& args]
+  (-> (apply process/shell {:out :string :err :string} args)
+      deref
+      :out))
+
+(defn list-sessions []
+  (->> (sh-output "zellij" "list-sessions" "-s")
+       str/split-lines
+       (keep trim-line)
+       vec))
+
+(defn session-exists? [session-name]
+  (some #(= session-name %) (list-sessions)))
+
+(defn ensure-state-dir! []
+  (fs/create-dirs state-dir))
+
+(defn read-mru []
+  (if (fs/exists? mru-file)
+    (try
+      (read-string (slurp mru-file))
+      (catch Exception _ {}))
+    {}))
+
+(defn write-mru! [mru]
+  (ensure-state-dir!)
+  (spit mru-file (pr-str mru)))
+
+(defn record-session-use! [session-name]
+  (write-mru! (assoc (read-mru) session-name (quot (System/currentTimeMillis) 1000))))
+
+(defn remove-session-from-mru! [session-name]
+  (write-mru! (dissoc (read-mru) session-name)))
+
+(defn mru-sort-key [mru index session-name]
+  [(- (get mru session-name 0)) index])
+
+(defn sort-sessions-by-mru [sessions]
+  (let [mru (read-mru)]
+    (->> sessions
+         (map-indexed (fn [index session-name]
+                        {:name session-name
+                         :index index
+                         :sort-key (mru-sort-key mru index session-name)}))
+         (sort-by :sort-key)
+         (mapv :name))))
+
+(defn marker-for-session [current session-name]
+  (when (= current session-name) "current"))
+
+(defn entry-line [current session-name]
+  (str/join "\t" ["session" session-name session-name (or (marker-for-session current session-name) "")]))
+
+(defn picker-header [status]
+  (cond-> "sorted by recent use • enter switch/create • ctrl-d delete • esc close"
+    (seq status) (str "\n" status)))
+
+(defn action-file []
+  (str (fs/create-temp-file {:prefix "zellij-sessions-fzf-action-"})))
+
+(defn read-action [path]
+  (when (fs/exists? path)
+    (trim-line (slurp path))))
+
+(defn delete-file! [path]
+  (when (and path (fs/exists? path))
+    (fs/delete path)))
+
+(defn run-fzf [entries status]
+  (let [action-path (action-file)
+        input (str (str/join "\n" entries) "\n")
+        proc (process/process
+              ["fzf"
+               "--delimiter=\t"
+               "--with-nth=3,4"
+               "--prompt=sessions> "
+               (str "--header=" (picker-header status))
+               "--header-first"
+               "--layout=reverse"
+               "--border"
+               "--height=100%"
+               "--print-query"
+               (str "--bind=ctrl-d:execute-silent(printf delete > '" action-path "')+accept")]
+              {:in input :out :string :err :inherit})
+        result @proc
+        output-lines (str/split-lines (:out result))
+        result-map {:exit (:exit result)
+                    :query (first output-lines)
+                    :selected-line (second output-lines)
+                    :action (or (read-action action-path) "enter")}]
+    (delete-file! action-path)
+    result-map))
+
+(defn parse-selected-session [selected-line]
+  (second (str/split (or selected-line "") #"\t")))
+
+(defn trim-query [query]
+  (some-> query str/trim not-empty))
+
+(defn create-session-if-needed! [session-name]
+  (when-not (session-exists? session-name)
+    @(process/process ["zellij" "attach" "--create-background" session-name]
+                      {:out :string :err :inherit})))
+
+(defn switch-or-create-session! [session-name]
+  (record-session-use! session-name)
+  (if (in-zellij?)
+    (do
+      (create-session-if-needed! session-name)
+      @(process/process ["zellij" "action" "switch-session" session-name]
+                        {:out :inherit :err :inherit}))
+    @(process/process ["zellij" "attach" "--create" session-name]
+                      {:out :inherit :err :inherit})))
+
+(defn confirm-delete? [session-name]
+  (let [confirmation @(process/process
+                       ["fzf"
+                        "--prompt=delete> "
+                        (str "--header=Delete session '" session-name "'?")
+                        "--height=40%"
+                        "--layout=reverse"
+                        "--border"
+                        "--ansi"]
+                       {:in (str "No\nYes, delete " session-name "\n")
+                        :out :string
+                        :err :inherit})]
+    (= (trim-line (:out confirmation))
+       (str "Yes, delete " session-name))))
+
+(defn delete-current-session-status []
+  "Cannot delete the current session")
+
+(defn delete-missing-selection-status []
+  "Select a session to delete")
+
+(defn deleted-status [session-name]
+  (str "Deleted session '" session-name "'"))
+
+(defn delete-session! [current session-name]
+  (cond
+    (nil? session-name)
+    (delete-missing-selection-status)
+
+    (= current session-name)
+    (delete-current-session-status)
+
+    :else
+    (do
+      (when (confirm-delete? session-name)
+        @(process/process ["zellij" "kill-session" session-name]
+                          {:out :string :err :inherit})
+        (remove-session-from-mru! session-name))
+      (if (session-exists? session-name)
+        nil
+        (deleted-status session-name)))))
+
+(defn fzf-aborted? [exit-code]
+  (not (contains? #{0 1} exit-code)))
+
+(defn build-entries [current sessions]
+  (mapv #(entry-line current %) sessions))
+
+(defn next-status-on-delete [current selected-session]
+  (or (delete-session! current selected-session) ""))
+
+(defn query-target [query selected-session]
+  (or selected-session (trim-query query)))
+
+(defn handle-selection! [query selected-session]
+  (when-let [target (query-target query selected-session)]
+    (switch-or-create-session! target)
+    :done))
+
+(defn picker-loop [status]
+  (let [current (current-session)
+        sessions (sort-sessions-by-mru (list-sessions))
+        entries (build-entries current sessions)
+        {:keys [exit query selected-line action]} (run-fzf entries status)
+        selected-session (trim-line (parse-selected-session selected-line))]
+    (cond
+      (fzf-aborted? exit)
+      nil
+
+      (= action "delete")
+      (recur (next-status-on-delete current selected-session))
+
+      (handle-selection! query selected-session)
+      nil
+
+      :else
+      nil)))
+
+(defn -main []
+  (picker-loop ""))
+
+(-main)

@@ -20,7 +20,7 @@ clojure/
 lazygit/
 
 zsh/ignore.zsh
-zsh/ignore.zsh
+zsh/secrets.env
 
 nvim/lua/damonkelley
 ghostty/*.bak
