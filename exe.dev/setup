@@ -2,10 +2,6 @@
 
 set -e
 
-SCRIPTPATH="$( cd -- "$(dirname "$0")/.." >/dev/null 2>&1 ; pwd -P )"
-
-echo "SCRIPTPATH ==> $SCRIPTPATH"
-
 # System packages
 sudo apt-get update
 sudo apt-get install -y \
@@ -41,6 +37,10 @@ mise use -g starship@latest
 mise use -g tmux@latest
 mise use -g zellij@latest
 
+# Clone dotfiles (uses exe.dev GitHub integration for auth)
+git clone https://github.com/damonkelley/dotfiles.git ~/dotfiles 2>/dev/null || true
+SCRIPTPATH="$HOME/dotfiles"
+
 # Symlinks
 mkdir -p ~/.config
 ln -svfn $SCRIPTPATH/nvim ~/.config/nvim
@@ -55,13 +55,10 @@ ln -svf $SCRIPTPATH/git/gitconfig ~/.gitconfig
 ln -svf $SCRIPTPATH/git/gitignore_global ~/.gitignore_global
 ln -svf $SCRIPTPATH/zsh/zshrc ~/.zshrc
 
-# GitHub auth (uses gh CLI — will prompt if not logged in)
-gh auth login --git-protocol https || true
-
-# Clone projects
+# Clone projects (uses exe.dev GitHub integration for auth)
 mkdir -p ~/github
 cd ~/github
-git clone git@github.com:damonkelley/pi-config.git 2>/dev/null || true
+gh repo clone damonkelley/pi-config 2>/dev/null || true
 
 # Link web package
 cd ~/github/pi-config/packages/web
@@ -75,5 +72,6 @@ echo ""
 echo "=== Setup complete! ==="
 echo "  SSH in with: ssh dev.exe.xyz"
 echo "  Run 'zsh' to activate your shell"
+echo "  Your dotfiles: ~/dotfiles/"
 echo "  Your projects: ~/github/"
 echo "  Pi config: ~/github/pi-config/"
